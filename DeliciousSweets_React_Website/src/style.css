@@ -1,0 +1,61 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#top-border{
+    background-image: url("./images/parchment_texture.jpg");
+    background-size: cover;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 0;
+    position: relative;
+}
+#header{
+    padding: 20px 0;
+    background-image: url("./images/chalkboard_textture.jpg");
+    background-size:cover;
+    position: relative;
+}
+.nav-menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-menu ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.nav-menu ul li{
+    list-style: none;
+    padding: 0  30px;
+}
+.nav-menu ul li label{
+    color: #fff;
+    font-size: 24px;
+}
+.nav-menu ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    white-space: nowrap; 
+}
+
+.nav-menu li a:hover,
+.nav-menu li a.active_page{
+    border-bottom: dashed white 3px;
+}
+.nav-menu li a:visited{
+    color: #fff;
+}
+.nav-menu img{
+    margin: 0 30px;
+    width: 500px;
+
+}
