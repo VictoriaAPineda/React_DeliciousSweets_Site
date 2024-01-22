@@ -95,7 +95,7 @@ body{
     background-size:cover;
     color: #fff;
     /* TODO: Keeps the footer area at bottom, may need to
-     make adjustments*/
+     make adjustments to this*/
     position: absolute;
     bottom: 0;
     width: 100%;
