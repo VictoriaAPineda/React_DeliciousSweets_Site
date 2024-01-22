@@ -1,4 +1,5 @@
 import Navbar from "./Navbar"
+import Footerbar from "./Footerbar"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
@@ -10,6 +11,7 @@ function App() {
   return (
     <>
       <Navbar /> {/* Main navigation */}
+   
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -20,6 +22,8 @@ function App() {
 
         </Routes>
       </div>
+      <Footerbar />
+    
     </>
   )
 }

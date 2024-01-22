@@ -3,7 +3,13 @@
     margin: 0;
     box-sizing: border-box;
 }
+body{
+    /* width: 100%;
+    overflow-x: scroll; */
+    min-width: 1920px;
+}
 
+/* Header Styling */
 #top-border{
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
@@ -19,6 +25,19 @@
     background-image: url("./images/chalkboard_textture.jpg");
     background-size:cover;
     position: relative;
+    /* width: 100%; */
+    /* white-space: nowrap; */
+
+}
+#header .nav-menu li label{
+    white-space: nowrap;
+}
+#header .nav-menu li input{
+    border-radius: 15px;
+}
+#search{
+    padding-left:5px;
+    padding-right: 5PX;
 }
 .nav-menu{
     display: flex;
@@ -57,5 +76,23 @@
 .nav-menu img{
     margin: 0 30px;
     width: 500px;
+
+}
+
+/* Footer Styling*/
+#footer-section{
+    background-color: black;
+    color: #fff;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-column-start: 1;
+    grid-column-end: 4;
+
+
+}
+#footer-container{
+    display: flex;
+    flex-direction: row;
+    /* display: grid; */
 
 }
