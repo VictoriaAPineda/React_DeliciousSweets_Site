@@ -36,7 +36,6 @@ body{
     position: relative;
     /* width: 100%; */
     /* white-space: nowrap; */
-
 }
 #header .nav-menu li label{
     white-space: nowrap;
@@ -96,8 +95,8 @@ body{
     color: #fff;
     
     /* TODO: Keeps the footer area at bottom, may need to make adjustments to this*/
-    position: absolute;
-    bottom: 0;
+    /* position: absolute;
+    bottom: 0; */
 
     width: 100%;
     padding-top: 10px;
@@ -142,14 +141,20 @@ body{
   
 }
 #subscribe-btn{
-    background-color: #ffb5b5;
+    background-color:black;
+    color: #fff;
     border: none;
     margin-left: 5px;
     padding: 2px 5px;
     cursor: pointer;
+    border: 1px solid white;
+}
+#subscribe-btn:active{
+    background-color: #fff;
+    color: black;
 }
 .social-btn-group{
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
     justify-content:space-between;
     align-items:center;
@@ -174,4 +179,30 @@ body{
 }
 .info-right p:not(:last-child){
     margin-right: 5px;
+}
+
+/* Home webpage */
+#main-img-container{
+    display: flex;
+    justify-content: center;
+}
+#storefront-img{
+    /*TODO adjust for differing screens */
+    width: 100%;
+}
+/*  2 col , row breaks */
+#info-imgs-grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+.one-img img{
+  max-width: 100%; 
+}
+.two-img img{
+   
+}
+.three-img img{
+
+
 }
