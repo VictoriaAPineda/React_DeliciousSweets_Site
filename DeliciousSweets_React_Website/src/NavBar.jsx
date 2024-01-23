@@ -20,7 +20,7 @@ export default function Navbar() {
                 <li><Link to="/contact">Contact Us</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/products">Products</Link></li>
-                <li><Link to="/cart">Cart</Link></li>
+                <li><Link to="/cart">Cart <i class="bi bi-cart2"></i></Link></li>
 
             </ul>
         </nav>
