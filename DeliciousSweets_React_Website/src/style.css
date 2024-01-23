@@ -94,10 +94,11 @@ body{
     background-image: url("./images/chalkboard_textture.jpg");
     background-size:cover;
     color: #fff;
-    /* TODO: Keeps the footer area at bottom, may need to
-     make adjustments to this*/
+    
+    /* TODO: Keeps the footer area at bottom, may need to make adjustments to this*/
     position: absolute;
     bottom: 0;
+
     width: 100%;
     padding-top: 10px;
     
@@ -122,6 +123,7 @@ body{
     width: 200px;
     margin-bottom: 20px;
     /* padding-top: 55px; */
+
 }
 
 #google-map{
@@ -129,6 +131,7 @@ body{
     width: 200px;
     background-color: rgb(226, 226, 226);
     margin-top: 5px;
+    cursor: pointer;
 }
 #subscribe-input{
     border: none;
@@ -143,6 +146,7 @@ body{
     border: none;
     margin-left: 5px;
     padding: 2px 5px;
+    cursor: pointer;
 }
 .social-btn-group{
     margin-top: 10px;
@@ -152,6 +156,7 @@ body{
 }
 .social-icon{
     font-size: 25px;
+    cursor: pointer;
 
 }
 #bottom-text{
@@ -163,6 +168,9 @@ body{
 .info-right{
     display: flex;
     white-space: nowrap;
+}
+.info-right p {
+    cursor: pointer;
 }
 .info-right p:not(:last-child){
     margin-right: 5px;
