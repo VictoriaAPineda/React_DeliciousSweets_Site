@@ -7,32 +7,23 @@ export default function Home (){
 
     return(
         <>
-  
             <section id="main-img-container">
                 <img src={storefront} id="storefront-img"></img>
             </section>
 
-            <section id="info-imgs-grid-container">
-                {/* <div className="info-imgs-grid"> */}
-                    <div className="one-img">
+            <section id="info-imgs-container">
+                <div className="info-imgs-grid">
+                    <div className="grid-item-01">
                         <img src={qualityImg}></img>
                     </div>
-
-                    <div className="two-img">
-                        <img src={pickupImg}></img>
+                    <div className="grid-item-02">
+                            <img src={pickupImg}></img>
                     </div>
-
-                    <div className="three-img"> 
-                        <img src={deliveryImg}></img>
+                    <div className="grid-item-03"> 
+                            <img src={deliveryImg}></img>
                     </div>
-                {/* </div> */}
-            </section>
-
-
-
- 
-        
+                </div>
+            </section>    
         </>
     )
-
 }
