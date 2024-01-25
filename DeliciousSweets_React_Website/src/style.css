@@ -8,13 +8,13 @@
 }
 
 body{
-    /* width: 100%;
-    overflow-x: scroll; */
     /* min-width: 1920px; */
-
-    width: 100%;
-    height: 100%;
-    overflow-x: hidden;
+     /* display: flex; */
+     /*Removes issue with excess whitespace */
+    /* justify-content: center; */
+    /* width: 100%;
+    height: auto; */
+    /* overflow-x: hidden; */
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 
@@ -30,12 +30,13 @@ body{
     position: relative;
 }
 #header{
+    display: flex;
+    justify-content: center;
     padding: 20px 0;
     background-image: url("./images/chalkboard_textture.jpg");
     background-size:cover;
     position: relative;
     /* width: 100%; */
-    /* white-space: nowrap; */
 }
 #header .nav-menu li label{
     white-space: nowrap;
@@ -61,7 +62,8 @@ body{
 }
 .nav-menu ul li{
     list-style: none;
-    padding: 0  30px;
+
+    margin: 0 30px;
 }
 .nav-menu ul li label{
     color: #fff;
@@ -85,7 +87,6 @@ body{
 .nav-menu img{
     margin: 0 30px;
     width: 500px;
-
 }
 
 /* Footer Styling*/
@@ -94,7 +95,7 @@ body{
     background-image: url("./images/chalkboard_textture.jpg");
     background-size:cover;
     color: #fff;
-    width: 100%;
+    /* width: 100%; */
     padding-top: 10px;
 }
 #columns{
@@ -106,8 +107,8 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items:start; */
-    padding: 20px 100px;
+    /* padding: 20px 50px; */
+    margin: 10px 20px;
     white-space: nowrap;
 }
 .col-heading{
@@ -180,27 +181,55 @@ body{
 #main-img-container{
     display: flex;
     justify-content: center;
+ 
 }
 #storefront-img{
     /*TODO adjust for differing screens */
     width: 100%;
+    height: auto;
+
 }
-/*  2 col , row breaks */
+/*  Three image group */
 #info-imgs-container{
     display: flex;
     justify-content: center;
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
-    padding: 10px;
+    padding: 15px;
 }
 .info-imgs-grid{
     display: grid;
     grid-template-columns: repeat(2,1fr);   
     grid-template-rows: 1fr 1fr;
 }
+.centered-txt{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: 
+    translate(-50%, -50%);
+}
+.bottom-txt{
+    position: absolute;
+    bottom: 8px;
+    left: 40%
+  /* transform: translate(-50%, -50%); */
+
+}
+.centerd-icon{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: 
+    translate(-50%, -50%);
+}
 .grid-item-01 {
   grid-column: 1/2;
   grid-row: 1/3;
+
+  position: relative;
+  text-align: center;
+  color: #fff;
 }
 .grid-item-01 img{
     width: 100%;
@@ -209,6 +238,14 @@ body{
 .grid-item-02{
     grid-column: 2/3;
     grid-row: 1/2;
+
+    position: relative;
+    text-align: center;
+    color: #fff;
+}
+#truckIcon{
+    width: 150px;
+    height: auto;
 }
 .grid-item-02 img{
     width: 100%;
@@ -217,8 +254,11 @@ body{
 .grid-item-03 {
     grid-column: 2/3;
     grid-row: 2/3;
+
+    position: relative;
+    text-align: center;
 }
-.grid-item-03 img{
+.grid-item-03  img{
     width: 100%;
     height: 100%;
 }
