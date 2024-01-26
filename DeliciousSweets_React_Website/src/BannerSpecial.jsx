@@ -1,11 +1,11 @@
+import Carousel from "react-bootstrap/Carousel"
+import img01 from "/src/images/brownines-img.png"
+
 export default function BannerSpecial(){
 
     return(
-        <>
-            <section>
-                <h1> - TODO: Carousel Banner of current specials here -</h1>
-            </section>
         
-        </>
+     <></>
+    
     )
 }
