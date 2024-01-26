@@ -41,10 +41,10 @@ export default function Footerbar(){
                            
                         
                             <div className="social-btn-group">
-                            <i class="bi bi-twitter-x social-icon"></i>                        
-                            <i class="bi bi-facebook social-icon"></i>
-                            <i class="bi bi-instagram social-icon"></i>                        
-                            <i class="bi bi-youtube social-icon"></i>
+                            <i className="bi bi-twitter-x social-icon"></i>                        
+                            <i className="bi bi-facebook social-icon"></i>
+                            <i className="bi bi-instagram social-icon"></i>                        
+                            <i className="bi bi-youtube social-icon"></i>
                             </div>
                         </div>
                     </div>

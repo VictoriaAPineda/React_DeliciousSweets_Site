@@ -7,6 +7,9 @@ import BannerSpecial from "../BannerSpecial";
 
 export default function Home (){
 
+    const bannerImages = ['https://via.placeholder.com/800x400/ff5733/fff',
+    'https://via.placeholder.com/800x400/33ff57/fff',
+    'https://via.placeholder.com/800x400/5733ff/fff',];
     return(
         <>
             <section id="main-img-container">
@@ -35,7 +38,8 @@ export default function Home (){
                 </div>
             </section>    
 
-            <BannerSpecial/>
+       
+            <BannerSpecial images = {bannerImages}/>
 
             <section>
                 <h1>- TODO: "Our Story" here-</h1>
