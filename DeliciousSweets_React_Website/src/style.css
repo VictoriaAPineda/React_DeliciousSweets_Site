@@ -303,32 +303,54 @@ body{
 
 /* Carousel Banner */
 .carousel{
-    display: flex;
-    justify-content: center;
-
     position: relative;
-    max-width: 100%;
     overflow: hidden;
-    border: 3px red dotted;
-    /* height: 500px; */
+}
+.banner_btn_group{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    /* transform: translate(-50%); */
 }
 .carousel_btn{
-    /* position: absolute;
-    top: 50%;
-    transform: translate(-50%); */
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: black;
     border: none;
     cursor: pointer;
     z-index: 1;
     font-size: 1rem;
-
+    padding: 20px;
+    border-radius: 50%;
+}
+.carousel_btn:not(:last-child){
+    margin-right: 10px;
 }
 .carousel_btn:hover{
-    background-color: rgba(0, 0, 0, 0.8);;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
 }
 .carousel_img{
     width: 100%;
     height: auto;
     display: block;
+}
+.carousel_txt_container{
+    /* position: absolute; */
+    color: #fff;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+ 
+}
+.carousel_view_btn{
+    /* position: absolute;
+    right: 50%; */
+    /* transform: translate(-50%); */
+    /* width: 40px; */
+   
+    border: none;
+    width: 20%;
+    background-color: #744333;
+    color: #fff;
+    padding: 7px 30px;
 }

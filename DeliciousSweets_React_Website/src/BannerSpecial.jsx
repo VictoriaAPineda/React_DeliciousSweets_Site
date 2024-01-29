@@ -15,9 +15,16 @@ const Carousel = ({images}) => {
         };
      return(
         <section className='carousel'>
-            <button onClick={prevSlide}  className="carousel_btn">Prev</button>
+            <div className='carousel_txt_container centered-txt'>
+                <p className='large-font'>Delicious Savings</p>
+                <button className='carousel_view_btn'>View</button>
+            </div>
             <img src={images[currentImage]} className='carousel_img'/>
-            <button onClick ={nextSlide} className="carousel_btn">Next</button>
+            <div className='banner_btn_group'>
+                <button onClick={prevSlide}  className="carousel_btn"><i class="bi bi-chevron-left"></i></button>
+                <button onClick ={nextSlide} className="carousel_btn"><i class="bi bi-chevron-right"></i></button>
+            </div>
+           
         </section>
     );
 };

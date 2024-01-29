@@ -4,12 +4,13 @@ import pickupImg from "/src/images/service_img.png";
 import deliveryImg from "/src/images/delivery_img.png";
 import truckIcon from "/src/images/delivery_truck.png";
 import BannerSpecial from "../BannerSpecial";
+import brownieImg from "/src/images/brownines-img.png"
+import cupcakeImg from "/src/images/cupcakes.jpg"
+import doughnutImg from "/src/images/doughnuts.jpg"
 
 export default function Home (){
 
-    const bannerImages = ['https://via.placeholder.com/800x400/ff5733/fff',
-    'https://via.placeholder.com/800x400/33ff57/fff',
-    'https://via.placeholder.com/800x400/5733ff/fff',];
+    const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];
     return(
         <>
             <section id="main-img-container">
