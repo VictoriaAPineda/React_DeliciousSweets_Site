@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 // {images} = array of images to be loaded in the carousel
-const Carousel = ({images}) => {
+const Carousel = ({images, interval = 3000}) => {
         const [currentImage, setCurrentImage] = useState(0);
 
         const nextSlide = () => {
@@ -13,6 +13,18 @@ const Carousel = ({images}) => {
         const prevSlide = () => {
             setCurrentImage((prevImageIndex)=> prevImageIndex === 0 ? images.length -1 : prevImageIndex -1);
         };
+
+        useEffect(()=>{
+            // Will call the nextSlide function 
+            // Interval is set to 3000ms/3secs
+            const autoPlayInterval = setInterval(nextSlide, interval);
+            return() => {
+                // removes the autoplay when component is unmounted
+                clearInterval(autoPlayInterval);
+            };
+        },[interval]);
+        
+
      return(
         <section className='carousel'>
             <div className='carousel_txt_container centered-txt'>

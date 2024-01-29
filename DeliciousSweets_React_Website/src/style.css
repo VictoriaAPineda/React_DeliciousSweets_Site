@@ -340,17 +340,17 @@ body{
     white-space: nowrap;
     display: flex;
     flex-direction: column;
- 
+
 }
 .carousel_view_btn{
-    /* position: absolute;
-    right: 50%; */
-    /* transform: translate(-50%); */
-    /* width: 40px; */
-   
-    border: none;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%);   
+    border: 2px white solid;
     width: 20%;
     background-color: #744333;
     color: #fff;
     padding: 7px 30px;
+    cursor: pointer;
 }
