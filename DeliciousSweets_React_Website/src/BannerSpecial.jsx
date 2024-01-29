@@ -13,7 +13,7 @@ const Carousel = ({images, interval = 3000}) => {
         const prevSlide = () => {
             setCurrentImage((prevImageIndex)=> prevImageIndex === 0 ? images.length -1 : prevImageIndex -1);
         };
-        // Notes: 
+        // Notes: Goes to the clicked index number of the images array
         const goToSlide = (index) => {
             setCurrentImage(index);
         }
