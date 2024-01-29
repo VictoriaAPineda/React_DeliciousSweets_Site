@@ -13,7 +13,10 @@ const Carousel = ({images, interval = 3000}) => {
         const prevSlide = () => {
             setCurrentImage((prevImageIndex)=> prevImageIndex === 0 ? images.length -1 : prevImageIndex -1);
         };
-
+        // Notes: 
+        const goToSlide = (index) => {
+            setCurrentImage(index);
+        }
         useEffect(()=>{
             // Will call the nextSlide function 
             // Interval is set to 3000ms/3secs
@@ -33,11 +36,31 @@ const Carousel = ({images, interval = 3000}) => {
             </div>
             <img src={images[currentImage]} className='carousel_img'/>
             <div className='banner_btn_group'>
-                <button onClick={prevSlide}  className="carousel_btn"><i class="bi bi-chevron-left"></i></button>
-                <button onClick ={nextSlide} className="carousel_btn"><i class="bi bi-chevron-right"></i></button>
+                <button onClick={prevSlide}  className="carousel_btn"><i className="bi bi-chevron-left"></i></button>
+                <button onClick ={nextSlide} className="carousel_btn"><i className="bi bi-chevron-right"></i></button>
+             
             </div>
-           
+                <CarouselDotIndicators images={images}
+                        currentImageIndex ={currentImage}
+                        onClick={goToSlide}
+                />
+
+            
         </section>
     );
 };
+// Notes: For each image, it has a key(based on it's array index)
+const CarouselDotIndicators = ({images, currentImageIndex, onClick}) =>{
+    return(
+        <div className='carousel_dot_indicators'>
+            {images.map((_,index)=>(
+                <span 
+                    key={index}
+                    className={`carousel_dot ${index === currentImageIndex ? 'active':''}`}  
+                    onClick={() => onClick(index)}
+                />
+            ))}
+        </div>
+    )
+}
 export default Carousel;

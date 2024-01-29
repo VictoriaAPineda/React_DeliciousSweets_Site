@@ -354,3 +354,19 @@ body{
     padding: 7px 30px;
     cursor: pointer;
 }
+.carousel_dot_indicators{
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translate(-50%);   
+}
+.carousel_dot{
+    background-color: #9c3535;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+.active{
+    background-color: #fff;
+}
