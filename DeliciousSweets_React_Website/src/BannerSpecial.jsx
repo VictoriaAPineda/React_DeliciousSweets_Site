@@ -1,9 +1,6 @@
 import React, {useState} from 'react'
-
-export default function BannerSpecial(){
-
-    // {images} = array of images to be loaded in the carousel
-    const Carousel = ({images}) => {
+// {images} = array of images to be loaded in the carousel
+const Carousel = ({images}) => {
         const [currentImage, setCurrentImage] = useState(0);
 
         const nextSlide = () => {
@@ -16,18 +13,12 @@ export default function BannerSpecial(){
         const prevSlide = () => {
             setCurrentImage((prevImageIndex)=> prevImageIndex === 0 ? images.length -1 : prevImageIndex -1);
         };
-
-    };
-    return(
-        <>
-            <section className='carousel'>
-            {/* onClick={prevSlide} */}
-                <button  className="carousel_btn">Prev</button>
-                <img src='{images[currentImage]}' className='carousel_img'/>
-                <button className="carousel_btn">Next</button>
-            </section>
-        </>
-   
-    
+     return(
+        <section className='carousel'>
+            <button onClick={prevSlide}  className="carousel_btn">Prev</button>
+            <img src={images[currentImage]} className='carousel_img'/>
+            <button onClick ={nextSlide} className="carousel_btn">Next</button>
+        </section>
     );
 };
+export default Carousel;

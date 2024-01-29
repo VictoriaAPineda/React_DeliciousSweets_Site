@@ -300,3 +300,35 @@ body{
   padding: 5px 15px;
   white-space: nowrap;
 }
+
+/* Carousel Banner */
+.carousel{
+    display: flex;
+    justify-content: center;
+
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    border: 3px red dotted;
+    /* height: 500px; */
+}
+.carousel_btn{
+    /* position: absolute;
+    top: 50%;
+    transform: translate(-50%); */
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    font-size: 1rem;
+
+}
+.carousel_btn:hover{
+    background-color: rgba(0, 0, 0, 0.8);;
+}
+.carousel_img{
+    width: 100%;
+    height: auto;
+    display: block;
+}
