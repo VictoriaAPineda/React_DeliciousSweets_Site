@@ -19,15 +19,15 @@ export default function Home (){
 
             <section id="info-imgs-container">
                 <div className="info-imgs-grid">
-                    <div className="grid-item-01">
+                    <div className="grid-item-01 box-shadow">
                         <p className="centered-txt large-font">Quality Ingredients</p>
                         <img src={qualityImg}></img>
                     </div>
-                    <div className="grid-item-02">
+                    <div className="grid-item-02 box-shadow">
                         <p className="bottom-right-txt  medium-font ">In Store Pickup</p>
                         <img src={pickupImg}></img>
                     </div>
-                    <div className="grid-item-03"> 
+                    <div className="grid-item-03 box-shadow"> 
                         <img src={truckIcon} className="centered-icon" id="truckIcon"></img>
                         <p className="lower-centered-txt large-font">Delivery</p>
                         <div>
