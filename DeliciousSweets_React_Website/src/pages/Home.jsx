@@ -45,6 +45,13 @@ export default function Home (){
 
             <section id="ourStory_container">
                 <img src={ourStoryImg} className="box-shadow"></img>
+
+                <div className="story_txt_container centered-txt">
+                    <p className="large-font">Our Story</p>
+                    <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, egestas sed sed risus pretium quam. Lacus viverra vitae congue eu consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, egestas sed sed risus pretium quam. Lacus viverra vitae congue eu consequat. 
+                    </p>
+                </div>
             </section>
         </>
     )

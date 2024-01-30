@@ -382,9 +382,27 @@ body{
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
     padding: 15px;
+    position: relative;
 }
 #ourStory_container img{
     width: 100%;
-    height: auto;
-   
+    height: auto;  
+}
+.story_txt_container{
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    border-top: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    text-align: center;
+}
+.story_txt_container p{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.story_txt_container p + p{
+   font-size: 1.3rem;
+   letter-spacing: 5px;
+   font-family: 'IM Fell Great Primer', serif;
+
 }
