@@ -376,3 +376,15 @@ body{
 .active{
     background-color:#fff;
 }
+#ourStory_container{
+    display: flex;
+    justify-content: center;
+    background-image: url("./images/parchment_texture.jpg");
+    background-size: cover;
+    padding: 15px;
+}
+#ourStory_container img{
+    width: 100%;
+    height: auto;
+   
+}

@@ -7,6 +7,7 @@ import BannerSpecial from "../BannerSpecial";
 import brownieImg from "/src/images/brownines-img.png"
 import cupcakeImg from "/src/images/cupcakes.jpg"
 import doughnutImg from "/src/images/doughnuts.jpg"
+import ourStoryImg from "/src/images/hands_with_flour.jpg"
 
 export default function Home (){
 
@@ -42,8 +43,8 @@ export default function Home (){
        
             <BannerSpecial images = {bannerImages}/>
 
-            <section>
-                <h1>- TODO: "Our Story" here-</h1>
+            <section id="ourStory_container">
+                <img src={ourStoryImg} className="box-shadow"></img>
             </section>
         </>
     )
