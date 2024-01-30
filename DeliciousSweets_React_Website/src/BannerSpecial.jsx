@@ -36,16 +36,13 @@ const Carousel = ({images, interval = 3000}) => {
             </div>
             <img src={images[currentImage]} className='carousel_img'/>
             <div className='banner_btn_group'>
-                <button onClick={prevSlide}  className="carousel_btn"><i className="bi bi-chevron-left"></i></button>
-                <button onClick ={nextSlide} className="carousel_btn"><i className="bi bi-chevron-right"></i></button>
-             
+                <button onClick={prevSlide}  className="carousel_btn " ><i className="bi bi-chevron-left"></i></button>
+                <button onClick ={nextSlide} className="carousel_btn "><i className="bi bi-chevron-right"></i></button>
             </div>
                 <CarouselDotIndicators images={images}
                         currentImageIndex ={currentImage}
                         onClick={goToSlide}
                 />
-
-            
         </section>
     );
 };

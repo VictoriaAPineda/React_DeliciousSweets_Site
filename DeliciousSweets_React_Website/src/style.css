@@ -308,19 +308,20 @@ body{
 }
 .banner_btn_group{
     position: absolute;
-    bottom: 5%;
-    left: 5%;
-    /* transform: translate(-50%); */
+    bottom: 45%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 .carousel_btn{
     background-color: rgba(255, 255, 255, 0.5);
     color: black;
     border: none;
     cursor: pointer;
-    z-index: 1;
     font-size: 1rem;
-    padding: 20px;
-    border-radius: 50%;
+    padding: 20px 10px;
+    border-radius: 20%;
+    margin: 10px;
 }
 .carousel_btn:not(:last-child){
     margin-right: 10px;
@@ -335,12 +336,10 @@ body{
     display: block;
 }
 .carousel_txt_container{
-    /* position: absolute; */
     color: #fff;
     white-space: nowrap;
     display: flex;
     flex-direction: column;
-
 }
 .carousel_view_btn{
     position: absolute;
@@ -363,7 +362,7 @@ body{
 .carousel_dot{
     background-color: #9c3535;
     cursor: pointer;
-    padding: 10px 20px;
+    padding: 1px 10px;
     border-radius: 50%;
     margin-left: 10px;
 }
