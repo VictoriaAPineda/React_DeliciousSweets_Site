@@ -35,6 +35,10 @@ body{
 }
 
 /* Header Styling */
+/* #header-wrapper{
+    position: fixed;
+    width: 100%;z-index: 1;
+} */
 #top-border{
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
@@ -434,11 +438,28 @@ body{
 /*TODO: mobile version*/ 
 @media (max-width: 700px){
     /* mobile menu version */
+    /*TODO: wotking on styling mobile menu */ 
     .nav-menu ul{
         display: none;
     }
+    .nav-menu ul li:not(:last-child){
+        margin-bottom: 20px;
+    }
+    .list-trigger{
+        position: absolute;
+        right: 30px;
+        font-size: 40px;
+    }
     .nav-menu ul.is-open{
         display: block;
+        position: fixed;
+        top: 150px;
+        right: 0px;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding-top: 20px;
+        padding-bottom: 20px;
+        z-index: 1;
+        height: 100vh;
     }
     .list-trigger{
         display: block; /* display icon when size reached */
