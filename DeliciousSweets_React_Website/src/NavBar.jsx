@@ -11,8 +11,9 @@ export default function Navbar() {
     <section id="header">
 
         <nav className="nav-menu">
+        <Link to="/" ><img src={logo}></img> </Link>
             <ul>
-                <Link to="/" ><img src={logo}></img> </Link>
+          
                 <li> 
                     <label htmlFor="search">Search: </label>
                     <input type="text" id="search"/>
@@ -22,7 +23,7 @@ export default function Navbar() {
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/products">Products</Link></li>
                 <li><Link to="/cart">Cart <i className="bi bi-cart2"></i></Link></li>
-
+                <Link to="" id="close-menu"><i class="bi bi-list"></i></Link>
             </ul>
         </nav>
     </section>

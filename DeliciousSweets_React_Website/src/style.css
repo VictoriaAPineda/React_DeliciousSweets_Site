@@ -413,3 +413,16 @@ body{
         width: 250px;
     }
 }
+@media (max-width:1270px){
+    /*TODO: collapse nav menu */
+    .nav-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content:center;
+    }
+    .nav-menu ul {
+      margin-top: 10px;
+    }
+ 
+}
+/*TODO: mobile version*/ 
