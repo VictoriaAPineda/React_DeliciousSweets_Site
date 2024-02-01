@@ -104,18 +104,9 @@ body{
     margin: 0 30px;
     width: 500px;
 }
-
-#mobile{
-    display: none; /* hides list icon*/
-    font-size: 30px;
-}
-#mobile .list{
+.list-trigger{
     color: #fff;
-}
-#close-nav-btn{
-    color: #fff;
-    font-size: 30px;
-    display: none;
+    display: none; /* hides menu */ 
 }
 
 /* Footer Styling */
@@ -443,33 +434,14 @@ body{
 /*TODO: mobile version*/ 
 @media (max-width: 700px){
     /* mobile menu version */
-    .nav-menu ul {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        position: fixed;
-        top: 0;
-        background-color: #744333; /* temp */
-        right: -300px; /* hides menu off the screen*/
-        height: 100vh;
-        width: 300px;
-        transition: 0.3s;
+    .nav-menu ul{
+        display: none;
     }
-    /* TODO: Make componet to activate side menu */
-    .nav-menu.active {
-        right: 0px;
+    .nav-menu ul.is-open{
+        display: block;
     }
-    #mobile{
-        display: flex; /* displays list btn*/
-        position: absolute;
-        right:20px;
-        top: 20px;
+    .list-trigger{
+        display: block; /* display icon when size reached */
     }
-    #close-nav-btn{
-        display: initial;
-        position: absolute;
-        top: 30px;
-        left: 30px;
-    }
+
 }

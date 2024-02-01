@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom"
 import logo from "./logo/Delicious_Sweets.png"
+import { useState } from "react"
 
 export default function Navbar() {
+
+    const [isOpen, setIsOPen] = useState(false);
+
+    const toggleMenu = () =>{
+        setIsOPen((open) => !open)
+    }
+
   return (
     <>
     <div id="top-border">
@@ -16,18 +24,15 @@ export default function Navbar() {
                 <i class="bi bi-search search-icon"></i> 
                 <input type="text" id="search"/>
             </div>
-            <ul>
+            <ul className= {`${isOpen ? "is-open" : ""}`}>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/products">Products</Link></li>
                 <li><Link to="/cart">Cart <i className="bi bi-cart2"></i></Link></li>
-                <Link to="" id="close-nav-btn"><i class="bi bi-x"></i></Link>
             </ul>
         </nav>
-        <div id="mobile">
-            <Link to="" ><i className="bi bi-list list"></i></Link>
-        </div>
+        <Link to="" ><i className="bi bi-list list-trigger" onClick={toggleMenu}></i></Link>
     </section>
     </>
   )
