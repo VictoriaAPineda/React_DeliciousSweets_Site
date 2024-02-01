@@ -105,6 +105,19 @@ body{
     width: 500px;
 }
 
+#mobile{
+    display: none; /* hides list icon*/
+    font-size: 30px;
+}
+#mobile .list{
+    color: #fff;
+}
+#close-nav-btn{
+    color: #fff;
+    font-size: 30px;
+    display: none;
+}
+
 /* Footer Styling */
 #footer-section{
     background-image: url("./images/chalkboard_textture.jpg");
@@ -408,7 +421,7 @@ body{
 }
 
 /* - Media Queries  - */
-@media (max-width:1550px){
+@media (max-width:1500px){
     .search-container{
         margin-top: 10px;
         margin-left: 10px;
@@ -428,3 +441,35 @@ body{
     }
 }
 /*TODO: mobile version*/ 
+@media (max-width: 700px){
+    /* mobile menu version */
+    .nav-menu ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 0;
+        background-color: #744333; /* temp */
+        right: -300px;
+        height: 100vh;
+        width: 300px;
+        transition: 0.3s;
+    }
+    /* TODO: Make componet to activate side menu */
+    .nav-menu.active {
+        right: 0px;
+    }
+    #mobile{
+        display: flex; /* displays list btn*/
+        position: absolute;
+        right:20px;
+        top: 20px;
+    }
+    #close-nav-btn{
+        display: initial;
+        position: absolute;
+        top: 30px;
+        left: 30px;
+    }
+}
