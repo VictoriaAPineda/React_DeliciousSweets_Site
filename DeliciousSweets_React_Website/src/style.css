@@ -440,11 +440,12 @@ body{
     }
 }
 /*TODO: mobile version*/ 
-@media (max-width: 700px){
+@media (max-width: 700px ){
     /* mobile menu version */
     /*TODO: wotking on styling mobile menu */ 
     .nav-menu ul{
         display: none;
+        margin: 0;
     }
     .nav-menu ul li:not(:last-child){
         margin-bottom: 20px;
@@ -464,7 +465,7 @@ body{
         padding-top: 40px;
         padding-bottom: 20px;
         z-index: 1;
-        height: 100vh;
+        min-height: 100vh;
     }
     .list-close-trigger{
         font-size: 20px;
