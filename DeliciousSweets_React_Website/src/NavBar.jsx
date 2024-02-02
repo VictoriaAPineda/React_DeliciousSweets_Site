@@ -4,10 +4,13 @@ import { useState } from "react"
 
 export default function Navbar() {
 
-    const [isOpen, setIsOPen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () =>{
-        setIsOPen((open) => !open)
+        setIsOpen((open) => !open)
+    }
+    const closeMenu = () =>{
+        setIsOpen(false);
     }
 
   return (
@@ -36,6 +39,7 @@ export default function Navbar() {
                 </nav>
                 {/* list icon for mobile menu */}
                 <Link to="" ><i className="bi bi-list list-trigger" onClick={toggleMenu}></i></Link>
+                <Link to =""><i className= {`bi bi-x list-close-trigger ${isOpen ? "is-open": ""}`} onClick={closeMenu}></i></Link>
             </section>
         {/* </div> */}
     </>

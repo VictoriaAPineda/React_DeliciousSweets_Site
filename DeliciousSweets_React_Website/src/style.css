@@ -112,6 +112,10 @@ body{
     color: #fff;
     display: none; /* hides menu */ 
 }
+.list-close-trigger{
+    color: #fff;
+    display: none;
+}
 
 /* Footer Styling */
 #footer-section{
@@ -449,20 +453,29 @@ body{
         position: absolute;
         right: 30px;
         font-size: 40px;
+        display: block;
     }
     .nav-menu ul.is-open{
         display: block;
         position: fixed;
-        top: 150px;
+        top: 0px;
         right: 0px;
         background-color: rgba(0, 0, 0, 0.8);
-        padding-top: 20px;
+        padding-top: 40px;
         padding-bottom: 20px;
         z-index: 1;
         height: 100vh;
     }
-    .list-trigger{
-        display: block; /* display icon when size reached */
+    .list-close-trigger{
+        font-size: 20px;
+        z-index: 2;
+        position: absolute;
+       
     }
-
+    .list-close-trigger.is-open{
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
 }
