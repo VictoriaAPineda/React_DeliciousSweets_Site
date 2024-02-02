@@ -15,7 +15,6 @@ export default function Navbar() {
 
   return (
     <>
-        {/* <div id="header-wrapper"> */}
             <div id="top-border">
                 <p>- Keeping it Delicious since 1994 -</p>
 
@@ -41,7 +40,6 @@ export default function Navbar() {
                 <Link to="" ><i className="bi bi-list list-trigger" onClick={toggleMenu}></i></Link>
                 <Link to =""><i className= {`bi bi-x list-close-trigger ${isOpen ? "is-open": ""}`} onClick={closeMenu}></i></Link>
             </section>
-        {/* </div> */}
     </>
 
   )
