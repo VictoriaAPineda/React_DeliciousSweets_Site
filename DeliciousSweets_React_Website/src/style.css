@@ -479,4 +479,18 @@ body{
         top: 20px;
         right: 20px;
     }
+    /* Footer */
+    #columns {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:first baseline;
+        flex-flow: wrap;
+    }
+    .grid-item-03 {
+        overflow: hidden;
+    }
+    #ourStory_container{
+        overflow: hidden;
+    }
 }
