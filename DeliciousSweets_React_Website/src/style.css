@@ -430,6 +430,7 @@ body{
         margin: 0px 0px;
         width: 350px;
     }
+ 
     .nav-menu {
         display: flex;
         flex-direction: column;
@@ -439,8 +440,37 @@ body{
       margin-top: 10px;
     }
 }
+
+@media (max-width:1250px){
+    .large-font{
+        font-size: 4rem;
+    }
+    .grid-item-01 .large-font{
+        letter-spacing: 5px;
+    }
+    .medium-font {
+        font-size: 3rem;
+    }
+    #truckIcon{
+        width: 100px;
+    }
+}
+
 /*TODO: mobile version*/ 
-@media (max-width: 700px ){
+/* prev 700px*/
+@media (max-width: 900px ){
+    .large-font{
+        font-size: 2rem;
+    }
+    .medium-font {
+        font-size: 1.5rem;
+    }
+    .small-font{
+        font-size: 0.5rem;
+    }
+    #truckIcon{
+        width: 80px;
+    }
     /* mobile menu version */
     /*TODO: wotking on styling mobile menu */ 
     .nav-menu ul{
