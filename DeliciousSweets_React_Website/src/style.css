@@ -472,6 +472,9 @@ body{
     #truckIcon{
         width: 80px;
     }
+    .carousel_view_btn {
+        width: 40%;
+    }
     /* mobile menu version */
     /*TODO: wotking on styling mobile menu */ 
     .nav-menu ul{
