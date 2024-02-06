@@ -163,13 +163,14 @@ body{
   
 }
 #subscribe-btn{
-    background-color:black;
-    color: #fff;
+    background-color:#ffb5b5;
+    color: black;
     border: none;
     margin-left: 5px;
     padding: 2px 5px;
     cursor: pointer;
-    border: 1px solid white;
+    /* border: 1px solid white; */
+    font-family: 'IM Fell Great Primer', serif;
 }
 #subscribe-btn:active{
     background-color: #fff;
