@@ -457,7 +457,7 @@ body{
     }
 }
 
-/*TODO: mobile version*/ 
+/*TODO: mobile versions*/ 
 /* prev 700px*/
 @media (max-width: 900px ){
     .large-font{
@@ -521,10 +521,24 @@ body{
         align-items:first baseline;
         flex-flow: wrap;
     }
+    /*Tri image group*/
     .grid-item-03 {
         overflow: hidden;
     }
-    #ourStory_container{
-        overflow: hidden;
+}
+@media (max-width:750px){
+    .story_txt_container p + p {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+    .story_txt_container p{
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .grid-item-03 div p {
+        padding: 2px 5px;
+    }
+    .grid-item-03 .small-font {
+        font-size: 0.3rem;
     }
 }
