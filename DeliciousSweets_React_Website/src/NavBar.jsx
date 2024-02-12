@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import logo from "./logo/Delicious_Sweets.png"
 import { useState } from "react"
+import React from 'react'
 
 export default function Navbar() {
 
@@ -13,6 +14,14 @@ export default function Navbar() {
         setIsOpen(false);
     }
     /* TODO: Drop-down menu for 'Products' btn */
+    /* dropdown when in 'open' state*/
+    const DropDownContext = React.createContext({
+        open: false,
+        setOpen: ()=>{}
+    });
+
+
+
 
   return (
     <>
@@ -25,7 +34,7 @@ export default function Navbar() {
                 <nav className="nav-menu">
                     <Link to="/" ><img src={logo}></img> </Link>
                     <div className="search-container"> 
-                        <i class="bi bi-search search-icon"></i> 
+                        <i className="bi bi-search search-icon"></i> 
                         <input type="text" id="search"/>
                     </div>
                     {/* if the toggle value is true, add class is-open, otherwise it's hidden */}
