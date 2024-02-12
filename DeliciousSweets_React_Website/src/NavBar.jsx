@@ -12,6 +12,7 @@ export default function Navbar() {
     const closeMenu = () =>{
         setIsOpen(false);
     }
+    /* TODO: Drop-down menu for 'Products' btn */
 
   return (
     <>
