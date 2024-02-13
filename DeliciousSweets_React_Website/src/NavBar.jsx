@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import logo from "./logo/Delicious_Sweets.png"
 import { useState } from "react"
 import React from 'react'
-
+import DropdownMenu from "./DropdownMenu";
 export default function Navbar() {
 
     const [isOpen, setIsOpen] = useState(false);
@@ -13,10 +13,6 @@ export default function Navbar() {
     const closeMenu = () =>{
         setIsOpen(false);
     }
-
-
-
-
 
   return (
     <>
@@ -37,7 +33,10 @@ export default function Navbar() {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/contact">Contact Us</Link></li>
                         <li><Link to="/about">About</Link></li>
-                        <li><Link to="/products">Products</Link></li>
+                        <li>
+                            <Link to="/products">Products</Link>
+                            <DropdownMenu/>
+                        </li>
                         <li><Link to="/cart">Cart <i className="bi bi-cart2"></i></Link></li>
                     </ul>
                 </nav>

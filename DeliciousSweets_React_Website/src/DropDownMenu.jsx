@@ -1,29 +1,25 @@
 import React from 'react'
 
-/* dropdown when in 'open' state*/
-const DropDownContext = React.createContext({
-        open: false,
-        setOpen: ()=>{}
-});
-
-function DropDownMenu({children, ...props}){
-    const [open, setOpen] = React.useState(false);/* initially closed */
-    
+export default function DropdownMenu(){
     return(
-        /* value is what will be used from the context*/
-        <DropDownContext.Provider value={{open, setOpen}}>
-            <div className='dropdownChild'>{children}</div>
-        </DropDownContext.Provider>
+        <div className='dropdown-container'>
+            <div className='dropdown-trigger'>
+                <div className='dropdown-menu'>
+                    <ul>
+                        <DropdownItem itemText = {'Option1.txt'}/>
+                        <DropdownItem itemText = {'Option2.txt'}/>
+                        <DropdownItem itemText = {'Option3.txt'}/>
+                        <DropdownItem itemText = {'Option4.txt'}/>
+                    </ul>
+                </div>
+            </div>
+        </div>
     )
-};
-
-function DropDownButton({children, ...props}){
-    const [open, setOpen] = React.useContext(DropDownContext);/* retrieve context */
-
-    function toggleOpen(){
-        setOpen(!open);
-    }
+}
+function DropdownItem({itemText}){
     return(
-        <button onClick={toggleOpen}>{children}</button>
-    )
-};
+        <li className='dropdown-item'>
+            <a>{itemText}</a>
+        </li>
+    );
+}
