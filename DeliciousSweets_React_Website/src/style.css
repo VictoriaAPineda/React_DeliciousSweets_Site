@@ -132,11 +132,12 @@ body{
     row-gap: 10px;
 }
 .dropdown-menu.active{
-    display: block;
+    opacity: 1;
     background-color: unset !important;
+    transition: 0.5s ease;
 }
 .dropdown-menu.inactive{
-    display: none;
+  opacity: 0;
 }
 .dropdown-item{
     background-color: rgba(0, 0, 0, 0.8);
