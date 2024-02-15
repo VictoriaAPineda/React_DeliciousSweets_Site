@@ -131,6 +131,13 @@ body{
     flex-direction: column;
     row-gap: 10px;
 }
+.dropdown-menu.active{
+    display: block;
+    background-color: unset !important;
+}
+.dropdown-menu.inactive{
+    display: none;
+}
 .dropdown-item{
     background-color: rgba(0, 0, 0, 0.8);
     width: 100%;
