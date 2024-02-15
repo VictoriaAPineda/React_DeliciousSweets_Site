@@ -6,10 +6,10 @@ export default function DropdownMenu(){
             <div className='dropdown-trigger'>
                 <div className='dropdown-menu'>
                     <ul>
-                        <DropdownItem itemText = {'Option1.txt'}/>
-                        <DropdownItem itemText = {'Option2.txt'}/>
-                        <DropdownItem itemText = {'Option3.txt'}/>
-                        <DropdownItem itemText = {'Option4.txt'}/>
+                        <DropdownItem itemText = {'Option1'}/>
+                        <DropdownItem itemText = {'Option2'}/>
+                        <DropdownItem itemText = {'Option3'}/>
+                        <DropdownItem itemText = {'Option4'}/>
                     </ul>
                 </div>
             </div>

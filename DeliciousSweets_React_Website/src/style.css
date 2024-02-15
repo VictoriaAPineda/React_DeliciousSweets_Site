@@ -122,15 +122,34 @@ body{
 .dropdown-menu{
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 90px;
+    top: 165px;
     left: 50%;
-
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
 }
 .dropdown-menu ul{
     display: flex;
     flex-direction: column;
+    row-gap: 10px;
+}
+.dropdown-item{
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    border: #fff 1px solid;
+    padding: 10px 5px;
+}
+.dropdown-item:hover{
+    background-color: rgba(255, 255, 255, 0.8);
+    border: black 1px solid;
+}
+.dropdown-item:hover a{
+    color: black;
+}
+.dropdown-item a:hover{
+    border: unset !important;
+    color: black;
+}
+.dropdown-item a:active{
+    font-size: 1.7rem;
 }
 
 /* Footer Styling */
