@@ -116,6 +116,22 @@ body{
     color: #fff;
     display: none;
 }
+.dropdown-container{
+    position: relative;
+}
+.dropdown-menu{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 90px;
+    left: 50%;
+
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.dropdown-menu ul{
+    display: flex;
+    flex-direction: column;
+}
 
 /* Footer Styling */
 #footer-section{
