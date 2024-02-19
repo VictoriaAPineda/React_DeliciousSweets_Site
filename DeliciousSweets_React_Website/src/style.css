@@ -567,16 +567,20 @@ body{
     }
     /* TODO: sub menu for Products*/
     .subdropdown-container{
-        position: relative;
+        /* position: relative; */
     }
     .subdropdown-menu{
-        position: relative;
+        /* position: relative; */
     }
     .subdropdown-menu ul{
         display: flex;
         flex-direction: column;
         text-align: center;
+        /* background-color:transparent; */
     }
+    .submenu-trigger{
+        display: block;
+      }
     .submenu-trigger .chevorn-open{
         color: #fff;
         position: relative;
@@ -584,17 +588,17 @@ body{
         left: 20%;   
         cursor: pointer;
     }
-    .submenu-trigger{
-      display: block;
-    }
     .subdropdown-menu.active {
         display: block;
         height: auto;
     }
-    .dropdown-item{
-        /* color: red;
-        display: block; */
+    .dropdown-item a{
+       background-color: transparent;
     }
+    .nav-menu ul li a {
+        /* color: black; */
+    }
+
 
 
     /* Footer */
