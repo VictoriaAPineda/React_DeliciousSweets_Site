@@ -569,7 +569,15 @@ body{
     .subdropdown-container{
         position: relative;
     }
-    .subdropdown-container .submenu-trigger .chevorn-open{
+    .subdropdown-menu{
+        position: relative;
+    }
+    .subdropdown-menu ul{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    .submenu-trigger .chevorn-open{
         color: #fff;
         position: relative;
         top: 5px;
@@ -581,13 +589,11 @@ body{
     }
     .subdropdown-menu.active {
         display: block;
-        border: red 2px dotted;
-        height: 100px;
-        width: 50px;
-        /* opacity: 1; */
+        height: auto;
     }
     .dropdown-item{
-        color: red;
+        /* color: red;
+        display: block; */
     }
 
 
