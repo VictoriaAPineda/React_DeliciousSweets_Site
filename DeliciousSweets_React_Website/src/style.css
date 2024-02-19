@@ -159,6 +159,12 @@ body{
 .dropdown-item a:active{
     font-size: 1.7rem;
 }
+.subdropdown-menu{
+    display: none;
+}
+.submenu-trigger{
+    display: none; /* hides the chevron trigger icon */
+}
 
 /* Footer Styling */
 #footer-section{
@@ -556,6 +562,35 @@ body{
         top: 20px;
         right: 20px;
     }
+    .dropdown-trigger{
+        display: flex
+    }
+    /* TODO: sub menu for Products*/
+    .subdropdown-container{
+        position: relative;
+    }
+    .subdropdown-container .submenu-trigger .chevorn-open{
+        color: #fff;
+        position: relative;
+        top: 5px;
+        left: 20%;   
+        cursor: pointer;
+    }
+    .submenu-trigger{
+      display: block;
+    }
+    .subdropdown-menu.active {
+        display: block;
+        border: red 2px dotted;
+        height: 100px;
+        width: 50px;
+        /* opacity: 1; */
+    }
+    .dropdown-item{
+        color: red;
+    }
+
+
     /* Footer */
     #columns {
         display: flex;

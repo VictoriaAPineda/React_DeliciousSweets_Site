@@ -39,7 +39,7 @@ export default function Navbar() {
                         <li><Link to="/cart">Cart <i className="bi bi-cart2"></i></Link></li>
                     </ul>
                 </nav>
-                {/* list icon for mobile menu */}
+                {/* list/hamburger icon for mobile menu */}
                 <Link to="" ><i className="bi bi-list list-trigger" onClick={toggleMenu}></i></Link>
                 {/* If the ul menu is open (isOpen = true), this "x" icon will also display */}
                 <Link to =""><i className= {`bi bi-x list-close-trigger ${isOpen ? "is-open": ""}`} onClick={closeMenu}></i></Link>
