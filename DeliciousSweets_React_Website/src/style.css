@@ -165,7 +165,6 @@ body{
 .submenu-trigger{
     display: none; /* hides the chevron trigger icon */
 }
-
 /* Footer Styling */
 #footer-section{
     background-image: url("./images/chalkboard_textture.jpg");
@@ -567,20 +566,17 @@ body{
     }
     /* TODO: sub menu for Products*/
     .subdropdown-container{
-        /* position: relative; */
-    }
-    .subdropdown-menu{
-        /* position: relative; */
+        position: relative;
     }
     .subdropdown-menu ul{
         display: flex;
         flex-direction: column;
         text-align: center;
-        /* background-color:transparent; */
     }
     .submenu-trigger{
         display: block;
-      }
+        margin-left: 5px;
+    }
     .submenu-trigger .chevorn-open{
         color: #fff;
         position: relative;
@@ -592,6 +588,23 @@ body{
         display: block;
         height: auto;
         background-color: transparent;
+    }
+    .subdropdown-menu ul .dropdown-item{
+        border: unset;
+        background-color: transparent;
+    }
+    .dropdown-item{
+        width: 50%;
+    }
+    .dropdown-item a {
+        border-left: 2px solid #fff;
+        padding-left: 5px;
+    }
+    .dropdown-item:hover a{
+        color: #fff;
+    }
+    .dropdown-item a:hover{
+        color: #fff;
     }
 
     /* Footer */

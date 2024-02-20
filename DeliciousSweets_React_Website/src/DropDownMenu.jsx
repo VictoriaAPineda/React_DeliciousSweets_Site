@@ -22,10 +22,16 @@ export default function DropdownMenu(){
 
     return(
         <>
+        <div className='dropmenu-wrapper'>
+
+        
             <div className='dropdown-container' ref={menuRef}>
                 {/* Normal dropdown of 'Products' */}
                 <div className='dropdown-trigger' onMouseOver={()=>{setOpen(!open)}}>
                     <Link to="/products">Products</Link>
+                    <div className='submenu-trigger' onClick={()=>setSubmenu(!openSubmenu)}>
+                    <i className= "bi bi-chevron-up chevorn-open"></i>
+                </div>
                 </div>
                 <div className={`dropdown-menu ${open? 'active':'inactive'}`}>
                     <ul>
@@ -38,9 +44,6 @@ export default function DropdownMenu(){
             </div>
             {/* TODO: Working on mobile sub menu of 'Products'*/}
             <div className='subdropdown-container'>
-                <div className='submenu-trigger' onClick={()=>setSubmenu(!openSubmenu)}>
-                    <i className= "bi bi-chevron-up chevorn-open"></i>
-                </div>
                 <div className= {`subdropdown-menu ${openSubmenu? 'active':'inactive'}`}>
                     <ul>
                         <DropdownItem itemText = {'Suboption 01'}/>
@@ -48,6 +51,7 @@ export default function DropdownMenu(){
                     </ul>
                 </div>
             </div>
+        </div>
         </>
     )
 }
