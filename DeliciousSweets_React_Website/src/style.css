@@ -133,7 +133,7 @@ body{
 }
 .dropdown-menu.active{
     opacity: 1;
-    background-color: unset !important;
+    background-color: transparent;
     transition: 0.5s ease;
 }
 .dropdown-menu.inactive{
@@ -591,15 +591,8 @@ body{
     .subdropdown-menu.active {
         display: block;
         height: auto;
+        background-color: transparent;
     }
-    .dropdown-item a{
-       background-color: transparent;
-    }
-    .nav-menu ul li a {
-        /* color: black; */
-    }
-
-
 
     /* Footer */
     #columns {
