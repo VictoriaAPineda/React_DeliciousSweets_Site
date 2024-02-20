@@ -598,23 +598,13 @@ body{
         border: unset;
         background-color: transparent;
     }
-
     .subdropdown-menu ul .dropdown-item a{
-        font-size: 1.4rem;
-    }
-    .subdropdown-menu .dropdown-item:hover a{
-        /* color: #fff; */
-        /* border: unset; */
+        font-size: 1.3rem;
         color: #fff;
+    }
+    .subdropdown-menu .dropdown-item:hover{
         border-left: #fff 2px solid;
-        padding-left: 5px;
-        /* pointer-events: unset; */
-       
-    }
-    .subdropdown-menu .dropdown-item a:hover{
-        color: #fff;
-        /* pointer-events: none; */
-        
+        padding-left: 5px;  
     }
     /* Footer */
     #columns {
