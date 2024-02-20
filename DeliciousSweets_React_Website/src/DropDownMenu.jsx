@@ -46,8 +46,8 @@ export default function DropdownMenu(){
             <div className='subdropdown-container'>
                 <div className= {`subdropdown-menu ${openSubmenu? 'active':'inactive'}`}>
                     <ul>
-                        <DropdownItem itemText = {'Suboption 01'}/>
-                        <DropdownItem itemText = {'Suboption 02'}/>
+                        <DropdownItem itemText = {'sub-option 01'}/>
+                        <DropdownItem itemText = {'sub-option 02'}/>
                     </ul>
                 </div>
             </div>
