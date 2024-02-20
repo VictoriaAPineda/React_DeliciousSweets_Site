@@ -157,7 +157,7 @@ body{
     color: black;
 }
 .dropdown-item a:active{
-    font-size: 1.7rem;
+    /* font-size: 1.7rem; */
 }
 .subdropdown-menu{
     display: none;
@@ -565,8 +565,13 @@ body{
         display: flex
     }
     /* TODO: sub menu for Products*/
+    .nav-menu .subdropdown-menu ul li {
+        margin: unset;
+    }
     .subdropdown-container{
         position: relative;
+        margin-left: 5%;
+        width: 150px;
     }
     .submenu-trigger{
         display: block;
@@ -593,23 +598,22 @@ body{
         border: unset;
         background-color: transparent;
     }
-    .subdropdown-menu .dropdown-item{
-        /* width: 50%; */
-    }
-    .subdropdown-menu .dropdown-item a {
-        
-        padding-left: 5px;
+
+    .subdropdown-menu ul .dropdown-item a{
+        font-size: 1.4rem;
     }
     .subdropdown-menu .dropdown-item:hover a{
         /* color: #fff; */
         /* border: unset; */
         color: #fff;
         border-left: #fff 2px solid;
+        padding-left: 5px;
+        /* pointer-events: unset; */
        
     }
     .subdropdown-menu .dropdown-item a:hover{
         color: #fff;
-        pointer-events: none;
+        /* pointer-events: none; */
         
     }
     /* Footer */
