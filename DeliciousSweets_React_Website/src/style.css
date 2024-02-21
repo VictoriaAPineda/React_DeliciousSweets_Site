@@ -131,14 +131,17 @@ body{
     flex-direction: column;
     row-gap: 10px;
 }
+/* Temp. animation - TODO: Work on CSSTransition */
 .dropdown-menu.active{
     opacity: 1;
     background-color: transparent;
-    transition: 0.5s ease;
+    transition: 200ms ease-in;
 }
 .dropdown-menu.inactive{
-  opacity: 0;
+    opacity: 0;
+    transition: 200ms ease-in;
 }
+
 .dropdown-item{
     background-color: rgba(0, 0, 0, 0.8);
     width: 100%;
@@ -155,9 +158,6 @@ body{
 .dropdown-item a:hover{
     border: unset !important;
     color: black;
-}
-.dropdown-item a:active{
-    /* font-size: 1.7rem; */
 }
 .subdropdown-menu{
     display: none;
