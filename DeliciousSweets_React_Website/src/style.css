@@ -564,7 +564,7 @@ body{
     .dropdown-trigger{
         display: flex
     }
-    /* TODO: sub menu for Products*/
+    /*  Sub menu for Products*/
     .nav-menu .subdropdown-menu ul li {
         margin: unset;
     }
@@ -577,7 +577,6 @@ body{
         display: block;
         margin-left: 5px;
     }
-    /* TODO: Roate symbol */
     .submenu-trigger .chevorn-open{
         color: #fff;
         position: relative;
