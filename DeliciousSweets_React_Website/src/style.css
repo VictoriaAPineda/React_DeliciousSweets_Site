@@ -489,7 +489,6 @@ body{
       margin-top: 10px;
     }
 }
-
 @media (max-width:1250px){
     .large-font{
         font-size: 4rem;
@@ -504,9 +503,7 @@ body{
         width: 100px;
     }
 }
-
-/*TODO: mobile versions*/ 
-/* prev 700px*/
+/* Mobile versions */ 
 @media (max-width: 900px ){
     .large-font{
         font-size: 2rem;
@@ -524,7 +521,6 @@ body{
         width: 40%;
     }
     /* mobile menu version */
-    /*TODO: wotking on styling mobile menu */ 
     .nav-menu ul{
         display: none;
         margin: 0;
