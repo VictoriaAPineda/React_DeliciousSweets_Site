@@ -30,9 +30,10 @@ export default function DropdownMenu(){
                 <div className='dropdown-trigger' onMouseOver={()=>{setOpen(!open)}}>
                     <Link to="/products">Products</Link>
                     <div className='submenu-trigger' onClick={()=>setSubmenu(!openSubmenu)}>
-                    {/* TODO: rotate symbol when sub menu is opened/active */}
-                    <i className= "bi bi-chevron-up chevorn-open"></i>
-                </div>
+                        {/* TODO: rotate symbol when sub menu is opened/active */}
+                        {/* <i className= "bi bi-chevron-up chevorn-open"></i> */}
+                        <i className= {`bi bi-chevron-up chevorn-open ${openSubmenu ? 'active' : 'inactive'}`}></i>
+                    </div>
                 </div>
                 <div className={`dropdown-menu ${open? 'active':'inactive'}`}>
                     <ul>

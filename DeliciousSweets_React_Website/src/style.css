@@ -577,12 +577,18 @@ body{
         display: block;
         margin-left: 5px;
     }
+    /* TODO: Roate symbol */
     .submenu-trigger .chevorn-open{
         color: #fff;
         position: relative;
         top: 5px;
         left: 20%;   
         cursor: pointer;
+    }
+    .chevorn-open.active{
+        transform: rotate(180deg);
+        background-color: transparent;
+        display: inline-block;
     }
     .subdropdown-menu ul{
         display: flex;
