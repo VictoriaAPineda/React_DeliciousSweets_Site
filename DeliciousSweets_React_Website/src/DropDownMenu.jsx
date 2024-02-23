@@ -19,12 +19,9 @@ export default function DropdownMenu(){
             document.removeEventListener("mousedown", handler);
         }
     });
-
     return(
         <>
         <div className='dropmenu-wrapper'>
-
-        
             <div className='dropdown-container' ref={menuRef}>
                 {/* Normal dropdown of 'Products' */}
                 <div className='dropdown-trigger' onMouseOver={()=>{setOpen(!open)}}>
@@ -34,7 +31,7 @@ export default function DropdownMenu(){
                         <i className= {`bi bi-chevron-up chevorn-open ${openSubmenu ? 'active' : 'inactive'}`}></i>
                     </div>
                 </div>
-                <div className={`dropdown-menu ${open? 'active':'inactive'}`}>
+                <div className={`dropdown-menu ${open? 'active':''}`}>
                     <ul>
                         <DropdownItem itemText = {'Option1'}/>
                         <DropdownItem itemText = {'Option2'}/>
