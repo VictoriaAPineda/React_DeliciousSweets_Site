@@ -666,4 +666,8 @@ body{
     .grid-item-03 .small-font {
         font-size: 0.3rem;
     }
+    /* about page */
+    .info_card_container{
+        top: 10%;
+    }
 }
