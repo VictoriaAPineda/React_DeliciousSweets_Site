@@ -9,6 +9,9 @@
 .font-Im-Fell-Great-Primier-link{
     font-family: 'IM Fell Great Primer';
 }
+.font-Dancing-Script-link{
+    font-family: 'Dancing Script';
+}
 /* 1 rem = 16px*/
 .large-font {
     font-size: 5rem;
@@ -463,6 +466,29 @@ body{
    letter-spacing: 5px;
    font-family: 'IM Fell Great Primer', serif;
 
+}
+
+/* About page */
+#about_pg_container{
+    position: relative;
+}
+.info_card_container{
+    position: absolute;
+    color: #fff;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%);   
+}
+.info_card_container > p{
+    font-family: 'Dancing Script', serif;
+}
+.contact_details p{
+    font-family: 'Open Sans', serif;
+}
+#aboutPg_bgImg{
+    width: 100%;
+    height: auto;
+    display: block; /*removes whitespace*/
 }
 
 /* - Media Queries  - */
