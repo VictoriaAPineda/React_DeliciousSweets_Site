@@ -490,7 +490,7 @@ body{
 }
 .contact_details p{
     font-family: 'Open Sans', serif;
-    font-size: 1rem;
+    font-size: 1.5rem;
     white-space: nowrap;
 }
 #aboutPg_bgImg{
@@ -646,9 +646,13 @@ body{
         align-items:first baseline;
         flex-flow: wrap;
     }
-    /*Tri image group*/
+    /* home page */
     .grid-item-03 {
         overflow: hidden;
+    }
+    /* About page */
+    .contact_details p{
+        font-size: 1rem;
     }
 }
 @media (max-width:750px){
