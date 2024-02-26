@@ -474,10 +474,15 @@ body{
 }
 .info_card_container{
     position: absolute;
+    text-align: center;
     color: #fff;
     left: 50%;
     top: 30%;
     transform: translate(-50%);   
+    border: #EEDAB9 3px solid; 
+    background-color: rgba(0, 0, 0, 0.8);
+
+    padding: 30px 60px;
 }
 .info_card_container > p{
     font-family: 'Dancing Script', serif;

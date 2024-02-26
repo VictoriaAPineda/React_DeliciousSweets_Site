@@ -40,9 +40,9 @@ export default function Navbar() {
                     </ul>
                 </nav>
                 {/* list/hamburger icon for mobile menu */}
-                <Link to="" ><i className="bi bi-list list-trigger" onClick={toggleMenu}></i></Link>
+                <Link to="#" ><i className="bi bi-list list-trigger" onClick={toggleMenu}></i></Link>
                 {/* If the ul menu is open (isOpen = true), this "x" icon will also display */}
-                <Link to =""><i className= {`bi bi-x list-close-trigger ${isOpen ? "is-open": ""}`} onClick={closeMenu}></i></Link>
+                <Link to ="#"><i className= {`bi bi-x list-close-trigger ${isOpen ? "is-open": ""}`} onClick={closeMenu}></i></Link>
             </section>
     </>
 

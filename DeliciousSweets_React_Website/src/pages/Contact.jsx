@@ -5,7 +5,7 @@ export default function Contact(){
         <>
             <section id='about_pg_container'>
                 <div className='info_card_container'>
-                    <p className='large-font'>Contact Us</p>
+                    <p className='large-font'>- Contact Us -</p>
                     <div className='contact_details'>
                         <p>Phone: (555) 555-5555</p>
                         <p>Email: Example@mail.com</p>
