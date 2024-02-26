@@ -480,15 +480,18 @@ body{
     top: 30%;
     transform: translate(-50%);   
     border: #EEDAB9 3px solid; 
-    background-color: rgba(0, 0, 0, 0.8);
-
+    background-color: rgba(0, 0, 0, 0.5);
     padding: 30px 60px;
 }
 .info_card_container > p{
     font-family: 'Dancing Script', serif;
+    margin-bottom: 15px;
+    white-space: nowrap;
 }
 .contact_details p{
     font-family: 'Open Sans', serif;
+    font-size: 1rem;
+    white-space: nowrap;
 }
 #aboutPg_bgImg{
     width: 100%;
