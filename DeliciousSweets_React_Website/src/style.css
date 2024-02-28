@@ -503,7 +503,18 @@ body{
 #topAboutImg{
     width: 100%;
     height: auto;
+    display: block;
 }
+#aboutTextBg{
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+
+
+
 /* - Media Queries  - */
 @media (max-width:1500px){
     .search-container{
