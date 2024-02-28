@@ -507,10 +507,15 @@ body{
 }
 .bottomRowImgs{
     height: auto;
-    display: block;
+    /* display: block; */
+    width: 34%;
+    
 }
 .imageRow_container{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 
