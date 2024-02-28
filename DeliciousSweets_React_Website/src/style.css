@@ -737,6 +737,12 @@ body{
     }
       /* About page */
   .about_text_container .about_text {
-    font-size: 0.45rem;
+    font-size: 0.8rem;
 }
+}
+@media (max-width: 749px){
+    /* About page */
+    .about_text_container .about_text {
+     font-size: 0.75rem;
+ }
 }
