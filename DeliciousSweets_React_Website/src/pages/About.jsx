@@ -16,9 +16,9 @@ function About(){
             </section>
 
             <section>
-                <img src={whiteBerryCake01}></img>
-                <img src={cookies02}></img>
-                <img src={cherryCupcakes03}></img>
+                <img src={whiteBerryCake01} className='bottomRowImgs'></img>
+                <img src={cookies02} className='bottomRowImgs'></img>
+                <img src={cherryCupcakes03} className='bottomRowImgs'></img>
             </section>
         </>
     )
