@@ -505,17 +505,45 @@ body{
     height: auto;
     display: block;
 }
+.about_text_container{
+    position: relative;
+    color: #fff;
+}
+.about_text_container div{
+    position: absolute;
+    width: 50%;
+    top: 30%;
+    left: 5%;
+}
+.about_text_container .about_us_header{
+   position: absolute;
+   font-family: 'Dancing Script', serif;
+   top: -30%;
+   left: 25%;
+}
+.about_text_container .about_text {
+    letter-spacing:3px;
+    font-family: serif;
+    font-size: 1.25rem;
+}
+.about_text_container .about_text span{
+    display: block;
+    text-indent: 5%;
+}
+.about_text_container .about_text span:not(:last-of-type){
+    margin-bottom: 20px;
+}
+
 .bottomRowImgs{
+    display: flex;
+    flex-grow: 1;
     height: auto;
-    /* display: block; */
-    width: 34%;
-    
+    width: 33%;
 }
 .imageRow_container{
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 
