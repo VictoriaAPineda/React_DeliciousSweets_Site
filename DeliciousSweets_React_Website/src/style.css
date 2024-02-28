@@ -564,7 +564,6 @@ body{
         margin: 0px 0px;
         width: 350px;
     }
- 
     .nav-menu {
         display: flex;
         flex-direction: column;
@@ -572,6 +571,10 @@ body{
     }
     .nav-menu ul {
       margin-top: 10px;
+    }
+      /* About page */
+    .about_text_container .about_text {
+        font-size: 1.5rem;
     }
 }
 @media (max-width:1250px){
@@ -588,9 +591,9 @@ body{
         width: 100px;
     }
     /* About page */
-    /* .about_text_container .about_text {
-        font-size: 1rem;
-    } */
+    .about_text_container .about_text {
+        font-size: 1.25rem;
+    }
 }
 /* Mobile versions */ 
 @media (max-width: 900px ){
@@ -708,9 +711,9 @@ body{
     .grid-item-03 {
         overflow: hidden;
     }
-    /* About page */
-    .contact_details p{
-        font-size: 1rem;
+    /* about page*/
+    .about_text_container .about_text {
+        font-size: 0.9rem;
     }
 }
 @media (max-width:750px){
@@ -728,8 +731,12 @@ body{
     .grid-item-03 .small-font {
         font-size: 0.3rem;
     }
-    /* about page */
+    /* contact page */
     .info_card_container{
         top: 10%;
     }
+      /* About page */
+  .about_text_container .about_text {
+    font-size: 0.45rem;
+}
 }
