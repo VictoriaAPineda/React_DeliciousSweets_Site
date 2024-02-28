@@ -500,12 +500,7 @@ body{
 }
 
 /* About page */
-#topAboutImg{
-    width: 100%;
-    height: auto;
-    display: block;
-}
-#aboutTextBg{
+#topAboutImg, #aboutTextBg{
     width: 100%;
     height: auto;
     display: block;
