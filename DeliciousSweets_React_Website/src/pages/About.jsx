@@ -1,7 +1,11 @@
+import topImg from '/src/images/about_cake_img.jpg';
+
 function About(){
     return(
         <>
-            <h1>About page</h1>
+            <section>
+                <img src={topImg} id='topAboutImg'></img>
+            </section>
         </>
     )
 }

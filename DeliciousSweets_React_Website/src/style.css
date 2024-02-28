@@ -468,7 +468,7 @@ body{
 
 }
 
-/* About page */
+/* Contact page */
 #about_pg_container{
     position: relative;
 }
@@ -499,6 +499,11 @@ body{
     display: block; /*removes whitespace*/
 }
 
+/* About page */
+#topAboutImg{
+    width: 100%;
+    height: auto;
+}
 /* - Media Queries  - */
 @media (max-width:1500px){
     .search-container{
