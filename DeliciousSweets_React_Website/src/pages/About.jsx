@@ -15,7 +15,7 @@ function About(){
                 <img src={bgtxtImg} id='aboutTextBg'></img>
             </section>
 
-            <section>
+            <section className='imageRow_container'>
                 <img src={whiteBerryCake01} className='bottomRowImgs'></img>
                 <img src={cookies02} className='bottomRowImgs'></img>
                 <img src={cherryCupcakes03} className='bottomRowImgs'></img>
