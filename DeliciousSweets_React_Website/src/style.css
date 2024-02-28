@@ -469,7 +469,7 @@ body{
 }
 
 /* Contact page */
-#about_pg_container{
+#contact_pg_container{
     position: relative;
 }
 .info_card_container{
@@ -493,7 +493,7 @@ body{
     font-size: 1.5rem;
     white-space: nowrap;
 }
-#aboutPg_bgImg{
+#contactPg_bgImg{
     width: 100%;
     height: auto;
     display: block; /*removes whitespace*/

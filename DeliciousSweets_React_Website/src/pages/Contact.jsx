@@ -1,9 +1,9 @@
-import about_bgImg from '/src/images/about_Bg_img.jpg';
+import contact_bgImg from '/src/images/about_Bg_img.jpg';
 export default function Contact(){
 
     return(
         <>
-            <section id='about_pg_container'>
+            <section id='contact_pg_container'>
                 <div className='info_card_container'>
                     <p className='large-font'>- Contact Us -</p>
                     <div className='contact_details'>
@@ -13,7 +13,7 @@ export default function Contact(){
                         <p>Hours: Mon-Sat 8:00am - 5:00pm</p>
                     </div>
                 </div>
-                <img src={about_bgImg} id='aboutPg_bgImg'></img>
+                <img src={contact_bgImg} id='contactPg_bgImg'></img>
             </section>
         </>
     )
