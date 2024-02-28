@@ -508,6 +508,7 @@ body{
 .about_text_container{
     position: relative;
     color: #fff;
+    overflow: hidden;
 }
 .about_text_container div{
     position: absolute;
@@ -518,13 +519,15 @@ body{
 .about_text_container .about_us_header{
    position: absolute;
    font-family: 'Dancing Script', serif;
-   top: -30%;
+   /* top: -30%; */
+   bottom: 110%;
    left: 25%;
+   width: 50%;
 }
 .about_text_container .about_text {
-    letter-spacing:3px;
+    letter-spacing:2px;
     font-family: serif;
-    font-size: 1.25rem;
+    font-size: 2rem;
 }
 .about_text_container .about_text span{
     display: block;
@@ -584,6 +587,10 @@ body{
     #truckIcon{
         width: 100px;
     }
+    /* About page */
+    /* .about_text_container .about_text {
+        font-size: 1rem;
+    } */
 }
 /* Mobile versions */ 
 @media (max-width: 900px ){
