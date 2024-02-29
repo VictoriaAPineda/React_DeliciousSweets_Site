@@ -12,6 +12,21 @@ function Products(){
             <section>
                 <BannerSpecial images = {bannerImages}/>
             </section>
+
+            <section id="filter_products_container">
+                <p>Cartegories</p>
+                <button className="filterBtn">Filter1</button>
+                <button className="filterBtn" >Filter2</button>
+                <button className="filterBtn" >Filter3</button>
+                <button className="filterBtn" >Filter4</button>
+                <button className="filterBtn" >Filter5</button>
+                <button className="filterBtn" >Filter6</button>
+
+            </section>
+
+            <section id="products_conatiner">
+
+            </section>
         </>
     )
 }
