@@ -583,6 +583,11 @@ body{
     background-color: #fff;
     color: #3F2C2C;
 }
+.filterBtn:active{
+    border: 2px solid #3F2C2C;
+    background-color: #3F2C2C;
+    color: #fff;
+}
 #products_container .catTitle_container{
     background-color: #3F2C2C;
     display: flex;
