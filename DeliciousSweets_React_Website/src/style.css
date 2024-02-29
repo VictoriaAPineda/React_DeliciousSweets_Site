@@ -523,6 +523,7 @@ body{
    bottom: 110%;
    left: 25%;
    width: 50%;
+   white-space: nowrap;
 }
 .about_text_container .about_text {
     letter-spacing:2px;
@@ -548,9 +549,6 @@ body{
     justify-content: center;
     align-items: center;
 }
-
-
-
 
 
 /* - Media Queries  - */
@@ -591,6 +589,9 @@ body{
         width: 100px;
     }
     /* About page */
+    .about_text_container .about_us_header{
+        left: 30%;
+     }
     .about_text_container .about_text {
         font-size: 1.25rem;
     }
@@ -712,6 +713,11 @@ body{
         overflow: hidden;
     }
     /* about page*/
+    .about_text_container .about_us_header{
+        bottom: 110%;
+        left: 30%;
+        font-size: 3rem;
+     }
     .about_text_container .about_text {
         font-size: 0.9rem;
     }
