@@ -552,7 +552,28 @@ body{
 }
 
 /* Product Page */
-
+#filter_products_container{
+    margin: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.catBtnGroupTitle{
+    font-family: 'Dancing Script', serif;
+    margin-right: 10px;
+}
+.filterBtn{
+    border: none;
+    background-color: #3F2C2C;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-family: 'IM Fell Great Primer', serif;
+    letter-spacing: 1px;
+}
+.filterBtn:not(:last-child){
+    margin-right: 10px;
+}
 /* TODO: Add smaller sizes ? */
 /* - Media Queries  - */
 @media (max-width:1500px){
