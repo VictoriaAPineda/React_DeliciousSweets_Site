@@ -31,8 +31,17 @@ function Products(){
                     <div></div>
                 </div>
 
+                <div className="products_grid_container">
+                    <div className="product">
+
+                    </div>
+
+                </div>
 
 
+                <div className="pagination_container">
+
+                </div>
             </section>
         </>
     )

@@ -608,7 +608,9 @@ body{
     font-family: 'Dancing Script', serif;
     margin: 0px 20px;
 }
-
+.pagination_container{
+    
+}
 /* TODO: Add smaller sizes ? */
 /* - Media Queries  - */
 @media (max-width:1500px){
