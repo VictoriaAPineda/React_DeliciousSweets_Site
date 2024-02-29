@@ -24,7 +24,14 @@ function Products(){
 
             </section>
 
-            <section id="products_conatiner">
+            <section id="products_container">
+                <div className="catTitle_container">
+                    <div></div>
+                        <p className="large-font catTitle">Cakes</p>
+                    <div></div>
+                </div>
+
+
 
             </section>
         </>

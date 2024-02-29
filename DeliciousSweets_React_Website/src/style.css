@@ -566,10 +566,10 @@ body{
     font-size: 2.5rem;
 }
 .filterBtn{
-    border: none;
+    border: 2px solid #3F2C2C;
     background-color: #3F2C2C;
     color: #fff;
-    padding: 10px 25px;
+    padding: 7px 23px;
     border-radius: 10px;
     font-family: 'IM Fell Great Primer', serif;
     letter-spacing: 1px;
@@ -578,6 +578,32 @@ body{
 .filterBtn:not(:last-child){
     margin-right: 10px;
 }
+.filterBtn:hover{
+    border: 2px solid #3F2C2C;
+    background-color: #fff;
+    color: #3F2C2C;
+}
+#products_container .catTitle_container{
+    background-color: #3F2C2C;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.catTitle_container div{
+    width: 25%;
+    background-color: #fff;
+    height: 2px;
+    display: flex;
+    align-self: center;
+}
+.catTitle_container .catTitle{
+    font-family: 'Dancing Script', serif;
+    margin: 0px 20px;
+}
+
 /* TODO: Add smaller sizes ? */
 /* - Media Queries  - */
 @media (max-width:1500px){
