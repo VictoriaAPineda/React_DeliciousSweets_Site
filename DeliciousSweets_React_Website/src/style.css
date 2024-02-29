@@ -608,9 +608,34 @@ body{
     font-family: 'Dancing Script', serif;
     margin: 0px 20px;
 }
-.pagination_container{
-    
+/*TODO: Make a max width */
+.products_grid_container{
+    background-image: url("./images/parchment_texture.jpg");
+    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    padding:30px 40px;
 }
+.product{
+    display: flex;
+    width: 570px;
+}
+.product_details_container{
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+
+.pagination_container{
+
+}
+
 /* TODO: Add smaller sizes ? */
 /* - Media Queries  - */
 @media (max-width:1500px){

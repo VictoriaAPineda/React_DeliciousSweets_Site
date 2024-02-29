@@ -2,6 +2,7 @@ import BannerSpecial from "../BannerSpecial";
 import brownieImg from "/src/images/brownines-img.png"
 import cupcakeImg from "/src/images/cupcakes.jpg"
 import doughnutImg from "/src/images/doughnuts.jpg"
+import productImg from "/src/images/chocolateStrawberryCake.jpg";
 
 
 function Products(){
@@ -32,9 +33,26 @@ function Products(){
                 </div>
 
                 <div className="products_grid_container">
+                    {/*mockup for later code with data array objects */}
                     <div className="product">
-
+                        <img src={productImg}></img>
+                        <div className="product_details_container">
+                            <p>Product Name</p>
+                            <p>This is a short description of the product meant to entice users to click and make a purchase.</p>
+                            <p>$10.99</p>
+                            <button>View</button>
+                        </div>
                     </div>
+                    <div className="product">
+                        <img src={productImg}></img>
+                        <div className="product_details_container">
+                            <p>Product Name</p>
+                            <p>This is a short description of the product meant to entice users to click and make a purchase.</p>
+                            <p>$10.99</p>
+                            <button>View</button>
+                        </div>
+                    </div>
+
 
                 </div>
 
