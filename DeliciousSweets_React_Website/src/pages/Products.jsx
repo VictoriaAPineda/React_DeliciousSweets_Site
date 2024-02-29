@@ -1,7 +1,17 @@
+import BannerSpecial from "../BannerSpecial";
+import brownieImg from "/src/images/brownines-img.png"
+import cupcakeImg from "/src/images/cupcakes.jpg"
+import doughnutImg from "/src/images/doughnuts.jpg"
+
+
 function Products(){
+    const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];
     return(
         <>
-        <h1>Products page</h1>
+            
+            <section>
+                <BannerSpecial images = {bannerImages}/>
+            </section>
         </>
     )
 }

@@ -550,7 +550,7 @@ body{
     align-items: center;
 }
 
-
+/* TODO: Add smaller sizes ? */
 /* - Media Queries  - */
 @media (max-width:1500px){
     .search-container{
