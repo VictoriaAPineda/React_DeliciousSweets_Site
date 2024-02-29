@@ -553,10 +553,12 @@ body{
 
 /* Product Page */
 #filter_products_container{
-    margin: 10px 10px;
+    padding: 10px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("./images/parchment_texture.jpg");
+    background-size: cover;
 }
 .catBtnGroupTitle{
     font-family: 'Dancing Script', serif;
