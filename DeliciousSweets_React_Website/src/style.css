@@ -563,15 +563,17 @@ body{
 .catBtnGroupTitle{
     font-family: 'Dancing Script', serif;
     margin-right: 10px;
+    font-size: 2.5rem;
 }
 .filterBtn{
     border: none;
     background-color: #3F2C2C;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 25px;
     border-radius: 10px;
     font-family: 'IM Fell Great Primer', serif;
     letter-spacing: 1px;
+    font-size: 1.5rem;
 }
 .filterBtn:not(:last-child){
     margin-right: 10px;
