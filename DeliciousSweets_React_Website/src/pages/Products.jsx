@@ -34,24 +34,45 @@ function Products(){
 
                 <div className="products_grid_container">
                     {/*mockup for later code with data array objects */}
-                    <div className="product">
+                    <div className="product box-shadow">
                         <img src={productImg}></img>
                         <div className="product_details_container">
-                            <p>Product Name</p>
-                            <p>This is a short description of the product meant to entice users to click and make a purchase.</p>
-                            <p>$10.99</p>
-                            <button>View</button>
+                            <p className="productName">Product Name</p>
+                            <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
+                            <p className="price">$10.99</p>
+                            <button className="viewBtn">View</button>
                         </div>
                     </div>
-                    <div className="product">
+                    <div className="product box-shadow">
                         <img src={productImg}></img>
                         <div className="product_details_container">
-                            <p>Product Name</p>
-                            <p>This is a short description of the product meant to entice users to click and make a purchase.</p>
-                            <p>$10.99</p>
-                            <button>View</button>
+                            <p className="productName">Product Name</p>
+                            <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
+                            <p className="price">$10.99</p>
+                            <button className="viewBtn">View</button>
                         </div>
                     </div>
+                    <div className="product box-shadow">
+                        <img src={productImg}></img>
+                        <div className="product_details_container">
+                            <p className="productName">Product Name</p>
+                            <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
+                            <p className="price">$10.99</p>
+                            <button className="viewBtn">View</button>
+                        </div>
+                    </div>
+                    <div className="product box-shadow">
+                        <img src={productImg}></img>
+                        <div className="product_details_container">
+                            <p className="productName">Product Name</p>
+                            <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
+                            <p className="price">$10.99</p>
+                            <button className="viewBtn">View</button>
+                        </div>
+                    </div>
+           
+           
+           
 
 
                 </div>
