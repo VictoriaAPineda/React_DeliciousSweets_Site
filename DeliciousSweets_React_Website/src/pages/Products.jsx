@@ -9,7 +9,7 @@ function Products(){
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];
     return(
         <>
-            
+            {/*TODO: Make page responsive*/}
             <section>
                 <BannerSpecial images = {bannerImages}/>
             </section>
