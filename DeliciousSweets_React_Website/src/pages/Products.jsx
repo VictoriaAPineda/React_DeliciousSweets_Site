@@ -73,11 +73,14 @@ function Products(){
                     {/* Page Nav */}
                     <div className="pagination_container">
                         <div className="decoLine"></div>
-                        <button><i class="bi bi-caret-left-fill"></i></button>
-                        <p>1</p>
-                        <i class="bi bi-slash-lg"></i>
-                        <p>2</p>
-                        <button><i class="bi bi-caret-right-fill"></i></button>
+                        <div className="navigation">
+                            <button className="prevPageBtn"><i class="bi bi-caret-left-fill"></i></button>
+                            <p>1</p>
+                            <i class="bi bi-slash-lg"></i>
+                            <p>2</p>
+                            <button className="nextPageBtn"><i class="bi bi-caret-right-fill"></i></button>
+                        </div>
+                    
                         <div className="decoLine"></div>
                     </div>
                 </div>

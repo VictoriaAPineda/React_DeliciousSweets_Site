@@ -649,22 +649,31 @@ body{
     background-color: #fff;
     font-weight: bold;
 }
-/* TODO: page nav ui*/
 .pagination_container{
     display: flex;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     position: relative;
     grid-column:1/3;
     width: 100%;
 }
+.pagination_container .navigation{
+    display: flex;
+    margin: 0px 20px;
+    align-items: center;
+}
+.navigation .prevPageBtn,
+.navigation .nextPageBtn{
+    font-size: 25px;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
 .pagination_container .decoLine{
-    position: absolute;
     width: 25%;
     background-color:black;
     height: 3px;
     display: flex;
-    /* align-self: center; */
 }
 
 /* TODO: Add smaller sizes ? */
