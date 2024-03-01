@@ -70,17 +70,19 @@ function Products(){
                             <button className="viewBtn">View</button>
                         </div>
                     </div>
-           
-           
-           
-
-
+                    {/* Page Nav */}
+                    <div className="pagination_container">
+                        <div className="decoLine"></div>
+                        <button><i class="bi bi-caret-left-fill"></i></button>
+                        <p>1</p>
+                        <i class="bi bi-slash-lg"></i>
+                        <p>2</p>
+                        <button><i class="bi bi-caret-right-fill"></i></button>
+                        <div className="decoLine"></div>
+                    </div>
                 </div>
 
-
-                <div className="pagination_container">
-
-                </div>
+           
             </section>
         </>
     )
