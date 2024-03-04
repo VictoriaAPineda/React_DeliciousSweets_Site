@@ -592,6 +592,7 @@ body{
     background-color: #3F2C2C;
     color: #fff;
 }
+
 #products_container .catTitle_container{
     background-color: #3F2C2C;
     display: flex;
@@ -617,8 +618,10 @@ body{
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: center;
+    /* grid-template-columns: 1fr  1fr; */
+    /* Keeps grid items at center and not expanding off wide*/
+    grid-template-columns: minmax(0,600px) minmax(0,600px);
+    justify-content: center;
     padding:30px 40px;
     gap:40px 50px;
 }
@@ -725,6 +728,19 @@ body{
     .about_text_container .about_text {
         font-size: 1.25rem;
     }
+    /* Products Page */
+    .products_grid_container {
+
+        padding: 30px 0px;
+        gap: 30px 10px;
+    }
+    .product {
+        /* width: 400px; */
+        /* transform: scale(0.7); */
+        
+   
+    }
+
 }
 /* Mobile versions */ 
 @media (max-width: 900px ){
@@ -850,6 +866,15 @@ body{
      }
     .about_text_container .about_text {
         font-size: 0.9rem;
+    }
+    /* Products page*/
+    #filter_products_container {
+        flex-wrap: wrap;
+    }
+    .filterBtn {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1rem;
     }
 }
 @media (max-width:750px){

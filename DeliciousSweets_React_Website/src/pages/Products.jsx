@@ -22,7 +22,6 @@ function Products(){
                 <button className="filterBtn" >Filter4</button>
                 <button className="filterBtn" >Filter5</button>
                 <button className="filterBtn" >Filter6</button>
-
             </section>
 
             <section id="products_container">
