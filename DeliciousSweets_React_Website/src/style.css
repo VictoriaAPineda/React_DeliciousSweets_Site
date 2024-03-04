@@ -621,7 +621,7 @@ body{
     /* grid-template-columns: 1fr  1fr; */
     /* Keeps grid items at center and not expanding off wide*/
     grid-template-columns: minmax(0,600px) minmax(0,600px);
-    justify-content: center;
+    justify-items: center;
     padding:30px 40px;
     gap:40px 50px;
 }
@@ -735,8 +735,8 @@ body{
         gap: 30px 10px;
     }
     .product {
-        /* width: 400px; */
-        /* transform: scale(0.7); */
+        width: 400px;
+     
         
    
     }
