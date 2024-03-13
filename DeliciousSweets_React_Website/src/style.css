@@ -755,7 +755,8 @@ body{
     /*TODO: Make text responsive with product items*/
 
 }
-/* Mobile versions */ 
+/* Mobile versions */
+/* TODO: Product items to display for 1 column? */ 
 @media (max-width: 900px ){
     .large-font{
         font-size: 2rem;
