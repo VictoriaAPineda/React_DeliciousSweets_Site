@@ -619,8 +619,6 @@ body{
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
     display: grid;
-    /* grid-template-columns: 1fr  1fr; */
-    /* Keeps grid items at center and not expanding off wide*/
     grid-template-columns: minmax(0,600px) minmax(0,600px);
     justify-content: center;
     padding:30px 40px;
@@ -628,7 +626,11 @@ body{
 }
 .product{
     display: flex;
-    width: 570px;
+    /* width: 570px; */
+    width: auto;
+}
+.product img{
+    width: 50%;
 }
 .product_details_container{
     background-color: #fff;
@@ -741,11 +743,16 @@ body{
     }
     /* Products Page */
     .products_grid_container {
-
+        grid-template-columns: repeat(2,minmax(0,400px) );
+        padding:10px;
+        gap:20px 20px;
     }
     .product {
-        
+      height: 250px;
+      width: auto;
+      /* overflow: hidden; */
     }
+    /*TODO: Make text responsive with product items*/
 
 }
 /* Mobile versions */ 

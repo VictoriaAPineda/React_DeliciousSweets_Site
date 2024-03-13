@@ -51,15 +51,33 @@ function Products(){
                             <button className="viewBtn">View</button>
                         </div>
                     </div>
+                    <div className="product box-shadow">
+                        <img src={productImg}></img>
+                        <div className="product_details_container">
+                            <p className="productName">Product Name</p>
+                            <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
+                            <p className="price">$10.99</p>
+                            <button className="viewBtn">View</button>
+                        </div>
+                    </div>
+                    <div className="product box-shadow">
+                        <img src={productImg}></img>
+                        <div className="product_details_container">
+                            <p className="productName">Product Name</p>
+                            <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
+                            <p className="price">$10.99</p>
+                            <button className="viewBtn">View</button>
+                        </div>
+                    </div>
                     {/* Page Nav */}
                     <div className="pagination_container">
                         <div className="decoLine"></div>
                         <div className="navigation">
-                            <button className="prevPageBtn"><i class="bi bi-caret-left-fill"></i></button>
+                            <button className="prevPageBtn"><i className="bi bi-caret-left-fill"></i></button>
                             <p>1</p>
-                            <i class="bi bi-slash-lg"></i>
+                            <i className="bi bi-slash-lg"></i>
                             <p>2</p>
-                            <button className="nextPageBtn"><i class="bi bi-caret-right-fill"></i></button>
+                            <button className="nextPageBtn"><i className="bi bi-caret-right-fill"></i></button>
                         </div>
                         <div className="decoLine"></div>
                     </div>
