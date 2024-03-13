@@ -688,7 +688,7 @@ body{
     border: none;
 }
 .pagination_container .decoLine{
-    width: 25%;
+    width: 30%;
     background-color:black;
     height: 3px;
     display: flex;
