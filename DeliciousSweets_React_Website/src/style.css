@@ -643,6 +643,7 @@ body{
 .product_details_container .productName{
     font-size: 1.8rem;
     margin-bottom: 10px;
+    white-space: nowrap;
 }
 .product_details_container .productDescription{
     margin-bottom: 30px;
@@ -753,6 +754,14 @@ body{
       /* overflow: hidden; */
     }
     /*TODO: Make text responsive with product items*/
+    .product_details_container .productName {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    .product_details_container .productDescription {
+        margin-bottom: 10px;
+        font-size: 0.9rem;
+    }
 
 }
 /* Mobile versions */
