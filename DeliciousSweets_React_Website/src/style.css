@@ -614,7 +614,6 @@ body{
     font-family: 'Dancing Script', serif;
     margin: 0px 20px;
 }
-/*TODO: Make a max width */
 .products_grid_container{
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
@@ -662,6 +661,9 @@ body{
     font-weight: bold;
     cursor: pointer;
 }
+.viewBtn .view_link{
+    text-decoration: none;
+}
 .viewBtn:hover{
     background-color: #744333;
     color: #fff;
@@ -670,7 +672,6 @@ body{
     background-color:#fff;
     color: #744333;
 }
-
 .pagination_container{
     display: flex;
     justify-content: center;

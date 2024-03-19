@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import BannerSpecial from "../BannerSpecial";
 import brownieImg from "/src/images/brownines-img.png"
 import cupcakeImg from "/src/images/cupcakes.jpg"
@@ -39,7 +41,7 @@ function Products(){
                             <p className="productName">Product Name</p>
                             <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
                             <p className="price">$10.99</p>
-                            <button className="viewBtn">View</button>
+                            <button className="viewBtn"><Link class={"view_link"} to="/productDetail">View</Link></button>
                         </div>
                     </div>
                     <div className="product box-shadow">
@@ -48,7 +50,7 @@ function Products(){
                             <p className="productName">Product Name</p>
                             <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
                             <p className="price">$10.99</p>
-                            <button className="viewBtn">View</button>
+                            <button className="viewBtn"><Link class={"view_link"} to="/productDetail">View</Link></button>
                         </div>
                     </div>
                     <div className="product box-shadow">
@@ -57,7 +59,7 @@ function Products(){
                             <p className="productName">Product Name</p>
                             <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
                             <p className="price">$10.99</p>
-                            <button className="viewBtn">View</button>
+                            <button className="viewBtn"><Link class={"view_link"} to="/productDetail">View</Link></button>
                         </div>
                     </div>
                     <div className="product box-shadow">
@@ -66,9 +68,10 @@ function Products(){
                             <p className="productName">Product Name</p>
                             <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
                             <p className="price">$10.99</p>
-                            <button className="viewBtn">View</button>
+                            <button className="viewBtn"><Link class={"view_link"} to="/productDetail">View</Link></button>
                         </div>
                     </div>
+
                     {/* Page Nav */}
                     <div className="pagination_container">
                         <div className="decoLine"></div>

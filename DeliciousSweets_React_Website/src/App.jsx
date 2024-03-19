@@ -6,6 +6,7 @@ import Contact from "./pages/Contact"
 import Products from "./pages/Products"
 import Cart  from "./pages/Cart"
 import { Route, Routes } from "react-router-dom"
+import ProductDetails from "./pages/productDetail"
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -16,11 +17,16 @@ function App() {
    
       <div className="container">
         <Routes>
+          {/* Collection of links used within website,
+          they are define here*/}
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
+
+          {/*Link from a product to detail page*/}
+          <Route path="/productDetail" element={<ProductDetails />}/>
 
         </Routes>
       </div>
