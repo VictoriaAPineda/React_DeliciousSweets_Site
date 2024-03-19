@@ -661,9 +661,9 @@ body{
     font-weight: bold;
     cursor: pointer;
 }
-/* TODO: fix link styles */
 .viewBtn .view_link{
     text-decoration: none;
+    color: inherit;
 }
 .viewBtn:hover{
     background-color: #744333;
