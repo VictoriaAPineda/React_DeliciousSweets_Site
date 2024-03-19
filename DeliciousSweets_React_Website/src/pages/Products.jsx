@@ -35,12 +35,16 @@ function Products(){
 
                 <div className="products_grid_container">
                     {/*mockup for later code with data array objects */}
+                    {/* Display at max 12 items (2cols of 6 at full screen)*/}
                     <div className="product box-shadow">
                         <img src={productImg}></img>
                         <div className="product_details_container">
                             <p className="productName">Product Name</p>
                             <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
                             <p className="price">$10.99</p>
+                            {/* link should take user to product's own detail page.
+                            Notes: Pass in a product id based on user's selected product 
+                            to call correct data to display on detail page */}
                             <button className="viewBtn"><Link class={"view_link"} to="/productDetail">View</Link></button>
                         </div>
                     </div>
