@@ -46,9 +46,6 @@ export default function ProductDetails(){
                         <p>Similar Tastes!</p>
                     </div>
             </section>
-
-
-            
         </>
     )
 }
