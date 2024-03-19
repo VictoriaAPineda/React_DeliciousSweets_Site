@@ -745,6 +745,7 @@ body{
     }
     /* Products Page */
     .products_grid_container {
+        /* note: affects the spacing of grid objects */
         grid-template-columns: repeat(2,minmax(0,350px) );
         padding:10px;
         gap:20px 20px;
