@@ -37,7 +37,7 @@ export default function ProductDetails(){
             2.Cart be updated in real-time to cart icon on screen via a circle count
             3. reviews by proudct's id, in own database
             */}
-            <section className="productAds">
+            <section className="productAdsContainer">
                     <img src={''}></img>
                     <img src={''}></img>
                     <div className="relatedProductsCarouselContainer">
