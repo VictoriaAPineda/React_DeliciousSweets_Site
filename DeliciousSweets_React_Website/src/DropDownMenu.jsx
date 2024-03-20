@@ -33,6 +33,8 @@ export default function DropdownMenu(){
                 </div>
                 <div className={`dropdown-menu ${open? 'active':''}`}>
                     <ul>
+                        {/*Notes: dropdowns are categories that will be displayed in 
+                        the products page */}
                         <DropdownItem itemText = {'Option1'}/>
                         <DropdownItem itemText = {'Option2'}/>
                         <DropdownItem itemText = {'Option3'}/>
