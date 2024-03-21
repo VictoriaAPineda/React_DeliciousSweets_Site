@@ -702,7 +702,6 @@ body{
 /* Product Detail Page */
 #detailImgBannerContainer{
     position: relative;
-   
 }
 #detailImgBannerContainer img{
     width: 100%;
@@ -710,6 +709,33 @@ body{
     display: block;
     object-fit: cover;
 }
+#detailImgBannerContainer p{
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%); 
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px 20px;  
+    font-family: 'IM Fell Great Primer';
+    letter-spacing: 10px;
+    font-size: 4rem;
+}
+#wrapper{
+    background-image: url("./images/parchment_texture.jpg");
+    background-size: cover;
+}
+#detail_card_container{
+    background-color:#FFF7EB ;
+}
+
+
+
+
+
+
+
 
 
 /* - Media Queries  - */
