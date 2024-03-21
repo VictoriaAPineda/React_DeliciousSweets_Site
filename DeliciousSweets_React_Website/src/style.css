@@ -699,8 +699,19 @@ body{
     height: 3px;
     display: flex;
 }
+/* Product Detail Page */
+#detailImgBannerContainer{
+    position: relative;
+   
+}
+#detailImgBannerContainer img{
+    width: 100%;
+    max-height: 360px;
+    display: block;
+    object-fit: cover;
+}
 
-/* TODO: Add smaller sizes ? */
+
 /* - Media Queries  - */
 @media (max-width:1500px){
     .search-container{
@@ -768,7 +779,6 @@ body{
 
 }
 /* Mobile versions */
-/* TODO: Product items to display for 1 column? */ 
 @media (max-width: 900px ){
     .large-font{
         font-size: 2rem;
