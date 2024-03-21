@@ -729,6 +729,13 @@ body{
 #detail_card_container{
     background-color:#FFF7EB ;
 }
+.productDetailInfoContainer{
+    display: flex;
+}
+.productDetailInfoContainer .detailProductName{
+    font-family: 'Dancing Script';
+    font-size: 4rem;
+}
 
 
 

@@ -1,4 +1,5 @@
 import infoBannerImg from "/src/images/bread_display.jpg";
+import mainProductImg from "/src/images/placeholderDetailImg.jpg";
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -13,7 +14,7 @@ export default function ProductDetails(){
                 <section id="detail_card_container">
                     <button className="backBtn">Back</button>
                     <div className="productDetailInfoContainer">
-                        <img src={''}></img>
+                        <img src={mainProductImg}></img>
                         <div>
                             <p className="detailProductName">Fancy Name</p>
                             <p>* * * * *</p>
@@ -36,6 +37,7 @@ export default function ProductDetails(){
                         <p className="displayedInfo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo excepturi repudiandae mollitia rem vero voluptates minima assumenda architecto consequuntur quia praesentium facilis, impedit debitis! Aut porro temporibus rerum voluptatibus neque?</p>
                     </div>
                 </section>
+
                 {/* TODOS: 1.Carousel of items each link(img) to the product's detail page
                 2.Cart be updated in real-time to cart icon on screen via a circle count
                 3. reviews by proudct's id, in own database
