@@ -735,6 +735,13 @@ body{
 .productDetailInfoContainer{
     display: flex;
 }
+.productDetailInfoContainer .info{
+    margin: 20px;
+}
+.productDetailInfoContainer div, p{
+    /* border: 1px red solid; */
+    margin-bottom: 10px;
+}
 .backBtn{
     color:#3F2C2C;
     background:none;
@@ -753,10 +760,19 @@ body{
 .productDetailInfoContainer .detailProductName{
     font-family: 'Dancing Script';
     font-size: 4rem;
+    color: #744333;
 }
+.detailStars i:not(:last-child){
+    margin-right: 5px;
+}
+.detailPrice{
+    font-family: 'Open Sans';
+    font-size:2rem;
+}
+/* TODO: align the btns and num box*/
 .detailBtnGroup{
     display: flex;
-    align-items: center;
+    align-items: center; 
 }
 .detailBtnGroup i{
     background: none;
@@ -777,6 +793,11 @@ body{
     font-family: 'Open Sans';
     padding:5px 10px;
     margin-left: 10px;
+}
+.detailDescription{
+    font-family: 'Special Elite';
+    line-height: 30px;
+    /* margin-bottom: 10px; */
 }
 
 

@@ -12,12 +12,13 @@ export default function ProductDetails(){
             </section>
             <div id="wrapper">
                 <section id="detail_card_container">
+                    {/* Take user back to their browsing point */}
                     <button className="backBtn"><i class="bi bi-arrow-left"></i>Back</button>
                     <div className="productDetailInfoContainer">
                         <img src={mainProductImg}></img>
-                        <div>
+                        <div className="info">
                             <p className="detailProductName">Fancy Name</p>
-                            <div>
+                            <div className="detailStars">
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
