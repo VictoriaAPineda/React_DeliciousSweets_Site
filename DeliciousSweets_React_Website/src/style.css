@@ -725,12 +725,30 @@ body{
 #wrapper{
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
+    overflow: hidden; /* clears up issuw with whitespace on top */
 }
 #detail_card_container{
     background-color:#FFF7EB ;
+    padding: 15px;
+    margin: 15px;
 }
 .productDetailInfoContainer{
     display: flex;
+}
+.backBtn{
+    color:#3F2C2C;
+    background:none;
+    border: none;
+    margin-bottom: 10px;
+    font-family: 'Open Sans';
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.backBtn i{
+    margin-right: 5px;
+}
+.backBtn:hover{
+    text-decoration: underline;
 }
 .productDetailInfoContainer .detailProductName{
     font-family: 'Dancing Script';
@@ -738,11 +756,27 @@ body{
 }
 .detailBtnGroup{
     display: flex;
+    align-items: center;
 }
 .detailBtnGroup i{
-background: none;
-border: none;
-cursor: pointer;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.detailBtnGroup .quantity{
+    background-color: #fff;
+    border: 1px solid black;
+    padding: 1px 4px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.detailBtnGroup .addToCartBtn{
+    background-color: #9C3535;
+    border: none;
+    color: #fff;
+    font-family: 'Open Sans';
+    padding:5px 10px;
+    margin-left: 10px;
 }
 
 

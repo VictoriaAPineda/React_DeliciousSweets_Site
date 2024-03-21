@@ -12,12 +12,19 @@ export default function ProductDetails(){
             </section>
             <div id="wrapper">
                 <section id="detail_card_container">
-                    <button className="backBtn">Back</button>
+                    <button className="backBtn"><i class="bi bi-arrow-left"></i>Back</button>
                     <div className="productDetailInfoContainer">
                         <img src={mainProductImg}></img>
                         <div>
                             <p className="detailProductName">Fancy Name</p>
-                            <p>* * * * *</p>
+                            <div>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                            </div>
+                           
                             <p className="detailPrice">$12.00</p>
                             <p className="detailDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, corporis? Nesciunt maxime temporibus illum, perspiciatis nisi cupiditate perferendis minus obcaecati odit voluptates veritatis explicabo! Ratione iusto in blanditiis eius ducimus!</p>
                             <div className="detailBtnGroup">
@@ -26,7 +33,7 @@ export default function ProductDetails(){
                                 <div className="quantity">0</div>
                                 <i class="bi bi-plus-circle-fill"></i>
                                 {/*Add to Cart will take the latest number and add it in cart*/}
-                                <button className="addToCartBtn">Add To Cart</button>
+                                <button className="addToCartBtn">Add To Cart +</button>
                             </div>
                         </div>
                     </div>
