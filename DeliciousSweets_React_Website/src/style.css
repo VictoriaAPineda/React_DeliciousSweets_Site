@@ -769,10 +769,9 @@ body{
     font-family: 'Open Sans';
     font-size:2rem;
 }
-/* TODO: align the btns and num box*/
 .detailBtnGroup{
     display: flex;
-    align-items: center; 
+    align-items:baseline; 
 }
 .detailBtnGroup i{
     background: none;
