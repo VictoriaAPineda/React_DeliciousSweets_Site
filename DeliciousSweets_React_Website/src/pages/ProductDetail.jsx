@@ -1,9 +1,12 @@
+import infoBannerImg from "/src/images/bread_display.jpg";
+
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
 export default function ProductDetails(){
     return(
         <>
-            <section>
+            <section id="detailImgBannerContainer">
+                <img src={infoBannerImg}></img>
                 <p>information</p>
             </section>
 
@@ -37,7 +40,7 @@ export default function ProductDetails(){
             2.Cart be updated in real-time to cart icon on screen via a circle count
             3. reviews by proudct's id, in own database
             */}
-            <section className="productAdsContainer">
+            <section id="productAdsContainer">
                     <img src={''}></img>
                     <img src={''}></img>
                     <div className="relatedProductsCarouselContainer">
