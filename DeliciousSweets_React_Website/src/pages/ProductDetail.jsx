@@ -21,9 +21,10 @@ export default function ProductDetails(){
                             <p className="detailPrice">$12.00</p>
                             <p className="detailDescription">Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt, corporis? Nesciunt maxime temporibus illum, perspiciatis nisi cupiditate perferendis minus obcaecati odit voluptates veritatis explicabo! Ratione iusto in blanditiis eius ducimus!</p>
                             <div className="detailBtnGroup">
-                                <button id="subtractAmt">-</button>
-                                <input type="number" name="" id="productQuantity" />
-                                <button id="addAmt">+</button>
+                                {/*TODO: btns has a onClick event to inc/dec */}
+                                <i class="bi bi-dash-circle-fill"></i>
+                                <div className="quantity">0</div>
+                                <i class="bi bi-plus-circle-fill"></i>
                                 {/*Add to Cart will take the latest number and add it in cart*/}
                                 <button className="addToCartBtn">Add To Cart</button>
                             </div>
