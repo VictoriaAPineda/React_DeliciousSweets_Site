@@ -731,12 +731,15 @@ body{
     background-color:#FFF7EB ;
     padding: 15px;
     margin: 15px;
+ 
 }
 .productDetailInfoContainer{
     display: flex;
+    justify-content: center;
 }
 .productDetailInfoContainer .info{
     margin: 20px;
+    max-width: 50%;
 }
 .productDetailInfoContainer div, p{
     /* border: 1px red solid; */
@@ -757,6 +760,10 @@ body{
 .backBtn:hover{
     text-decoration: underline;
 }
+.productDetailInfoContainer img{
+    max-width: 50%;
+}
+
 .productDetailInfoContainer .detailProductName{
     font-family: 'Dancing Script';
     font-size: 4rem;
@@ -799,6 +806,39 @@ body{
     line-height: 30px;
     letter-spacing: 2px;
     /* margin-bottom: 10px; */
+}
+/*TODO: working on styling */
+.specificationAndReviewContainer{
+    margin-top: 20px;
+}
+.tabGroup{
+    display: flex;
+    margin-bottom: -10px;
+}
+.tabbedText{
+    background-color: #E5BCA5;
+    padding: 10px 20px;
+    border-radius: 10px 10px 0px 0px;
+}
+.tabbedText.selected{
+    background-color: #F5DACA;
+}
+.displayedInfo{
+    background-color: #F5DACA;
+    padding: 20px;
+   
+}
+#advertisments{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#advertisments .mainAdImgs{
+    display: flex;
+}
+.mainAdImgs img:first-child{
+ margin-right: 20px;
 }
 
 
