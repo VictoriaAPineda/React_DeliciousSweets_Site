@@ -2,6 +2,7 @@ import infoBannerImg from "/src/images/bread_display.jpg";
 import mainProductImg from "/src/images/placeholderDetailImg.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
+import { Link } from "react-router-dom";
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -14,8 +15,8 @@ export default function ProductDetails(){
             </section>
             <div id="wrapper">
                 <section id="detail_card_container">
-                    {/* Take user back to their browsing point */}
-                    <button className="backBtn"><i class="bi bi-arrow-left"></i>Back</button>
+                    {/* Take user back to their browsing point. Temporary link */}
+                    <Link to="/products"><button className="backBtn"><i class="bi bi-arrow-left"></i>Back</button></Link>
                     <div className="productDetailInfoContainer">
                         <img src={mainProductImg}></img>
                         <div className="info">
@@ -71,7 +72,7 @@ export default function ProductDetails(){
                     </div>
                 
                     <div className="relatedProductsCarouselContainer">
-                            {/* Add Carousel of produtcs in same category user seaching in.
+                            {/*TODO: Add Carousel of produtcs in same category user seaching in.
                             Obtainer info based on Products page cat. selection (props) */}  
                             <h1>- Carousel HERE -</h1>
                             <p>Similar Tastes!</p>

@@ -778,28 +778,32 @@ body{
 }
 .detailBtnGroup{
     display: flex;
-    align-items:baseline; 
+    align-items:center; 
 }
 .detailBtnGroup i{
     background: none;
     border: none;
     cursor: pointer;
+    font-size: 2rem;
 }
 .detailBtnGroup .quantity{
     background-color: #fff;
     border: 1px solid black;
-    padding: 1px 4px;
+    padding: 10px 14px;
+    font-size: 1.5rem;
     margin-left: 5px;
     margin-right: 5px;
+   
 }
 .detailBtnGroup .addToCartBtn{
     background-color: #9C3535;
     border: none;
     color: #fff;
     font-family: 'Open Sans';
-    padding:5px 10px;
+    padding:10px 20px;
     margin-left: 10px;
     cursor: pointer;
+    font-size: 1.3rem;
 }
 .detailDescription{
     font-family: 'Special Elite';
@@ -807,7 +811,6 @@ body{
     letter-spacing: 2px;
     /* margin-bottom: 10px; */
 }
-/*TODO: working on styling */
 .specificationAndReviewContainer{
     margin-top: 20px;
 }
