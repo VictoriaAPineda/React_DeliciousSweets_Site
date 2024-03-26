@@ -59,11 +59,11 @@ export default function ProductDetails(){
                 */}
                 <section id="advertisments">
                     <div className="mainAdImgs">
-                        <div>
+                        <div className="img1">
                             <p>Text Here 01</p>
                          <img src={adImg1}></img>
                         </div>
-                       <div>
+                       <div className="img2">
                         <p>Text Here 02</p>
                         <img src={adImg2}></img>
                        </div>
@@ -73,7 +73,8 @@ export default function ProductDetails(){
                     <div className="relatedProductsCarouselContainer">
                             {/* Add Carousel of produtcs in same category user seaching in.
                             Obtainer info based on Products page cat. selection (props) */}  
-                             <p>Similar Tastes!</p>
+                            <h1>- Carousel HERE -</h1>
+                            <p>Similar Tastes!</p>
                     </div>
                 </section>
                

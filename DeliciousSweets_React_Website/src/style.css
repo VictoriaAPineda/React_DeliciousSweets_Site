@@ -829,7 +829,6 @@ body{
    
 }
 #advertisments{
-    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -845,8 +844,18 @@ body{
 }
 .mainAdImgs div:first-child{
  margin-right: 10px;
-
 }
+.img1, .img2{
+    position: relative;
+}
+.img1 p, .img2 p{
+    position: absolute;
+    color: #fff;
+    font-family: 'Dancing Script';
+    font-size: 4rem;
+}
+
+
 
 
 
