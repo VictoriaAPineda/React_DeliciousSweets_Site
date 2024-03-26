@@ -829,6 +829,7 @@ body{
    
 }
 #advertisments{
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -836,9 +837,15 @@ body{
 }
 #advertisments .mainAdImgs{
     display: flex;
+    margin-left: 20px;
+    margin-right: 20px;
 }
-.mainAdImgs img:first-child{
- margin-right: 20px;
+.mainAdImgs div img{
+    width: 100%;
+}
+.mainAdImgs div:first-child{
+ margin-right: 10px;
+
 }
 
 

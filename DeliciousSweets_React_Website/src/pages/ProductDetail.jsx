@@ -59,8 +59,15 @@ export default function ProductDetails(){
                 */}
                 <section id="advertisments">
                     <div className="mainAdImgs">
-                        <img src={adImg1}></img>
+                        <div>
+                            <p>Text Here 01</p>
+                         <img src={adImg1}></img>
+                        </div>
+                       <div>
+                        <p>Text Here 02</p>
                         <img src={adImg2}></img>
+                       </div>
+                       
                     </div>
                 
                     <div className="relatedProductsCarouselContainer">
