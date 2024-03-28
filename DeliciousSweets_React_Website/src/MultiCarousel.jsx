@@ -1,7 +1,6 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-
 export default function MultiCarousel(){
     const responsive = {
         superLargeDesktop: {
@@ -22,9 +21,6 @@ export default function MultiCarousel(){
           items: 1
         }
       };
-
-
-
     return(
         <>
             <div className='productsCarousel-container'>

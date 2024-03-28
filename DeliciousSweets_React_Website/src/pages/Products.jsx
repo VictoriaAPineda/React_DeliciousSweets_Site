@@ -45,7 +45,7 @@ function Products(){
                             {/* link should take user to product's own detail page.
                             Notes: Pass in a product id based on user's selected product 
                             to call correct data to display on detail page */}
-                            <Link class={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
+                            <Link className={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
                         </div>
                     </div>
                     <div className="product box-shadow">
@@ -57,7 +57,7 @@ function Products(){
                             {/* link should take user to product's own detail page.
                             Notes: Pass in a product id based on user's selected product 
                             to call correct data to display on detail page */}
-                            <Link class={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
+                            <Link className={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
                         </div>
                     </div>
                     <div className="product box-shadow">
@@ -69,7 +69,7 @@ function Products(){
                             {/* link should take user to product's own detail page.
                             Notes: Pass in a product id based on user's selected product 
                             to call correct data to display on detail page */}
-                            <Link class={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
+                            <Link className={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
                         </div>
                     </div>
                     <div className="product box-shadow">
@@ -81,7 +81,7 @@ function Products(){
                             {/* link should take user to product's own detail page.
                             Notes: Pass in a product id based on user's selected product 
                             to call correct data to display on detail page */}
-                            <Link class={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
+                            <Link className={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
                         </div>
                     </div>
             
