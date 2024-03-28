@@ -867,8 +867,9 @@ body{
     left: 50%;
     white-space: nowrap;
 }
+/* TODO: Need to clean up fix buggy carousel */
 .productsCarousel-container{
-    width: 100%;
+    width: 1370px;
 }
 
 

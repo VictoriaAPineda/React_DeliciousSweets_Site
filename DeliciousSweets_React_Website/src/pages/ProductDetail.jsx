@@ -75,7 +75,6 @@ export default function ProductDetails(){
                     <div className="relatedProductsCarouselContainer">
                             {/*TODO: Add Carousel of produtcs in same category user seaching in.
                             Obtainer info based on Products page cat. selection (props) */}  
-                            <h1>- Carousel HERE -</h1>
                             <ProductMultiCarousel/>
                             <p>Similar Tastes!</p>
                     </div>

@@ -1,8 +1,10 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import defaultCardImg from "/src/images/honeycake.jpg"
 
 export default function MultiCarousel(){
     const responsive = {
+        /* TODO: Make adjustments */
         superLargeDesktop: {
           // the naming can be any, depends on you.
           breakpoint: { max: 4000, min: 3000 },
@@ -23,13 +25,18 @@ export default function MultiCarousel(){
       };
     return(
         <>
+            {/*TODO: Styling cards. Temp data, later fill with objects from database */}
             <div className='productsCarousel-container'>
                 <Carousel responsive={responsive}>
-                    <div>Item 1</div>
+                    <div className='carouselCard'>
+                        <img src={defaultCardImg}></img>
+
+
+                    </div>
                     <div>Item 2</div>
                     <div>Item 3</div>
                     <div>Item 4</div>
-                </Carousel>;
+                </Carousel>
             </div>
         </>
     )
