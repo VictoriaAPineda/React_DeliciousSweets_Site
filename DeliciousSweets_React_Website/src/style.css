@@ -867,9 +867,35 @@ body{
     left: 50%;
     white-space: nowrap;
 }
-/* TODO: Need to clean up fix buggy carousel */
+/* TODO: Need to clean up fix buggy carousel. design new looks */
+.relatedProductsCarouselContainer{
+    background-color:#3f2c2c;
+    color: #fff;
+    padding: 20px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 .productsCarousel-container{
     width: 1370px;
+}
+.carouselCard{
+    width: 45%;
+    /* padding-right: 20px; */
+
+}
+.carouselCard img{
+    border-radius: 50%;
+    /* border-radius:10% 10% 0% 0%; */
+   width:100%;
+} 
+.carouselCard .cardInfo{
+    /* background-color: #fff; */
+    display: flex;
+    justify-content: center;
+   
 }
 
 

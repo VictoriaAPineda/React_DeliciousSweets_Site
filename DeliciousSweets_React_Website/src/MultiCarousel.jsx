@@ -12,7 +12,7 @@ export default function MultiCarousel(){
         },
         desktop: {
           breakpoint: { max: 3000, min: 1024 },
-          items: 3
+          items: 4
         },
         tablet: {
           breakpoint: { max: 1024, min: 464 },
@@ -30,15 +30,25 @@ export default function MultiCarousel(){
                 <Carousel responsive={responsive}>
                     <div className='carouselCard'>
                         <img src={defaultCardImg}></img>
+                        <div className='cardInfo'>
+                            <p>Proudct Name</p>
+                        </div>
                     </div>
-                    <div>
+                    <div className='carouselCard' >
                         <img src={defaultCardImg}></img>
+                        <p>02</p>
                     </div>
-                    <div>
+                    <div className='carouselCard' >
                         <img src={defaultCardImg}></img>
+                        <p>03</p>
                     </div>
-                    <div>
+                    <div className='carouselCard' >
                         <img src={defaultCardImg}></img>
+                        <p>04</p>
+                    </div>
+                    <div className='carouselCard' >
+                        <img src={defaultCardImg}></img>
+                        <p>05</p>
                     </div>
                 </Carousel>
             </div>
