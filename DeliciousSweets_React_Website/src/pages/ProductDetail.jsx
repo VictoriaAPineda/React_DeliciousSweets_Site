@@ -3,6 +3,7 @@ import mainProductImg from "/src/images/placeholderDetailImg.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
 import { Link } from "react-router-dom";
+import ProductMultiCarousel from "../MultiCarousel"
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -75,6 +76,7 @@ export default function ProductDetails(){
                             {/*TODO: Add Carousel of produtcs in same category user seaching in.
                             Obtainer info based on Products page cat. selection (props) */}  
                             <h1>- Carousel HERE -</h1>
+                            <ProductMultiCarousel/>
                             <p>Similar Tastes!</p>
                     </div>
                 </section>
