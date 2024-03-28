@@ -882,7 +882,7 @@ body{
     width: 1370px;
 }
 .carouselCard{
-    width: 45%;
+    width: 40%;
     /* padding-right: 20px; */
 
 }
@@ -896,6 +896,9 @@ body{
     display: flex;
     justify-content: center;
    
+}
+.react-multi-carousel-item{
+    margin-right:unset;
 }
 
 
