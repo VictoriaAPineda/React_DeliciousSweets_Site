@@ -30,12 +30,16 @@ export default function MultiCarousel(){
                 <Carousel responsive={responsive}>
                     <div className='carouselCard'>
                         <img src={defaultCardImg}></img>
-
-
                     </div>
-                    <div>Item 2</div>
-                    <div>Item 3</div>
-                    <div>Item 4</div>
+                    <div>
+                        <img src={defaultCardImg}></img>
+                    </div>
+                    <div>
+                        <img src={defaultCardImg}></img>
+                    </div>
+                    <div>
+                        <img src={defaultCardImg}></img>
+                    </div>
                 </Carousel>
             </div>
         </>
