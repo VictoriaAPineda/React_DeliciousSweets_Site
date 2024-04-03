@@ -867,7 +867,11 @@ body{
     left: 50%;
     white-space: nowrap;
 }
-/* TODO: Need to clean up fix buggy carousel. design new looks */
+
+
+
+
+/* TODO: Style the carousel, make responsive adjustments */
 .relatedProductsCarouselContainer{
     background-color:#3f2c2c;
     color: #fff;
@@ -876,56 +880,26 @@ body{
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    /* margin-bottom: 20px; */
-
-    
     /*testing...*/
     overflow:hidden;
     position:relative;
 }
-.relatedProductsCarouselContainer::before{
-    content:'';
-    font-family:'shape divider from ShapeDividers.com';
-    position: absolute;
-    z-index: 3;
-    pointer-events: none;
-    background-repeat: no-repeat;
-    bottom: -0.1vw;
-    left: -0.1vw;
-    right: -0.1vw;
-    top: -0.1vw; 
-    background-size: 124% 124px;
-    background-position: 50% 0%; 
-    /*  divider details 
-    TODO: fix colors */
-    background-image: url('data:image/svg+xml;charset=utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35.28 2.17" preserveAspectRatio="none"><path d="M0 1c3.17.8 7.29-.38 10.04-.55 2.75-.17 9.25 1.47 12.67 1.3 3.43-.17 4.65-.84 7.05-.87 2.4-.02 5.52.88 5.52.88V0H0z" fill="%23fbd8c2"/></svg>'); 
-
-}
-    @media (min-width:2100px){
-        .relatedProductsCarouselContainer::before{
-        background-size: 124% calc(2vw + 124px);
-        }
-    }
-
 .productsCarousel-container{
     width: 1370px;
-    z-index: 3; /* place onto divider */
+    z-index: 3; 
 }
 .carouselCard{
-    width: 40%;
-    /* padding-right: 20px; */
-
+    margin-right: 20px;
 }
-.carouselCard img{
-    border-radius: 50%;
-    /* border-radius:10% 10% 0% 0%; */
-   width:100%;
-} 
+.carouselCard .cardImg{
+   /* Image fill up parent div container*/
+   height: auto; 
+   width: 100%;
+}
 .carouselCard .cardInfo{
-    /* background-color: #fff; */
+    background-color: #866a6a;
     display: flex;
     justify-content: center;
-   
 }
 
 

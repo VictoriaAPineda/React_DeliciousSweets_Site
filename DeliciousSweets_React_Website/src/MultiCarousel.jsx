@@ -1,6 +1,7 @@
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import defaultCardImg from "/src/images/honeycake.jpg"
+
+import Product from './Product';
 
 export default function MultiCarousel(){
     const responsive = {
@@ -28,28 +29,12 @@ export default function MultiCarousel(){
             {/*TODO: Styling cards. Temp data, later fill with objects from database */}
             <div className='productsCarousel-container'>
                 <Carousel responsive={responsive}>
-                    <div className='carouselCard'>
-                        <img src={defaultCardImg}></img>
-                        <div className='cardInfo'>
-                            <p>Proudct Name</p>
-                        </div>
-                    </div>
-                    <div className='carouselCard' >
-                        <img src={defaultCardImg}></img>
-                        <p>02</p>
-                    </div>
-                    <div className='carouselCard' >
-                        <img src={defaultCardImg}></img>
-                        <p>03</p>
-                    </div>
-                    <div className='carouselCard' >
-                        <img src={defaultCardImg}></img>
-                        <p>04</p>
-                    </div>
-                    <div className='carouselCard' >
-                        <img src={defaultCardImg}></img>
-                        <p>05</p>
-                    </div>
+                    <Product/>
+                    <Product/>
+                    <Product/>
+                    <Product/>
+                    <Product/>
+             
                 </Carousel>
             </div>
         </>
