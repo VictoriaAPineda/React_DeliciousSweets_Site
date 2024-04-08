@@ -17,11 +17,11 @@ export default function MultiCarousel(){
         },
         tablet: {
           breakpoint: { max: 900, min: 750 },
-          items: 2
+          items: 3
         },
         mobile: {
           breakpoint: { max: 750, min: 0 },
-          items: 1
+          items: 2
         }
       };
     return(
