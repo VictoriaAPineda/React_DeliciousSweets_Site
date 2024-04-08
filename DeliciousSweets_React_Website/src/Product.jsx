@@ -1,12 +1,11 @@
 import React from "react";
-import defaultCardImg from "/src/images/honeycake.jpg"
 
-export default function Product(){
+export default function Product(props){
     return(
         <div className='carouselCard'>
-            <img className='cardImg' src={defaultCardImg}/>
+            <img className='cardImg' src={props.image}/>
             <div className='cardInfo'>
-                <p>Proudct Name</p>
+                <p>{props.name}</p>
             </div>
         </div>
     )
