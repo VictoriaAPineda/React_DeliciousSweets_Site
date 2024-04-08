@@ -699,7 +699,9 @@ body{
     height: 3px;
     display: flex;
 }
-/* Product Detail Page */
+
+/* Product Detail Page
+    TODO: Make page responsive  */
 #detailImgBannerContainer{
     position: relative;
 }
@@ -869,7 +871,6 @@ body{
     white-space: nowrap;
 }
 
-/* TODO: Style the carousel, make responsive adjustments */
 .relatedProductsCarouselContainer{
     /* background-color:#3f2c2c; */
     background-image: url('./images/wood.jpg');
