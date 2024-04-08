@@ -14,7 +14,6 @@ export default function MultiCarousel(){
 
     return(
         <>
-            {/*TODO: Styling cards. Temp data, later fill with objects from database */}
             <div className='productsCarousel-container'>
                 <Carousel responsive={responsive}>
                   {product}
