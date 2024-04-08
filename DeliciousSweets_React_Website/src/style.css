@@ -871,24 +871,27 @@ body{
 
 /* TODO: Style the carousel, make responsive adjustments */
 .relatedProductsCarouselContainer{
-    background-color:#3f2c2c;
+    /* background-color:#3f2c2c; */
+    background-image: url('./images/wood.jpg');
+    background-size: cover;
     color: #fff;
-    padding: 20px 0px;
+    padding: 40px 0px;
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 20px;
     /*testing...*/
-    overflow:hidden;
-    position:relative;
+    /* overflow:hidden;
+    position:relative; */
 }
 .productsCarousel-container{
     /* width: 1370px; */
     width: 100%;
     z-index: 3; 
+    margin-left: 20px;
 }
 .carouselCard{
-    margin-right: 20px;
+    margin-right: 30px;
 }
 .carouselCard .cardImg{
    /* Image fill up parent div container*/
