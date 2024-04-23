@@ -749,7 +749,6 @@ body{
     max-width: 50%;
 }
 .productDetailInfoContainer div, p{
-    /* border: 1px red solid; */
     margin-bottom: 10px;
 }
 .backBtn{
@@ -800,7 +799,8 @@ body{
     font-size: 1.5rem;
     margin-left: 5px;
     margin-right: 5px;
-   
+    height: 100%;
+    margin-bottom: 0px; /* removes margin from prev. style */ 
 }
 .detailBtnGroup .addToCartBtn{
     background-color: #9C3535;
@@ -1136,7 +1136,7 @@ body{
     .detailBtnGroup .quantity {
         background-color: #fff;
         border: 1px solid black;
-        padding: 5px 10px;
+        padding: 7px 10px;
         font-size: 1.5rem;
         margin-left: 5px;
         margin-right: 5px;
@@ -1144,7 +1144,6 @@ body{
     .detailBtnGroup .addToCartBtn {
         font-size: 1rem;
     }
-
 }
 @media (max-width:750px){
     .story_txt_container p + p {
@@ -1182,6 +1181,28 @@ body{
         top: 30%;
         font-size: 3rem;
     }
+    /* Product Details page*/
+    .productDetailInfoContainer .detailProductName {
+        font-size: 2rem;
+    }
+    .detailStars i{
+        font-size: 0.7rem;
+    }
+    .detailPrice {
+        font-size: 1rem;
+    }
+    .detailDescription {
+        line-height: 18px;
+        letter-spacing: 1px;
+        font-size: 0.7rem;
+    }
+    .detailBtnGroup .quantity {
+        padding: 7px 7px;
+        font-size: 1rem;
+  
+    }
+
+
 }
 @media (max-width: 749px){
     /* About page */
