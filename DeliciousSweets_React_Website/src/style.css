@@ -1136,7 +1136,7 @@ body{
     .detailBtnGroup .quantity {
         background-color: #fff;
         border: 1px solid black;
-        padding: 7px 10px;
+        padding: 5px 10px;
         font-size: 1.5rem;
         margin-left: 5px;
         margin-right: 5px;
@@ -1199,10 +1199,18 @@ body{
     .detailBtnGroup .quantity {
         padding: 7px 7px;
         font-size: 1rem;
-  
     }
-
-
+    .img2 p, .img1 p {
+        font-size: 3rem;
+    }
+    .relatedProductsCarouselContainer {
+        padding: 20px 0px;
+    }
+    .carouselCard .cardImg {
+        max-height: 200px; /*height of carosuel is dependent on height of image*/
+        object-fit:fill;
+        width: 100%;
+    }
 }
 @media (max-width: 749px){
     /* About page */
