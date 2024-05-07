@@ -912,7 +912,7 @@ body{
 
 
 /* Cart Page */
-/* TODO: Order cart styling/layout */
+
 
 #cart-page-container{
     background-image: url(./images/woodentableBG.jpg);
@@ -923,34 +923,65 @@ body{
     justify-content: center;
     align-items: center;
 }
-.cart-order-container{
+#cart-page-container .motto{
+    text-align: center;
+    padding: 10px 0px;
+    background-color: #673434;
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 0px;/* gap gone*/
+}
+.row-align{
     display: flex;
 }
+.cart-order-container{
+    display: flex;
+    flex-direction: column; 
+    margin: 30px 15px;
+}
 .order-details-container{
-    border: 2px red solid;
+    background-color: #fff;
 }
 .customer-details-container{
     /* border: 2px dotted red; */
 }
+/* TODO: Order cart styling/layout. Grid work */
 #order-grid-container{
     display: grid;
-    
-    grid-template-columns: repeat(6,auto);
+    grid-template-columns: repeat(6,100px);
     grid-template-rows: 100px;
     /* 6 cols*/
+    
 }
+.orders{
+    margin-top: 20px;
+    grid-row-start: 2; /* 2nd row for data*/
+}
+.price-col-title{
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
 #order-grid-container .order{
     display: flex;
+    align-items: center;
+    white-space: nowrap;
+    margin: 0px 10px 30px 10px;
+}
+.order {
+
+}
+.order > *:not(:last-child){
+    margin-right: 30px;
+}
+#order-grid-container input{
+    width: 50px;
+    font-size: 1.25rem;
 }
 #order-grid-container .order div{
     display: flex;
 }
-#order-grid-container .col-titles{
-    display: flex;
 
-    grid-row: 1/1;
-    grid-column: 1/7;
-}
 
 
 
