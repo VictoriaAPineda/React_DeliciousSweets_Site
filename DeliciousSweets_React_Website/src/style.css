@@ -727,7 +727,7 @@ body{
 #wrapper{
     background-image: url("./images/parchment_texture.jpg");
     background-size: cover;
-    overflow: hidden; /* clears up issuw with whitespace on top */
+    overflow: hidden; /* clears up issue with whitespace on top */
 }
 #detail_card_container{
     background-color:#FFF7EB ;
@@ -909,6 +909,38 @@ body{
     display: flex;
     justify-content: center;
 }
+
+
+/* Cart Page */
+#cart-page-container{
+    background-image: url(./images/woodentableBG.jpg);
+    background-size: cover;
+    overflow: hidden; /* fixes whitspace issue */  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cart-order-container{
+    display: flex;
+}
+.order-details-container{
+    border: 2px dotted rebeccapurple;
+}
+.customer-details-container{
+    border: 2px dotted red;
+}
+#order-grid-container{
+    display: grid;
+    /* 5 cols*/
+}
+#order-grid-container .order{
+    display: flex;
+}
+#order-grid-container .order div{
+    display: flex;
+}
+
 
 
 

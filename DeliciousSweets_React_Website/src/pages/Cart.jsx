@@ -5,10 +5,53 @@ function Cart(){
         <>
 
             <section id="cart-page-container">
+            <p>Your Cart of Deliciousness</p>
                 <div className="cart-order-container">
-                    <p>Your Cart of Deliciousness</p>
+                   
                     <div className="order-details-container">
                         {/*grid 5 cols (last for delete btn)*/}
+                        <div id="order-grid-container">
+                            <div>
+                                <p>Item</p>
+                                <p>Price</p>
+                                <p>Qty.</p>
+                                <p>Total</p>
+                            </div>
+                            <div className="order">
+
+                                <div>
+                                    <p>[IMG]</p>
+                                    <p>Name of Product</p>
+                                </div>
+
+                                <p>$19.99</p>
+
+                                <input type="number"/>
+
+                                <p>$19.99</p>
+
+                                <button>X</button>
+
+                                
+                            </div>
+                              <div className="order">
+
+                                <div>
+                                    <p>[IMG]</p>
+                                    <p>Name of Product</p>
+                                </div>
+
+                                <p>$19.99</p>
+
+                                <input type="number"/>
+
+                                <p>$19.99</p>
+
+                                <button>X</button>
+
+                                
+                            </div>
+                        </div>
 
                     </div>
 
@@ -65,8 +108,6 @@ function Cart(){
                             <p>Need Assistance?</p>
                             <p>555-555-5555</p>
                         </div>
-                      
-
                     </div>
                 </div>
 
