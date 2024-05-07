@@ -10,7 +10,6 @@ function Cart(){
                     <p className="motto">Your Cart of Deliciousness</p>
                     <div className="row-align">
                         <div className="order-details-container">
-                            {/*grid 6 cols (last for delete btn)*/}
                             <div id="order-grid-container">
             
                                 <p className="item-col-title">Item</p>
@@ -18,23 +17,29 @@ function Cart(){
                                 <p className="quantity-col-title">Qty.</p>
                                 <p className="total-col-title">Total</p>
                     
+                           
                                 <div className="orders">
                                     <div className="order">
-
-                                        <div>
+                                    {/* sub-grid */}
+                                        <div className="product-data">
                                             <p>[IMG]</p>
                                             <p>Name of Product</p>
                                         </div>
-
-                                        <p>$19.99</p>
-
-                                        <input type="number" min={'1'}/>
-
-                                        <p>$19.99</p>
-
-                                        <button>X</button>
-
-                                        
+                                        <p className="price-data">$19.99</p>
+                                        <input className="qty-data" type="number" min={'1'}/>
+                                        <p className="total-data">$19.99</p>
+                                        <button className="del-btn">X</button>
+                                    </div>
+                                    <div className="order">
+                                    {/* sub-grid */}
+                                        <div className="product-data">
+                                            <p>[IMG]</p>
+                                            <p>Name of Product</p>
+                                        </div>
+                                        <p className="price-data">$19.99</p>
+                                        <input className="qty-data" type="number" min={'1'}/>
+                                        <p className="total-data">$19.99</p>
+                                        <button className="del-btn">X</button>
                                     </div>
 
                                 </div>

@@ -950,32 +950,46 @@ body{
     display: grid;
     grid-template-columns: repeat(6,100px);
     grid-template-rows: 100px;
-    /* 6 cols*/
-    
 }
-.orders{
-    margin-top: 20px;
-    grid-row-start: 2; /* 2nd row for data*/
-}
+
 .price-col-title{
     grid-column-start: 3;
     grid-column-end: 4;
 }
-
-#order-grid-container .order{
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
+.orders{
+    margin-top: 20px;
+    grid-row-start: 2; /* 2nd row for data*/
+    grid-column: 1/-1;
+}
+.order{
+    display: grid;
+    grid-template-columns: repeat(6,100px);
+    grid-template-rows: 100px;
     margin: 0px 10px 30px 10px;
 }
-.order {
+.order .product-data{
+  grid-column: 1/2;
+}
+.order .price-data{
+    grid-column: 3/4;
+}
+.order .qty-data{
+    grid-column: 4/5;
+}
+.order .total-data{
+    grid-column: 5/6;
+}
+.order .del-btn{
+    grid-column: 6/7;
+}
 
-}
-.order > *:not(:last-child){
+
+/* .order > *:not(:last-child){
     margin-right: 30px;
-}
+} */
 #order-grid-container input{
-    width: 50px;
+    width: 20px;
+    height: 40px;
     font-size: 1.25rem;
 }
 #order-grid-container .order div{
