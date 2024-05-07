@@ -945,7 +945,8 @@ body{
 .customer-details-container{
     /* border: 2px dotted red; */
 }
-/* TODO: Order cart styling/layout. Grid work */
+/* TODO: Order cart styling/layout. Grid work.
+TODO: Styling  */
 #order-grid-container{
     display: grid;
     grid-template-columns: repeat(6,100px);
