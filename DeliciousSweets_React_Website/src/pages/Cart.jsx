@@ -9,13 +9,32 @@ function Cart(){
                 <div className="cart-order-container">
                    
                     <div className="order-details-container">
-                        {/*grid 5 cols (last for delete btn)*/}
+                        {/*grid 6 cols (last for delete btn)*/}
                         <div id="order-grid-container">
-                            <div>
+                            <div className="col-titles">
                                 <p>Item</p>
                                 <p>Price</p>
                                 <p>Qty.</p>
                                 <p>Total</p>
+                            </div>
+                     
+                        <div className="orders">
+                              <div className="order">
+
+                                <div>
+                                    <p>[IMG]</p>
+                                    <p>Name of Product</p>
+                                </div>
+
+                                <p>$19.99</p>
+
+                                <input type="number"/>
+
+                                <p>$19.99</p>
+
+                                <button>X</button>
+
+                                
                             </div>
                             <div className="order">
 
@@ -34,23 +53,8 @@ function Cart(){
 
                                 
                             </div>
-                              <div className="order">
-
-                                <div>
-                                    <p>[IMG]</p>
-                                    <p>Name of Product</p>
-                                </div>
-
-                                <p>$19.99</p>
-
-                                <input type="number"/>
-
-                                <p>$19.99</p>
-
-                                <button>X</button>
-
-                                
-                            </div>
+                        </div>
+                          
                         </div>
 
                     </div>

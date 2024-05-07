@@ -912,6 +912,8 @@ body{
 
 
 /* Cart Page */
+/* TODO: Order cart styling/layout */
+
 #cart-page-container{
     background-image: url(./images/woodentableBG.jpg);
     background-size: cover;
@@ -925,20 +927,29 @@ body{
     display: flex;
 }
 .order-details-container{
-    border: 2px dotted rebeccapurple;
+    border: 2px red solid;
 }
 .customer-details-container{
-    border: 2px dotted red;
+    /* border: 2px dotted red; */
 }
 #order-grid-container{
     display: grid;
-    /* 5 cols*/
+    
+    grid-template-columns: repeat(6,auto);
+    grid-template-rows: 100px;
+    /* 6 cols*/
 }
 #order-grid-container .order{
     display: flex;
 }
 #order-grid-container .order div{
     display: flex;
+}
+#order-grid-container .col-titles{
+    display: flex;
+
+    grid-row: 1/1;
+    grid-column: 1/7;
 }
 
 
