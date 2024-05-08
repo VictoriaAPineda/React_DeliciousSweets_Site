@@ -11,38 +11,37 @@ function Cart(){
                     <div className="row-align">
                         <div className="order-details-container">
                         
-                            <div id="order-grid-container">
+                            <div id="title-order-grid-container">
                                 <p className="item-col-title">Item</p>
                                 <p className="price-col-title">Price</p>
                                 <p className="quantity-col-title">Qty.</p>
                                 <p className="total-col-title">Total</p>
                             </div>
-                           
-                            <div className="orders">
-                                <div className="order">
-                                {/* sub-grid */}
-                                    <div className="product-data">
-                                        <p>[IMG]</p>
-                                        <p>Name of Product</p>
-                                    </div>
-                                    <p className="price-data">$19.99</p>
-                                    <input className="qty-data" type="number" min={'1'}/>
-                                    <p className="total-data">$19.99</p>
-                                    <button className="del-btn">X</button>
+        
+                            <div className="order">
+                                <div className="product-data">
+                                    <p>[IMG]</p>
+                                    <p>Name of Product</p>
                                 </div>
-                                <div className="order">
-                                {/* sub-grid */}
-                                    <div className="product-data">
-                                        <p>[IMG]</p>
-                                        <p>Name of Product</p>
-                                    </div>
-                                    <p className="price-data">$19.99</p>
-                                    <input className="qty-data" type="number" min={'1'}/>
-                                    <p className="total-data">$19.99</p>
-                                    <button className="del-btn">X</button>
-                                </div>
+                                <p className="price-data">$19.99</p>
+                                <input className="qty-data" type="number" min={'1'}/>
+                                <p className="total-data">$19.99</p>
+                                <button className="del-btn">X</button>
                             </div>
+                            <div className="order">
+                                <div className="product-data">
+                                    <p>[IMG]</p>
+                                    <p>Name of Product</p>
+                                </div>
+                                <p className="price-data">$19.99</p>
+                                <input className="qty-data" type="number" min={'1'}/>
+                                <p className="total-data">$19.99</p>
+                                <button className="del-btn">X</button>
+                            </div>
+          
+                            
                         </div>
+
 
                         <div className="customer-details-container">
                             <div className="order-summary-container">

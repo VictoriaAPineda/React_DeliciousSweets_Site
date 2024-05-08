@@ -944,28 +944,25 @@ body{
 }
 /* TODO: Order cart styling/layout. Grid work.
 TODO: Styling  */
-#order-grid-container{
+#title-order-grid-container{
     display: grid;
     text-align: center;
     grid-template-columns: repeat(6,100px);
     grid-template-rows: 50px;
+    background-color: #43322D;
+    color: #fff;
+    padding-top: 20px;
 }
-
 .price-col-title{
     grid-column-start: 3;
     grid-column-end: 4;
-}
-.orders{
-    /* margin-top: 20px; */
-    grid-row-start: 2; /* 2nd row for data*/
-    /* grid-column: 1/-1; */
 }
 .order{
     display: grid;
     text-align: center;
     grid-template-columns: repeat(6,100px);
     grid-template-rows: 100px;
-    margin: 0px 0px 30px 0px;
+    padding: 20px 0px 0px 15px;/*adjust...*/
 }
 .order .product-data{
     display: flex;
