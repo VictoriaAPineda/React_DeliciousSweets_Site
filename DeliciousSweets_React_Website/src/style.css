@@ -941,6 +941,8 @@ body{
 }
 .order-details-container{
     background-color: #fff;
+    color: #673434;
+
 }
 /* TODO: Order cart styling/layout. Grid work.
 TODO: Styling  */
@@ -961,8 +963,9 @@ TODO: Styling  */
     display: grid;
     text-align: center;
     grid-template-columns: repeat(6,100px);
-    grid-template-rows: 100px;
+    grid-template-rows: 70px;
     padding: 20px 0px 0px 15px;/*adjust...*/
+    border-bottom: #BEBEBE dashed 3px;
 }
 .order .product-data{
     display: flex;
@@ -973,7 +976,8 @@ TODO: Styling  */
 }
 .order .qty-data{
     grid-column: 4/5;
-    width: 1.5rem;
+    width: 3rem;
+    margin-left: 10%;
     height: 2.5rem;
 }
 .order .total-data{
@@ -983,6 +987,11 @@ TODO: Styling  */
     grid-column: 6/7;
     width: 2rem;
     height: 2rem;
+    border: none;
+    cursor: pointer;
+    background-color: #673434;
+    color: #fff;
+    margin-left: 20%;
 }
 
 /* - Media Queries  - */

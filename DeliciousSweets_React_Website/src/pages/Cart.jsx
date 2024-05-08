@@ -38,6 +38,16 @@ function Cart(){
                                 <p className="total-data">$19.99</p>
                                 <button className="del-btn">X</button>
                             </div>
+                            <div className="order">
+                                <div className="product-data">
+                                    <p>[IMG]</p>
+                                    <p>Name of Product</p>
+                                </div>
+                                <p className="price-data">$19.99</p>
+                                <input className="qty-data" type="number" min={'1'}/>
+                                <p className="total-data">$19.99</p>
+                                <button className="del-btn">X</button>
+                            </div>
           
                             
                         </div>
