@@ -993,6 +993,15 @@ TODO: Styling  */
     color: #fff;
     margin-left: 20%;
 }
+/* user input of form */
+.customer-details-container{
+    background-color: #E9DECD;
+    border: 2px red dotted ;
+}
+.order-summary-container{
+    display: flex;
+    flex-direction: column;
+}
 
 /* - Media Queries  - */
 @media (max-width:1500px){

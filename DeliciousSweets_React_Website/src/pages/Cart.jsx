@@ -56,8 +56,11 @@ function Cart(){
                         <div className="customer-details-container">
                             <div className="order-summary-container">
                                 <p>Order Summary</p>
-                                <p>Subtotal</p><div className="subtotal">$12.00</div>
-                                <p>Tax</p><div className="tax">$1.00</div>
+                                <div>
+                                    <div className="subtotal"> <p>Subtotal</p>$12.00</div>
+                                    <div className="tax"><p>Tax</p>$1.00</div>
+                                </div>
+                               
                             </div>
 
                             <div className="payment-container">
@@ -86,10 +89,6 @@ function Cart(){
                                     </select>
                                     <p>Security Code</p>
                                     <input type="text" maxLength={3} />
-
-
-
-
                                 </div>
 
                                 <div className="order-method-container">
