@@ -911,7 +911,7 @@ body{
 }
 
 
-/* Cart Page */
+/* Cart Page Currently working on */
 
 
 #cart-page-container{
@@ -938,14 +938,14 @@ body{
     display: flex;
     flex-direction: column; 
     margin: 30px 15px;
+    /* width: 60%; */
 }
 .order-details-container{
     background-color: #fff;
     color: #673434;
 
 }
-/* TODO: Order cart styling/layout. Grid work.
-TODO: Styling  */
+/*list of orders */
 #title-order-grid-container{
     display: grid;
     text-align: center;
@@ -996,12 +996,31 @@ TODO: Styling  */
 /* user input of form */
 .customer-details-container{
     background-color: #E9DECD;
-    border: 2px red dotted ;
+    /* border: 2px red dotted; */
+    padding: 20px ;
 }
-.order-summary-container{
+.order-summary-container, .payment-container, 
+.order-method-container{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
+.order-summary-container .subtotal, .tax, .total{
+    display: flex;
+    justify-content: space-between;
+    gap: 35px;
+}
+.order-summary-container .total{
+    border-top: #4B3C37 3px solid;
+    padding-top: 15px;
+}
+
+
+
+
+
+
+
 
 /* - Media Queries  - */
 @media (max-width:1500px){

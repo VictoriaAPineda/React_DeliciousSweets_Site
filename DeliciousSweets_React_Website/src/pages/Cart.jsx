@@ -52,13 +52,23 @@ function Cart(){
                             
                         </div>
 
-
+                        {/* Customer order form input */}
                         <div className="customer-details-container">
                             <div className="order-summary-container">
                                 <p>Order Summary</p>
                                 <div>
-                                    <div className="subtotal"> <p>Subtotal</p>$12.00</div>
-                                    <div className="tax"><p>Tax</p>$1.00</div>
+                                    <div className="subtotal"> 
+                                        <p>Subtotal</p>
+                                        <p>$12.00</p>
+                                    </div>
+                                    <div className="tax">
+                                        <p>Tax</p>
+                                        <p>$1.00</p>
+                                    </div>
+                                    <div className="total">
+                                        <p>Total</p>
+                                        <p>$13.00</p>
+                                    </div>
                                 </div>
                                
                             </div>
