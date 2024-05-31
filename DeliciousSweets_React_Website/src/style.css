@@ -999,7 +999,7 @@ body{
 .customer-details-container{
     background-color: #E9DECD;
     padding: 20px;
-    max-width: 25%; /* limit width */
+    max-width: 30%; /* limit width */
 }
 .order-summary-container, .payment-container, 
 .order-method-container{
@@ -1017,7 +1017,9 @@ body{
     padding-top: 15px;
 }
 
-
+.order-method-container .deliveryNote{
+    white-space: pre-wrap;
+}
 
 
 

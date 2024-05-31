@@ -74,6 +74,7 @@ function Cart(){
                             </div>
 
                             <div className="payment-container">
+                                <p>Payment</p>
                                 <label htmlFor="">First and Last Name</label>
                                 <input type="text" />
                                 <label htmlFor="">Email Address</label>
@@ -108,7 +109,7 @@ function Cart(){
                                     <p>Delivery</p>
                                     <label htmlFor="">Address</label>
                                     <input type="text" />
-                                    <p>* Note: Will only make deliveries within a 15 mile radius</p>
+                                    <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
                                 </div>
 
                                 <button>Place Order</button>
