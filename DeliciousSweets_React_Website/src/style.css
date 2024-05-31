@@ -999,7 +999,8 @@ body{
 .customer-details-container{
     background-color: #E9DECD;
     padding: 20px;
-    max-width: 30%; /* limit width */
+    max-width: 40%; /* limit width */
+    min-width: 30%;
 }
 .order-summary-container, .payment-container, 
 .order-method-container{
@@ -1015,6 +1016,24 @@ body{
 .order-summary-container .total{
     border-top: #4B3C37 3px solid;
     padding-top: 15px;
+}
+.payment-container .payment_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.payment_header .cardIcon{
+    width: 40%;
+    margin-left: 10px;
+}
+.payment-container input{
+    width: 80%;
+    margin-bottom: 15px;
+    padding: 3px;
+}
+.payment-container label{
+    margin-left: 30px;
+    align-self:flex-start;
 }
 
 .order-method-container .deliveryNote{

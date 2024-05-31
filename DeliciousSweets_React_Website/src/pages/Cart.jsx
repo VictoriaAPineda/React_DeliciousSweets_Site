@@ -1,4 +1,4 @@
-
+import cardIcon from '/src/images/cardIcon.png';
 
 function Cart(){
     return(
@@ -74,7 +74,11 @@ function Cart(){
                             </div>
 
                             <div className="payment-container">
-                                <p>Payment</p>
+                                <div className='payment_header'> 
+                                    <p>Payment</p> 
+                                    <img className='cardIcon' src={cardIcon}></img>
+                                </div>
+                               
                                 <label htmlFor="">First and Last Name</label>
                                 <input type="text" />
                                 <label htmlFor="">Email Address</label>
@@ -83,11 +87,8 @@ function Cart(){
                                 <input type="text" />
 
                                 <div className="cardPay-container">
-                                    <button type="radio"></button>
+                                    
                                     <p>Credit Card</p>
-                                    <button type="radio"></button>
-                                    <p>PayPal</p>
-
                                     <p>Card Number</p>
                                     <input type="text"/>
                                     
