@@ -933,27 +933,28 @@ body{
 }
 .row-align{
     display: flex;
+    white-space: nowrap;
 }
 .cart-order-container{
     display: flex;
     flex-direction: column; 
-    margin: 30px 15px;
-    /* width: 60%; */
+    margin: 30px 15px;   
 }
 .order-details-container{
     background-color: #fff;
     color: #673434;
-
+    width: 100%;/* fills the parent's remaing space*/
 }
 /*list of orders */
 #title-order-grid-container{
     display: grid;
     text-align: center;
-    grid-template-columns: repeat(6,100px);
+    grid-template-columns: repeat(6,1fr);
     grid-template-rows: 50px;
     background-color: #43322D;
     color: #fff;
     padding-top: 20px;
+    width: 100%;
 }
 .price-col-title{
     grid-column-start: 3;
@@ -962,9 +963,10 @@ body{
 .order{
     display: grid;
     text-align: center;
-    grid-template-columns: repeat(6,100px);
+    grid-template-columns: repeat(6,1fr);
     grid-template-rows: 70px;
-    padding: 20px 0px 0px 15px;/*adjust...*/
+    /*adjust...*/
+    padding: 20px 0px 0px 15px;
     border-bottom: #BEBEBE dashed 3px;
 }
 .order .product-data{
@@ -991,13 +993,13 @@ body{
     cursor: pointer;
     background-color: #673434;
     color: #fff;
-    margin-left: 20%;
+    margin-left: 35%;
 }
 /* user input of form */
 .customer-details-container{
     background-color: #E9DECD;
-    /* border: 2px red dotted; */
-    padding: 20px ;
+    padding: 20px;
+    max-width: 25%; /* limit width */
 }
 .order-summary-container, .payment-container, 
 .order-method-container{
