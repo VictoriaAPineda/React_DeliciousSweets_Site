@@ -66,11 +66,21 @@ function Cart(){
                                         <p>$1.00</p>
                                     </div>
                                     <div className="total">
-                                        <p>Total</p>
+                                        <p>Total Order</p>
                                         <p>$13.00</p>
                                     </div>
                                 </div>
                                
+                            </div>
+                            <div className='order-contact-container'>
+                                <div className="contact_header">
+                                    <p>Contact</p>
+                                </div>
+                         
+                                <input type="text" placeholder='First Name'/>
+                                <input type='text' placeholder='Last Name'/>
+                                <input type="email" placeholder='Email'/>
+                                <input type="text" placeholder='Phone Number'/>
                             </div>
 
                             <div className="payment-container">
@@ -78,33 +88,21 @@ function Cart(){
                                     <p>Payment</p> 
                                     <img className='cardIcon' src={cardIcon}></img>
                                 </div>
-                               
-                                <label htmlFor="">First and Last Name</label>
-                                <input type="text" />
-                                <label htmlFor="">Email Address</label>
-                                <input type="email" />
-                                <label htmlFor="">Phone Number</label>
-                                <input type="text" />
 
-                                <div className="cardPay-container">
-                                    
-                                    <p>Credit Card</p>
-                                    <p>Card Number</p>
-                                    <input type="text"/>
-                                    
-                                    <p>Expiration Date</p>
-                                    <select name="" id="">
-                                        <option value=""></option>
-                                    </select>
-                                    <select name="" id="">
-                                        <option value=""></option>
-                                    </select>
-                                    <p>Security Code</p>
-                                    <input type="text" maxLength={3} />
+                                <div className="cardInfo-container">
+                                    <p>Card Information</p>
+                                    <div className="card-input-container">
+                                        <input type="text" placeholder='Card Number'/>
+                                        <div>
+                                            <input type='text' placeholder='MM / YY'/>
+                                            <input type="text" maxLength={3} placeholder='CVC'/>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div className="order-method-container">
                                     <p>Pick Up Time</p>
+                                    <input type="date"/>
                                     <input type="time" name="" id="" min="" max=""/>
                                     <p>OR</p>
                                     <p>Delivery</p>
