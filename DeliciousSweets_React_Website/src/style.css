@@ -1034,6 +1034,7 @@ body{
 }
 .order-contact-container .contact_header{
     text-align: center;
+    margin-top: 10px;
 }
 .order-contact-container input{
     width: 80%;
@@ -1046,6 +1047,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10px;
 }
 .payment_header .cardIcon{
     width: 40%;
@@ -1084,7 +1086,7 @@ body{
     border-top:#B6B6B6 3px dashed;
     border-bottom:#B6B6B6 3px dashed;
     padding-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 .order-method-container .time_header,
 .delivery_header{
@@ -1108,6 +1110,7 @@ body{
 .order-method-container .deliveryNote{
     white-space: pre-wrap;
     font-size: 0.75rem;
+    padding-bottom: 10px;
 }
 .payment-container .phoneIcon{
     width: 20%;
@@ -1130,7 +1133,7 @@ body{
 }
 .orderSum_header,.contact_header, .payment_header, .time_header, .delivery_header, .order-btn{
     font-family: 'IM Fell Great Primer';
-    font-size: 1.5rem;
+    font-size: 2rem;
     /* text-transform: uppercase; */
     color:#4B3C37 ;
 
