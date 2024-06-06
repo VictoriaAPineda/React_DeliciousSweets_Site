@@ -58,7 +58,7 @@ function Cart(){
                         {/* Customer order form input */}
                         <div className="customer-details-container">
                             <div className="order-summary-container">
-                                <p>Order Summary</p>
+                                <p className='orderSum_header'>Order Summary</p>
                                 <div>
                                     <div className="subtotal"> 
                                         <p>Subtotal</p>
