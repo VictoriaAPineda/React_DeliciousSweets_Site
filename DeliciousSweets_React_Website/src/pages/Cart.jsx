@@ -123,13 +123,16 @@ function Cart(){
                                 </div>
 
                                 <button className='order-btn'>Place Order</button>
-                                
-                                <p>Need Assistance?</p>
-                                <div className="phoneContact">
-                                    <img class="phoneIcon" src={phoneIcon}></img>
-                                    <p>555-555-5555</p>
+
+                                <div className='assistance_contact'>
+                                    <p>Need Assistance?</p>
+                                    <div className="phoneContact">
+                                        <img class="phoneIcon" src={phoneIcon}></img>
+                                        <p>555-555-5555</p>
                                 </div>
                                
+                                </div>
+                            
                             </div>
                         </div>
                     </div>
