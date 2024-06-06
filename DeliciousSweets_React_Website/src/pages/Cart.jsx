@@ -1,4 +1,7 @@
 import cardIcon from '/src/images/cardIcon.png';
+import timeIcon from '/src/images/clock.png';
+import truckIcon from '/src/images/delivery_truck.png';
+import phoneIcon from '/src/images/telephone.png';
 
 function Cart(){
     return(
@@ -101,19 +104,32 @@ function Cart(){
                                 </div>
 
                                 <div className="order-method-container">
-                                    <p>Pick Up Time</p>
+                                    <div className="time_header">
+                                        <p>Pick Up Time</p>
+                                        <img className='timeIcon' src={timeIcon}></img>
+                                    </div>
+                                   
                                     <input type="date"/>
                                     <input type="time" name="" id="" min="" max=""/>
                                     <p>OR</p>
-                                    <p>Delivery</p>
+                                    <div className="delivery_header">
+                                        <p>Delivery</p>
+                                        <img className='truckIcon' src={truckIcon}></img>
+                                    </div>
+                                    
                                     <label htmlFor="">Address</label>
                                     <input type="text" />
                                     <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
                                 </div>
 
-                                <button>Place Order</button>
+                                <button className='order-btn'>Place Order</button>
+                                
                                 <p>Need Assistance?</p>
-                                <p>555-555-5555</p>
+                                <div className="phoneContact">
+                                    <img class="phoneIcon" src={phoneIcon}></img>
+                                    <p>555-555-5555</p>
+                                </div>
+                               
                             </div>
                         </div>
                     </div>

@@ -1048,7 +1048,7 @@ body{
     padding: 3px;
 }
 .payment-container label{
-    margin-left: 30px;
+    margin-left: 40px;
     align-self:flex-start;/* parent must be flex*/
 }
 .cardInfo-container input{
@@ -1071,12 +1071,53 @@ body{
 .card-input-container div input{
     width: 39%;
 }
+.order-method-container{
+    border-top:#B6B6B6 3px dashed;
+    border-bottom:#B6B6B6 3px dashed;
+    padding-top: 20px;
+    margin-bottom: 15px;
+}
+.order-method-container .time_header,
+.delivery_header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.order-method-container .timeIcon{
+    width: 8%;
+    margin-left: 10px;
+    transform: translate(-0%, -10%);
+}
+.order-method-container .truckIcon{
+    width: 14%;
+    margin-left: 10px;
+}
 .order-method-container input{
     border: none;
     padding: 3px;
 }
 .order-method-container .deliveryNote{
     white-space: pre-wrap;
+    font-size: 0.75rem;
+}
+.payment-container .phoneIcon{
+    width: 20%;
+    margin-right: 10px;
+    transform: translate(-0%, -10%);
+}
+.payment-container .phoneContact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.payment-container .order-btn{
+  background-color:#9C3535;
+  color: #fff;
+  border: none;
+  padding: 10px 50px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 
