@@ -17,7 +17,7 @@ const corsOptions = {
     credentials: true,
     optionSuccessStatus: 200
 }
-app.use({corsOptions})
+app.use(cors(corsOptions))
 app.use('/', router)
 
 
