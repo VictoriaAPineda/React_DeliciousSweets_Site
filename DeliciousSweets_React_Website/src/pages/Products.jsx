@@ -5,10 +5,30 @@ import brownieImg from "/src/images/brownines-img.png"
 import cupcakeImg from "/src/images/cupcakes.jpg"
 import doughnutImg from "/src/images/doughnuts.jpg"
 import productImg from "/src/images/chocolateStrawberryCake.jpg";
+import { useState } from "react";
+import { use } from "../../server/routes/router";
 
 
 function Products(){
+    // Images for the carousel banner
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];
+
+    // States for each product 
+    const [image, setImage] = useState('')
+    const [name, setName] = useState('')
+    const [description, setDescription] = useState('')
+    const [price,setPrice] = useState('')
+    const [productLink, setProductLink] = useState('')
+
+
+    // Display products by fetching data to fill in each one [wip...]
+    const fetchData = async()=>{
+        await fetch('http://localhost:4000/products')
+        .then(res => res.json)
+        //.then(data =>)
+    }
+
+
     return(
         <>
             {/*TODO: Make page responsive*/}
