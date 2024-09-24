@@ -65,10 +65,10 @@ function Products(){
                     
                     {/* testing data retrieval display */}
                     {
-                        data.map((p)=>
+                        data.map((product)=>
                             (
                                 <div key={data._id}>
-                                    <h1>{p.name}</h1>
+                                    <h1>{product.name}</h1>
                                 </div>
                             )
                         )
