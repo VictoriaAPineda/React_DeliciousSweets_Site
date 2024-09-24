@@ -36,7 +36,6 @@ function Products(){
 
     return(
         <>
-            {/*TODO: Make page responsive*/}
             <section>
                 <BannerSpecial images = {bannerImages}/>
             </section>
@@ -59,45 +58,23 @@ function Products(){
                 </div>
 
                 <div className="products_grid_container">
-                    {/*mockup for later code with data array objects */}
+                    {/* Mockup for later code with data array objects */}
                     {/* Display at max 12 items (2cols of 6 at full screen)*/} 
-                 
-                    
-                    {/* testing data retrieval display */}
-                    {
-                        data.map((product)=>
-                            (
-                                <div key={data._id}>
-                                    <h1>{product.name}</h1>
+                    {/* Testing data retrieval display */}
+                    { data.map((product)=> (
+                        <div key={data._id}>
+                             <div className="product box-shadow">
+                                <img src={product.image}></img>
+                                <div className="product_details_container">
+                                    <p className="productName">{product.name}</p>
+                                    <p className="productDescription">{product.description}</p>
+                                    <p className="price">${product.price}</p>
+                                    {/* TODO: Link to a custom prefilled detail page */}
+                                    <Link className={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
                                 </div>
-                            )
-                        )
-                    }
-
-                    <div className="product box-shadow">
-                        <img src={productImg}></img>
-                        <div className="product_details_container">
-                            <p className="productName">Product Name</p>
-                            <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
-                            <p className="price">$10.99</p>
-                            {/* link should take user to product's own detail page.
-                            Notes: Pass in a product id based on user's selected product 
-                            to call correct data to display on detail page */}
-                            <Link className={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
+                            </div>
                         </div>
-                    </div>
-                    <div className="product box-shadow">
-                        <img src={productImg}></img>
-                        <div className="product_details_container">
-                            <p className="productName">Product Name</p>
-                            <p className="productDescription">This is a short description of the product meant to entice users to click and make a purchase.</p>
-                            <p className="price">$10.99</p>
-                            {/* link should take user to product's own detail page.
-                            Notes: Pass in a product id based on user's selected product 
-                            to call correct data to display on detail page */}
-                            <Link className={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
-                        </div>
-                    </div>
+                    ))}
      
                     {/* Page Nav */}
                     <div className="pagination_container">
