@@ -23,14 +23,23 @@ function Products(){
     const [data, setData] = useState([])
 
     useEffect(()=>{
+        let processing =  true
         fetchData() 
+        return() =>{
+            // Prevent calling 2x
+            processing = false
+        }
     },[])
 
     // Fecthing data from JSON file in /products within the router
-    const fetchData = async() => { 
+    const fetchData = async(processing) => { 
         await fetch('http://localhost:4000/products')
         .then(res => res.json())
-        .then(data => setData(data))
+        .then(data => {
+            if (processing){
+            setData(data)
+            }
+        })
         .catch(err => console.log(err))
     }
 
