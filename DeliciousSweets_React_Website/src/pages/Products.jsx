@@ -24,7 +24,7 @@ function Products(){
 
     useEffect(()=>{
         let processing =  true
-        fetchData() 
+        fetchData(processing) 
         return() =>{
             // Prevent calling 2x
             processing = false
@@ -37,7 +37,7 @@ function Products(){
         .then(res => res.json())
         .then(data => {
             if (processing){
-            setData(data)
+                setData(data)
             }
         })
         .catch(err => console.log(err))
