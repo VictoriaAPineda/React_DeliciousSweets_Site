@@ -6,43 +6,27 @@ import cupcakeImg from "/src/images/cupcakes.jpg"
 import doughnutImg from "/src/images/doughnuts.jpg"
 import productImg from "/src/images/chocolateStrawberryCake.jpg";
 import { useEffect, useState } from "react";
-
+import axios from 'axios';
 
 
 function Products(){
+    // State to hold the data retrieved from MongoDB
+    const [data, setData] = useState([])
+    /**  
+     * TODO: Buttons send a new query to display only a specific category
+     * of products
+    **/
+
     // Images for the carousel banner
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];
 
-    // States for each product 
-    const [image, setImage] = useState('')
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
-    const [price,setPrice] = useState('')
-    const [productLink, setProductLink] = useState('')
-    // State for the data retrieved 
-    const [data, setData] = useState([])
 
-    // useEffect(()=>{
-    //     let processing =  true
-    //     fetchData(processing) 
-    //     return() =>{
-    //         // Prevent calling 2x
-    //         processing = false
-    //     }
-    // },[])
-
-    // Fecthing data from JSON file in /products within the router
-    // const fetchData = async(processing) => { 
-    //     await fetch('http://localhost:5000/products')
-    //     .then(res => res.json())
-    //     .then(data => {
-    //         if (processing){
-    //             setData(data)
-    //         }
-    //     })
-    //     .catch(err => console.log(err))
-    // }
-
+    useEffect(()=>{
+        axios.get('http://localhost:5000/products')
+        .then(product => setData(product.data))
+        .catch(err => console.log(err))
+    },[])
+   
     return(
         <>
             <section>
@@ -67,11 +51,9 @@ function Products(){
                 </div>
 
                 <div className="products_grid_container">
-                    {/* Mockup for later code with data array objects */}
-                    {/* Display at max 12 items (2cols of 6 at full screen)*/} 
-                    {/* Testing data retrieval display */}
+                    {/* TODO: Display at max 12 items (2 cols of 6 at full screen)*/} 
                     { data.map((product)=> (
-                        <div key={data._id}>
+                        <div key={product._id}>
                              <div className="product box-shadow">
                                 <img src={product.image}></img>
                                 <div className="product_details_container">

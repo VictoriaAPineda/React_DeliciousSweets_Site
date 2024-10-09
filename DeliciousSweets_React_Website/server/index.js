@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const cors = require('cors');
 const app = express();
 
+app.use(cors());
+
 const Product = require('./models/product')
 
 // Connects to MongoDB
@@ -15,13 +17,12 @@ mongoose.connect(dbURI)
     })
     .catch((err) => console.log(err))
 
-
-
 // Get Products from db (testing)
 app.get('/products', (req, res)=>{
     Product.find()
     .then((result) => {
-        res.send(result)
+        // res.send(result)
+        res.json(result)
     })
     .catch((err)=>{
         console.log(err)
