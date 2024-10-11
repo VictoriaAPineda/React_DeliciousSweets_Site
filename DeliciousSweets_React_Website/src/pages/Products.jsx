@@ -12,6 +12,36 @@ import axios from 'axios';
 function Products(){
     // State to hold the data retrieved from MongoDB
     const [data, setData] = useState([])
+
+    useEffect(()=>{
+        axios.get('http://localhost:5000/products')
+        .then(product => setData(product.data))
+        .catch(err => console.log(err))
+    },[])
+
+    // Current Page being displayed. Start at Page #1
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 12;
+    // Finds the last product index of current page 
+    // ex: 2nd page x 12 = product index of 24
+    const lastIndex = currentPage * productsPerPage;
+    // ex: 24 - 12 = 12. Meaning 13 will be the first product index for the 2nd page
+    const firstIndex = lastIndex - productsPerPage;
+    // Divide up the data throughout pages 
+    const products = data.slice(firstIndex, lastIndex);
+    const numOfPages = Math.ceil(data.length / productsPerPage); // 49/12 = 4.08 = 5 pages total
+
+    function nextPage(){
+        if(currentPage !== numOfPages){
+            setCurrentPage(currentPage + 1)
+        }
+    }
+    function prevPage(){
+        if(currentPage !== 1){
+            setCurrentPage(currentPage - 1)
+        }
+    }
+
     /**  
      * TODO: Buttons send a new query to display only a specific category
      * of products
@@ -20,13 +50,6 @@ function Products(){
     // Images for the carousel banner
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];
 
-
-    useEffect(()=>{
-        axios.get('http://localhost:5000/products')
-        .then(product => setData(product.data))
-        .catch(err => console.log(err))
-    },[])
-   
     return(
         <>
             <section>
@@ -46,13 +69,13 @@ function Products(){
             <section id="products_container">
                 <div className="catTitle_container">
                     <div></div>
+                        {/* TODO: Change depending on filter btn selected */}
                         <p className="large-font catTitle">Cakes</p>
                     <div></div>
                 </div>
 
                 <div className="products_grid_container">
-                    {/* TODO: Display at max 12 items (2 cols of 6 at full screen)*/} 
-                    { data.map((product)=> (
+                    { products.map((product)=> (
                         <div key={product._id}>
                              <div className="product box-shadow">
                                 <img src={product.image}></img>
@@ -71,11 +94,11 @@ function Products(){
                     <div className="pagination_container">
                         <div className="decoLine"></div>
                         <div className="navigation">
-                            <button className="prevPageBtn"><i className="bi bi-caret-left-fill"></i></button>
-                            <p>1</p>
+                            <button className="prevPageBtn"><i className="bi bi-caret-left-fill" onClick={prevPage}></i></button>
+                            <p>{currentPage}</p>
                             <i className="bi bi-slash-lg"></i>
-                            <p>2</p>
-                            <button className="nextPageBtn"><i className="bi bi-caret-right-fill"></i></button>
+                            <p>{numOfPages}</p>
+                            <button className="nextPageBtn"><i className="bi bi-caret-right-fill" onClick={nextPage}></i></button>
                         </div>
                         <div className="decoLine"></div>
                     </div>
