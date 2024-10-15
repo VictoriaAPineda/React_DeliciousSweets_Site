@@ -10,14 +10,25 @@ import axios from 'axios';
 
 
 function Products(){
+    
+    const categoryList = ["brownie", "cake", "cheesecake", "cupcake", "doughnut","pastry"];
+
     // State to hold the data retrieved from MongoDB
     const [data, setData] = useState([])
 
+    const [category, setCategory] = useState(categoryList[0]); // intital display
+    
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
-        .then(product => setData(product.data))
+        .then(product => {
+            setData(product.data)
+        })
         .catch(err => console.log(err))
     },[])
+
+    const onCategoryClick = (category) => () => {
+        setCategory(category)
+    };
 
     // Current Page being displayed. Start at Page #1
     const [currentPage, setCurrentPage] = useState(1);
@@ -42,11 +53,6 @@ function Products(){
         }
     }
 
-    /**  
-     * TODO: Buttons send a new query to display only a specific category
-     * of products
-    **/
-
     // Images for the carousel banner
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];
 
@@ -56,24 +62,31 @@ function Products(){
                 <BannerSpecial images = {bannerImages}/>
             </section>
 
+            {/* Buttons to filter product types displayed */}
             <section id="filter_products_container">
                 <p className="catBtnGroupTitle">Cartegories :</p>
-                <button className="filterBtn">Filter1</button>
-                <button className="filterBtn" >Filter2</button>
-                <button className="filterBtn" >Filter3</button>
-                <button className="filterBtn" >Filter4</button>
-                <button className="filterBtn" >Filter5</button>
-                <button className="filterBtn" >Filter6</button>
+                {
+                    categoryList.map((category)=>(
+                        <button 
+                            type="button" 
+                            key={category}
+                            onClick={onCategoryClick(category)}
+                            className="filterBtn"
+                        >
+                            {category}
+                        </button>  
+                    ))
+                }
             </section>
 
             <section id="products_container">
                 <div className="catTitle_container">
                     <div></div>
-                        {/* TODO: Change depending on filter btn selected */}
-                        <p className="large-font catTitle">Cakes</p>
+                        <p className="large-font catTitle">{category}</p>
                     <div></div>
                 </div>
 
+                {/*TODO: Filter items based on btn clicked */}
                 <div className="products_grid_container">
                     { products.map((product)=> (
                         <div key={product._id}>
@@ -103,8 +116,6 @@ function Products(){
                         <div className="decoLine"></div>
                     </div>
                 </div>
-
-           
             </section>
         </>
     )
