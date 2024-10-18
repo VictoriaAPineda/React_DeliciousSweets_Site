@@ -8,39 +8,53 @@ import productImg from "/src/images/chocolateStrawberryCake.jpg";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
-
 function Products(){
-    
-    const categoryList = ["brownie", "cake", "cheesecake", "cupcake", "doughnut","pastry"];
 
-    // State to hold the data retrieved from MongoDB
-    const [data, setData] = useState([])
+    const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
+    const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
 
-    const [category, setCategory] = useState(categoryList[0]); // intital display
+    const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
+    const [filteredData, setFilteredData] = useState([]);
+    const [category, setCategory] = useState(categoryList[0]); // intitally display brownies
+    const [currentPage, setCurrentPage] = useState(1);
     
+    // Retrieveing data from db
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
         .then(product => {
             setData(product.data)
+            setFilteredData(product.data)
         })
         .catch(err => console.log(err))
     },[])
+    // TODO: Set intial/default category selection upon viewing products page
 
+    // User selects a category button to display certain products
     const onCategoryClick = (category) => () => {
-        setCategory(category)
+        const filtered = data.filter( product =>{
+            return product.category === category;
+        })
+        setCategory(category)// Category title that is displayed
+        setFilteredData(filtered)    
     };
-
-    // Current Page being displayed. Start at Page #1
-    const [currentPage, setCurrentPage] = useState(1);
+   
+    // Product display
     const productsPerPage = 12;
     // Finds the last product index of current page 
-    // ex: 2nd page x 12 = product index of 24
-    const lastIndex = currentPage * productsPerPage;
-    // ex: 24 - 12 = 12. Meaning 13 will be the first product index for the 2nd page
-    const firstIndex = lastIndex - productsPerPage;
-    // Divide up the data throughout pages 
-    const products = data.slice(firstIndex, lastIndex);
-    const numOfPages = Math.ceil(data.length / productsPerPage); // 49/12 = 4.08 = 5 pages total
+    const lastIndex = currentPage * productsPerPage; // ex: 2nd page x 12 = last product index of 24
+    const firstIndex = lastIndex - productsPerPage; // ex: 24 - 12 = 12. 13 is first product index for the 2nd page
+    const products = filteredData.slice(firstIndex, lastIndex); // Divide up the data into pages 
+    const numOfPages = Math.ceil(filteredData.length / productsPerPage); // 49/12 = 4.08 = 5 pages total
+
+    useEffect(()=>{
+        /** Prevents an issue where user is on higher n-page of a category of products,
+        * selects another category that contains less pages but displays 
+        * a empty/out of bounds page 
+        **/
+        if(currentPage > numOfPages && numOfPages > 0){
+            setCurrentPage(1)
+        }
+    }, [currentPage, numOfPages])
 
     function nextPage(){
         if(currentPage !== numOfPages){
@@ -52,9 +66,6 @@ function Products(){
             setCurrentPage(currentPage - 1)
         }
     }
-
-    // Images for the carousel banner
-    const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];
 
     return(
         <>
