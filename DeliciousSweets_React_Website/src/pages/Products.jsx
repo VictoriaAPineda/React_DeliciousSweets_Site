@@ -5,7 +5,7 @@ import brownieImg from "/src/images/brownines-img.png"
 import cupcakeImg from "/src/images/cupcakes.jpg"
 import doughnutImg from "/src/images/doughnuts.jpg"
 import productImg from "/src/images/chocolateStrawberryCake.jpg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, createRef } from "react";
 import axios from 'axios';
 
 function Products(){
@@ -15,7 +15,7 @@ function Products(){
 
     const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
     const [filteredData, setFilteredData] = useState([]);
-    const [category, setCategory] = useState(categoryList[0]); // intitally display brownies
+    const [category, setCategory] = useState(categoryList[0]); // initial load
     const [currentPage, setCurrentPage] = useState(1);
     
     // Retrieveing data from db
@@ -23,14 +23,16 @@ function Products(){
         axios.get('http://localhost:5000/products')
         .then(product => {
             setData(product.data)
-            setFilteredData(product.data)
+            // Initial filter
+            const intialFilter = product.data.filter(p=>p.category === categoryList[0])
+            setFilteredData(intialFilter)
         })
         .catch(err => console.log(err))
     },[])
-    // TODO: Set intial/default category selection upon viewing products page
 
     // User selects a category button to display certain products
     const onCategoryClick = (category) => () => {
+        console.log(category)
         const filtered = data.filter( product =>{
             return product.category === category;
         })
@@ -54,7 +56,7 @@ function Products(){
         if(currentPage > numOfPages && numOfPages > 0){
             setCurrentPage(1)
         }
-    }, [currentPage, numOfPages])
+    }, [currentPage, numOfPages])// runs whenever user navigates via pagination
 
     function nextPage(){
         if(currentPage !== numOfPages){
@@ -77,7 +79,7 @@ function Products(){
             <section id="filter_products_container">
                 <p className="catBtnGroupTitle">Cartegories :</p>
                 {
-                    categoryList.map((category)=>(
+                    categoryList.map((category, index)=>(
                         <button 
                             type="button" 
                             key={category}
@@ -85,6 +87,7 @@ function Products(){
                             className="filterBtn"
                         >
                             {category}
+                        
                         </button>  
                     ))
                 }
@@ -97,7 +100,6 @@ function Products(){
                     <div></div>
                 </div>
 
-                {/*TODO: Filter items based on btn clicked */}
                 <div className="products_grid_container">
                     { products.map((product)=> (
                         <div key={product._id}>
