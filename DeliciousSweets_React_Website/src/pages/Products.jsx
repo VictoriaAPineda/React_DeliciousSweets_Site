@@ -22,14 +22,15 @@ function Products(){
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
         .then(product => {
-            setData(product.data)
+            // Sort data by name
+            setData(product.data.sort((a,b) => (a.name > b.name) ? 1: -1))
             // Initial filter
             const intialFilter = product.data.filter(p=>p.category === categoryList[0])
             setFilteredData(intialFilter)
         })
         .catch(err => console.log(err))
     },[])
-
+   
     // User selects a category button to display certain products
     const onCategoryClick = (category) => () => {
         console.log(category)
@@ -94,13 +95,15 @@ function Products(){
             </section>
 
             <section id="products_container">
+                {/*Category Title that is currently displayed */}
                 <div className="catTitle_container">
                     <div></div>
                         <p className="large-font catTitle">{category}</p>
                     <div></div>
                 </div>
-
+                {/* Products display */}
                 <div className="products_grid_container">
+                    {/* Each product's displayed di v*/}
                     { products.map((product)=> (
                         <div key={product._id}>
                              <div className="product box-shadow">
