@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from "react-router-dom"
+import DropDownList from './pages/DropdownList';
 
 export default function DropdownMenu(){
     const [open, setOpen] = useState(false);
@@ -22,8 +23,8 @@ export default function DropdownMenu(){
     return(
         <>
         <div className='dropmenu-wrapper'>
+            {/* Normal dropdown of 'Products' */}
             <div className='dropdown-container' ref={menuRef}>
-                {/* Normal dropdown of 'Products' */}
                 <div className='dropdown-trigger' onMouseOver={()=>{setOpen(!open)}}>
                     <Link to="/products">Products</Link>
                     <div className='submenu-trigger' onClick={()=>setSubmenu(!openSubmenu)}>
@@ -33,12 +34,7 @@ export default function DropdownMenu(){
                 </div>
                 <div className={`dropdown-menu ${open? 'active':''}`}>
                     <ul>
-                        {/*Notes: dropdowns are categories that will be displayed in 
-                        the products page */}
-                        <DropdownItem itemText = {'Option1'}/>
-                        <DropdownItem itemText = {'Option2'}/>
-                        <DropdownItem itemText = {'Option3'}/>
-                        <DropdownItem itemText = {'Option4'}/>
+                        <DropDownList/>
                     </ul>
                 </div>
             </div>
@@ -46,19 +42,13 @@ export default function DropdownMenu(){
             <div className='subdropdown-container'>
                 <div className= {`subdropdown-menu ${openSubmenu? 'active':'inactive'}`}>
                     <ul>
-                        <DropdownItem itemText = {'sub-option 01'}/>
-                        <DropdownItem itemText = {'sub-option 02'}/>
+                        {/* TODO: Moblie Dropdowns */}
+                        {/* <DropdownItem itemText = {'sub-option 01'}/>
+                        <DropdownItem itemText = {'sub-option 02'}/> */}
                     </ul>
                 </div>
             </div>
         </div>
         </>
     )
-}
-function DropdownItem({itemText}){
-    return(
-        <li className='dropdown-item'>
-            <a>{itemText}</a>
-        </li>
-    );
 }

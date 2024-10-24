@@ -120,6 +120,11 @@ body{
     color: #fff;
     display: none;
 }
+/* Dropdown menus */
+/* TODO: Fix CSS to keep menu in place - displaying gap
+         Adjust to other queries accordingly
+   TODO: Animations/Transition issue - Not responding 
+*/
 .dropdown-container{
     position: relative;
 }
@@ -135,7 +140,7 @@ body{
 }
 .dropdown-menu.active{ /* displays dropdown-menu */
     visibility: visible;
-    height: 400px;
+    height: max-content; /* Responsive to addons of more content */
     background-color: transparent;
 }
 .dropdown-menu ul{ /* TODO: finish styling the dropdown*/
@@ -153,13 +158,13 @@ body{
     background-color: rgba(255, 255, 255, 0.8);
     border: black 1px solid;
 }
-.dropdown-item:hover a{
+.dropdown-item:hover .item{
     color: black;
 }
-.dropdown-item a:hover{
+/* .dropdown-item a:hover{
     border: unset !important;
     color: black;
-}
+} */
 .subdropdown-menu{
     display: none;
 }

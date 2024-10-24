@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 
+
 import BannerSpecial from "../BannerSpecial";
 import brownieImg from "/src/images/brownines-img.png"
 import cupcakeImg from "/src/images/cupcakes.jpg"
@@ -33,7 +34,7 @@ function Products(){
    
     // User selects a category button to display certain products
     const onCategoryClick = (category) => () => {
-        console.log(category)
+        // console.log(category)
         const filtered = data.filter( product =>{
             return product.category === category;
         })
