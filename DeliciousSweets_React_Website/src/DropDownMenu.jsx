@@ -23,28 +23,26 @@ export default function DropdownMenu(){
     return(
         <>
         <div className='dropmenu-wrapper'>
-            {/* Normal dropdown of 'Products' */}
             <div className='dropdown-container' ref={menuRef}>
                 <div className='dropdown-trigger' onMouseOver={()=>{setOpen(!open)}}>
                     <Link to="/products">Products</Link>
+                    {/* When screen size is reduced to mobile, symbol appears
+                    and triggers subdropdown-menu. If not, desktop dropdown disaplays */}
                     <div className='submenu-trigger' onClick={()=>setSubmenu(!openSubmenu)}>
-                        {/* rotate symbol when sub menu is opened/active */}
                         <i className= {`bi bi-chevron-up chevorn-open ${openSubmenu ? 'active' : 'inactive'}`}></i>
                     </div>
                 </div>
+                {/* Normal dropdown of 'Products' */}
                 <div className={`dropdown-menu ${open? 'active':''}`}>
                     <ul>
                         <DropDownList/>
                     </ul>
                 </div>
             </div>
-            {/* Mobile sub menu of 'Products'*/}
+            {/* Mobile dropdown of 'Products'*/}
             <div className='subdropdown-container'>
                 <div className= {`subdropdown-menu ${openSubmenu? 'active':'inactive'}`}>
                     <ul>
-                        {/* TODO: Moblie Dropdowns 
-                            Change CSS styles
-                        */}
                         <DropDownList/>
                     </ul>
                 </div>
