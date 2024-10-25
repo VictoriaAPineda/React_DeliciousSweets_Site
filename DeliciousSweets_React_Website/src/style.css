@@ -141,8 +141,8 @@ body{
 }
 .dropdown-menu.active{ /* displays dropdown-menu */
     visibility: visible;
-    height: max-content; /* Responsive to addons of more content */
     background-color: transparent;
+    overflow:visible; /* shows all li elements*/
 }
 .dropdown-menu ul{ /* TODO: finish styling the dropdown*/
     display: flex;
