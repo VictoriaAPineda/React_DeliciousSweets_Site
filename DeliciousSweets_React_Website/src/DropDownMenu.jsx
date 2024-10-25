@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from "react-router-dom"
-import DropDownList from './pages/DropdownList';
+import DropDownList from './DropdownList';
 
 export default function DropdownMenu(){
     const [open, setOpen] = useState(false);
