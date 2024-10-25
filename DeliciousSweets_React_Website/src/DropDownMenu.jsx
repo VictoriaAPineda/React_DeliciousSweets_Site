@@ -38,13 +38,14 @@ export default function DropdownMenu(){
                     </ul>
                 </div>
             </div>
-            {/* TODO: Working on mobile sub menu of 'Products'*/}
+            {/* Mobile sub menu of 'Products'*/}
             <div className='subdropdown-container'>
                 <div className= {`subdropdown-menu ${openSubmenu? 'active':'inactive'}`}>
                     <ul>
-                        {/* TODO: Moblie Dropdowns */}
-                        {/* <DropdownItem itemText = {'sub-option 01'}/>
-                        <DropdownItem itemText = {'sub-option 02'}/> */}
+                        {/* TODO: Moblie Dropdowns 
+                            Change CSS styles
+                        */}
+                        <DropDownList/>
                     </ul>
                 </div>
             </div>
