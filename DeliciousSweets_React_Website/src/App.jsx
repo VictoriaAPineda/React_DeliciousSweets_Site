@@ -22,7 +22,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/products">
+            <Route index element={<Products />}/>
+            {/* Preload a category selection to display */}
+            <Route path= ":id" element={<Products/>}/>
+          </Route>
+
+
           <Route path="/cart" element={<Cart />} />
 
           {/*Link from a product to detail page*/}

@@ -123,6 +123,7 @@ body{
 /* Dropdown menus */
 /* 
    TODO: [ ] Animations/Transition issue - Not responding 
+   TODO: [ ] Text color on drop down (desktop) not showing black
 */
 .dropdown-container{
     position: relative;
@@ -1284,8 +1285,7 @@ body{
     .list-close-trigger{
         font-size: 20px;
         z-index: 2;
-        position: absolute;
-       
+        position: absolute;  
     }
     .list-close-trigger.is-open{
         display: block;

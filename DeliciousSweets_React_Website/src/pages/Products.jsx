@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 
 import BannerSpecial from "../BannerSpecial";
@@ -6,35 +6,46 @@ import brownieImg from "/src/images/brownines-img.png"
 import cupcakeImg from "/src/images/cupcakes.jpg"
 import doughnutImg from "/src/images/doughnuts.jpg"
 import productImg from "/src/images/chocolateStrawberryCake.jpg";
-import { useEffect, useState, useRef, createRef } from "react";
+import { useEffect, useState } from "react";
 import axios from 'axios';
 
 function Products(){
+    /* 
+    ** TODO:
+    ** [ ]Reflect url pathname when buttons are clicked
+    ** [Done] Reflect url pathname when submenu button are clicked
+    */
+
+    /* Getting (destructuring) the Category (:id) from the url in DropdownList.jsx route 
+    ** {`/products/${category}`}
+    */
+    const {id} = useParams();
+    const specificCategory = id;
 
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
     const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
 
     const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
     const [filteredData, setFilteredData] = useState([]);
-    const [category, setCategory] = useState(categoryList[0]); // initial load
+    const [category, setCategory] = useState([]); // initial load
     const [currentPage, setCurrentPage] = useState(1);
-    
+
     // Retrieveing data from db
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
         .then(product => {
             // Sort data by name
             setData(product.data.sort((a,b) => (a.name > b.name) ? 1: -1))
-            // Initial filter
-            const intialFilter = product.data.filter(p=>p.category === categoryList[0])
+            // Initial filter for user's pre-selected category via the dropdown
+            const intialFilter = product.data.filter(p=>p.category === specificCategory)
+            setCategory(specificCategory)
             setFilteredData(intialFilter)
         })
         .catch(err => console.log(err))
-    },[])
+    },[specificCategory])
    
     // User selects a category button to display certain products
     const onCategoryClick = (category) => () => {
-        // console.log(category)
         const filtered = data.filter( product =>{
             return product.category === category;
         })
