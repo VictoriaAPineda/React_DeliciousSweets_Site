@@ -594,9 +594,12 @@ body{
     font-size: 1.5rem;
     cursor: pointer;
 }
-.filterBtn:not(:last-child){
+.filterBtnLink:not(:last-child){
     margin-right: 10px;
 }
+/* .filterBtn:not(:last-child){
+    margin-right: 10px;
+} */
 .filterBtn:hover{
     border: 2px solid #3F2C2C;
     background-color: #fff;

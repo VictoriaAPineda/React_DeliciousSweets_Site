@@ -93,15 +93,16 @@ function Products(){
                 <p className="catBtnGroupTitle">Cartegories :</p>
                 {
                     categoryList.map((category, index)=>(
-                        <button 
-                            type="button" 
-                            key={category}
-                            onClick={onCategoryClick(category)}
-                            className="filterBtn"
-                        >
-                            {category}
-                        
-                        </button>  
+                        <Link className="filterBtnLink" to ={`/products/${category}`}>
+                            <button 
+                                type="button" 
+                                key={category}
+                                onClick={onCategoryClick(category)}
+                                className="filterBtn"
+                            >
+                                {category}
+                            </button>  
+                        </Link>
                     ))
                 }
             </section>
