@@ -1312,6 +1312,9 @@ body{
         display: block;
         margin-left: 5px;
     }
+    .desktopProduct{
+        display: none;
+    }
     .submenu-trigger .chevorn-open{
         color: #fff;
         position: relative;

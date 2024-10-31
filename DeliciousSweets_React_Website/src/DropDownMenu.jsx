@@ -22,14 +22,14 @@ export default function DropdownMenu(){
     });
     return(
         <>
-        {/* TODO: [ ]Adjust dropdown activation. Also allow user to open when clicking text */}
         <div className='dropmenu-wrapper'>
             <div className='dropdown-container' ref={menuRef}>
                 <div className='dropdown-trigger' onMouseOver={()=>{setOpen(!open)}}>
-                    <Link to="#">Products</Link>
+                    <Link className="desktopProduct" to="#">Products</Link>
                     {/* When screen size is reduced to mobile, symbol appears
                     and triggers subdropdown-menu. If not, desktop dropdown disaplays */}
                     <div className='submenu-trigger' onClick={()=>setSubmenu(!openSubmenu)}>
+                        <Link to="#">Products</Link>
                         <i className= {`bi bi-chevron-up chevorn-open ${openSubmenu ? 'active' : 'inactive'}`}></i>
                     </div>
                 </div>
