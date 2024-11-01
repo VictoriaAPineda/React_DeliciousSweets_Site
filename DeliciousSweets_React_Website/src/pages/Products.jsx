@@ -10,12 +10,6 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 
 function Products(){
-    /* 
-    ** TODO:
-    ** [ ]Reflect url pathname when buttons are clicked
-    ** [Done] Reflect url pathname when submenu button are clicked
-    */
-
     /* Getting (destructuring) the Category (:id) from the url in DropdownList.jsx route 
     ** {`/products/${category}`}
     */
@@ -93,7 +87,7 @@ function Products(){
                 <p className="catBtnGroupTitle">Cartegories :</p>
                 {
                     categoryList.map((category, index)=>(
-                        <Link className="filterBtnLink" to ={`/products/${category}`}>
+                        <Link className="filterBtnLink" key={category}to ={`/products/${category}`}>
                             <button 
                                 type="button" 
                                 key={category}
@@ -116,7 +110,7 @@ function Products(){
                 </div>
                 {/* Products display */}
                 <div className="products_grid_container">
-                    {/* Each product's displayed di v*/}
+                    {/* Each product's displayed div */}
                     { products.map((product)=> (
                         <div key={product._id}>
                              <div className="product box-shadow">
@@ -126,7 +120,7 @@ function Products(){
                                     <p className="productDescription">{product.description}</p>
                                     <p className="price">${product.price}</p>
                                     {/* TODO: Link to a custom prefilled detail page */}
-                                    <Link className={"view_link"} to="/productDetail"><button className="viewBtn">View</button></Link>
+                                    <Link className={"view_link"} to={`/productDetails/${product._id}`}><button className="viewBtn">View</button></Link>
                                 </div>
                             </div>
                         </div>
