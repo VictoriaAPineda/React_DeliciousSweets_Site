@@ -131,13 +131,11 @@ body{
 .dropdown-menu{
     position: absolute;
     text-align: center;
-    position: absolute;
     visibility: hidden;
     height: 0;
     overflow: hidden;
     transition: 0.5s ease-in-out;
     transform: translateX(-40px) translateY(10px);
-
 }
 .dropdown-menu.active{ /* displays dropdown-menu */
     visibility: visible;
@@ -147,22 +145,19 @@ body{
 .dropdown-menu ul{ 
     display: flex;
     flex-direction: column;
-    /* row-gap: 10px; */
+    row-gap: 10px;
 }
 .dropdown-item{
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
     width: 100%;
-    /* border: #fff 1px solid; */
+    border: #fff 1px solid;
     padding: 10px 0px;
     position: relative;
     top: 30px;
 }
-.dropdown-item p:hover{ /* ERROR:Flicker of white color on hover review hierachy */
-    color: black;
-}
-.dropdown-item:hover{
-    background-color: rgba(255, 255, 255, 0.8);
-    border: black 1px solid;  
+.dropdown-item p:hover{ 
+    text-decoration: underline dashed 3px white;
+    text-underline-offset: 10px;
 }
 .subdropdown-menu{
     display: none;
@@ -171,7 +166,7 @@ body{
     display: none; /* hides the chevron trigger icon */
 }
 .subdropdown-menu ul{
-    padding-top: 20px;
+    /* padding-top: 20px; */
 }
 .subdropdown-menu .dropdown-item{
     text-align: left;
@@ -1304,6 +1299,9 @@ body{
         margin-left: 5%;
         width: 150px;
     }
+    .subdropdown-menu ul{
+        padding-top: 20px;
+    }
     .submenu-trigger{
         display: block;
         margin-left: 5px;
@@ -1348,6 +1346,10 @@ body{
     }
     .subdropdown-menu .dropdown-item p{
       color: #fff;
+    }
+    .subdropdown-menu .dropdown-item p:hover{ 
+        text-decoration: none;
+        text-underline-offset: 0px;
     }
     /* Footer */
     #columns {

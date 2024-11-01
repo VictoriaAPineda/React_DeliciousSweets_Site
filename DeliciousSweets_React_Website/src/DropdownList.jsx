@@ -29,13 +29,15 @@ function DropDownList(){
         <ul>
             {
                 uniqueCategory.map((category)=> (
-                    <li className= 'dropdown-item '>
+                    
+                    <li className= 'dropdown-item'>
                         {/* Assign each caetgory to a url pathname */}
                         {/* Use the :id to tell Products.jsx what category to display*/}
                         <Link to ={`/products/${category}`}>
                             <p key={category}>{category}</p>
                         </Link>
                     </li>
+                    
                 ))
             }
         </ul>
