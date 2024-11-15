@@ -1,11 +1,9 @@
 import { Link, useParams } from "react-router-dom"
 
-
 import BannerSpecial from "../BannerSpecial";
 import brownieImg from "/src/images/brownines-img.png"
 import cupcakeImg from "/src/images/cupcakes.jpg"
 import doughnutImg from "/src/images/doughnuts.jpg"
-import productImg from "/src/images/chocolateStrawberryCake.jpg";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
