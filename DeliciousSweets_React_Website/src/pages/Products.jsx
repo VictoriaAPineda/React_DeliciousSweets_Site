@@ -53,6 +53,9 @@ function Products(){
     const products = filteredData.slice(firstIndex, lastIndex); // Divide up the data into pages 
     const numOfPages = Math.ceil(filteredData.length / productsPerPage); // 49/12 = 4.08 = 5 pages total
 
+    
+
+
     useEffect(()=>{
         /** Prevents an issue where user is on higher n-page of a category of products,
         * selects another category that contains less pages but displays 
@@ -73,6 +76,14 @@ function Products(){
             setCurrentPage(currentPage - 1)
         }
     }
+
+    /* Notes: find current page and use that for details to reurn to prev viewd page of that category.
+    ex: pg2 of cake -> go back -> should be on page 2*/
+    useEffect(()=>{
+        const pageNum = currentPage
+        console.log(pageNum)
+     },[currentPage])
+
 
     return(
         <>
@@ -118,7 +129,7 @@ function Products(){
                                     <p className="productDescription">{product.description}</p>
                                     <p className="price">${product.price}</p>
                                     {/* Links to a product's own info page based on their id */}
-                                    <Link className={"view_link"} to={`/productDetails/${product._id}`}><button className="viewBtn">View</button></Link>
+                                    <Link className={"view_link"} to={`/productDetails/${product._id}`}><button className="viewBtn" >View</button></Link>
                                 </div>
                             </div>
                         </div>

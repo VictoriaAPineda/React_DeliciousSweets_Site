@@ -1,12 +1,11 @@
 import infoBannerImg from "/src/images/bread_display.jpg";
-import mainProductImg from "/src/images/placeholderDetailImg.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
 import { Link, useParams } from "react-router-dom";
 import ProductMultiCarousel from "../MultiCarousel"
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { productData } from "../data";
+import { useNavigate } from "react-router-dom";
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -26,9 +25,15 @@ export default function ProductDetails(){
         .catch(err=> console.log(err))
     }, [productId]) 
 
+    useEffect(()=>{
+        window.scrollTo({
+            top:0,
+            left:0,
+            // behavior:'smooth'
+        })
+    },[])
+
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
-
-
     return(
         <>
             <section id="detailImgBannerContainer">
@@ -38,7 +43,7 @@ export default function ProductDetails(){
 
             <div id="wrapper">
                 <section id="detail_card_container">
-                    {/*[] TODO: takes user back to exact area where they left off */}
+                    {/*[] TODO: takes user back to exact page where they left off. get the page # */}
                     <Link to={`/products/${data.category}`}><button className="backBtn"><i className="bi bi-arrow-left"></i>Back</button></Link>
                     <div className="productDetailInfoContainer">
                              <img src={data.image}></img>
