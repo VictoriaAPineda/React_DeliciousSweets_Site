@@ -627,6 +627,7 @@ body{
     background-size: cover;
     display: grid;
     grid-template-columns: minmax(0,600px) minmax(0,600px);
+   
     justify-content: center;
     padding:30px 40px;
     gap:40px 50px;
@@ -647,11 +648,14 @@ body{
     align-items: center;
     flex-direction: column;
     padding: 20px;
+
+    width: 100%; /* fill up remaing space */
 }
 .product_details_container .productName{
     font-size: 1.8rem;
     margin-bottom: 10px;
-    white-space: nowrap;
+    text-align: center;
+    /* white-space: nowrap; */
 }
 .product_details_container .productDescription{
     margin-bottom: 30px;
@@ -708,8 +712,7 @@ body{
     display: flex;
 }
 
-/* Product Detail Page
-    TODO: Make page responsive  */
+/* Product Detail Page  */
 #detailImgBannerContainer{
     position: relative;
 }
@@ -749,8 +752,8 @@ body{
     margin: 10px;
 }
 .productDetailInfoContainer img{
+    width: 600px;
     height: auto;
-    object-fit:scale-down;
 }
 .productDetailInfoContainer .info{
     margin: 20px;

@@ -119,7 +119,7 @@ function Products(){
                                     <p className="productName">{product.name}</p>
                                     <p className="productDescription">{product.description}</p>
                                     <p className="price">${product.price}</p>
-                                    {/* TODO: Link to a custom prefilled detail page */}
+                                    {/* Links to a product's own info page based on their id */}
                                     <Link className={"view_link"} to={`/productDetails/${product._id}`}><button className="viewBtn">View</button></Link>
                                 </div>
                             </div>

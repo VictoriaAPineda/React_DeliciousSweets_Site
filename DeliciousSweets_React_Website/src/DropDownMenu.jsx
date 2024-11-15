@@ -11,6 +11,7 @@ export default function DropdownMenu(){
     useEffect(()=>{
         let handler =(e)=>{
             if(!menuRef.current.contains(e.target)){
+                // If user presses their mouse, outside of menu, it closes
                 setOpen(false);
             }
         }
@@ -22,6 +23,7 @@ export default function DropdownMenu(){
     });
     return(
         <>
+        {/* [] TODO: Revamp to a single drop down, use CSS to make the nesscary changes to reduce code ? */}
         <div className='dropmenu-wrapper'>
             <div className='dropdown-container' ref={menuRef}>
                 <div className='dropdown-trigger' onMouseOver={()=>{setOpen(!open)}}>

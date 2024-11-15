@@ -17,11 +17,11 @@ mongoose.connect(dbURI)
     })
     .catch((err) => console.log(err))
 
-// Get Products from db (testing)
+// Get Products from db 
+// What is retrieved is stored into the /products resource url
 app.get('/products', (req, res)=>{
     Product.find()
     .then((result) => {
-        // res.send(result)
         res.json(result)
     })
     .catch((err)=>{

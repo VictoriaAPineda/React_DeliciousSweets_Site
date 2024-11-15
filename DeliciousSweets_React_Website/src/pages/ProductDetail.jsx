@@ -16,7 +16,7 @@ export default function ProductDetails(){
     const productId = id;
     const [data, setData] =  useState([]);
 
-    // Retrieve data from db (products Collection)
+    // Retrieve data from db of selected products to view (products Collection)
     useEffect(() => {
         axios.get('http://localhost:5000/products')
         .then( product => {
@@ -38,6 +38,7 @@ export default function ProductDetails(){
 
             <div id="wrapper">
                 <section id="detail_card_container">
+                    {/*[] TODO: takes user back to exact area where they left off */}
                     <Link to={`/products/${data.category}`}><button className="backBtn"><i className="bi bi-arrow-left"></i>Back</button></Link>
                     <div className="productDetailInfoContainer">
                              <img src={data.image}></img>
