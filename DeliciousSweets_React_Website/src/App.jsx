@@ -24,7 +24,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products">
             {/* Preload a category selection to display */}
-            <Route path= ":id" element={<Products/>}/>
+            <Route path= ":cat" element={<Products/>}/>
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/productDetails">

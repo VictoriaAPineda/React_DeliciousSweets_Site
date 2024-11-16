@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useSearchParams } from "react-router-dom"
 
 import BannerSpecial from "../BannerSpecial";
 import brownieImg from "/src/images/brownines-img.png"
@@ -11,8 +11,9 @@ function Products(){
     /* Getting (destructuring) the Category (:id) from the url in DropdownList.jsx route 
     ** {`/products/${category}`}
     */
-    const {id} = useParams();
-    const specificCategory = id;
+    const {cat} = useParams();
+    const specificCategory = cat;
+
 
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
     const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
@@ -21,6 +22,7 @@ function Products(){
     const [filteredData, setFilteredData] = useState([]);
     const [category, setCategory] = useState([]); // initial load
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchParams, setSearchParams] = useSearchParams();
 
     // Retrieveing data from db
     useEffect(()=>{
@@ -32,6 +34,8 @@ function Products(){
             const intialFilter = product.data.filter(p=>p.category === specificCategory)
             setCategory(specificCategory)
             setFilteredData(intialFilter)
+            setSearchParams({page: currentPage})
+            
         })
         .catch(err => console.log(err))
     },[specificCategory])
@@ -53,9 +57,6 @@ function Products(){
     const products = filteredData.slice(firstIndex, lastIndex); // Divide up the data into pages 
     const numOfPages = Math.ceil(filteredData.length / productsPerPage); // 49/12 = 4.08 = 5 pages total
 
-    
-
-
     useEffect(()=>{
         /** Prevents an issue where user is on higher n-page of a category of products,
         * selects another category that contains less pages but displays 
@@ -69,22 +70,17 @@ function Products(){
     function nextPage(){
         if(currentPage !== numOfPages){
             setCurrentPage(currentPage + 1)
+            setSearchParams({page: currentPage +1})
         }
+        
     }
     function prevPage(){
         if(currentPage !== 1){
             setCurrentPage(currentPage - 1)
+            setSearchParams({page: currentPage - 1})
         }
     }
-
-    /* Notes: find current page and use that for details to reurn to prev viewd page of that category.
-    ex: pg2 of cake -> go back -> should be on page 2*/
-    useEffect(()=>{
-        const pageNum = currentPage
-        console.log(pageNum)
-     },[currentPage])
-
-
+ 
     return(
         <>
             <section>

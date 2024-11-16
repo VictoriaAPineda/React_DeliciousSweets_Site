@@ -5,7 +5,6 @@ import { Link, useParams } from "react-router-dom";
 import ProductMultiCarousel from "../MultiCarousel"
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -43,7 +42,8 @@ export default function ProductDetails(){
 
             <div id="wrapper">
                 <section id="detail_card_container">
-                    {/*[] TODO: takes user back to exact page where they left off. get the page # */}
+                    {/*[] TODO: takes user back to exact page where they left off.
+                    Consider: useNavigation , useLocation */}
                     <Link to={`/products/${data.category}`}><button className="backBtn"><i className="bi bi-arrow-left"></i>Back</button></Link>
                     <div className="productDetailInfoContainer">
                              <img src={data.image}></img>
