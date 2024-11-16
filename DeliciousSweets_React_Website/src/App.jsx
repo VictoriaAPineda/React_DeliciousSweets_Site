@@ -6,7 +6,7 @@ import Contact from "./pages/Contact"
 import Products from "./pages/Products"
 import Cart  from "./pages/Cart"
 import { Route, Routes } from "react-router-dom"
-import ProductDetails from "./pages/productDetail"
+import ProductDetails from "./pages/ProductDetail"
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
