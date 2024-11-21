@@ -42,8 +42,7 @@ function Products(){
             setCategory(specificCategory)
             setFilteredData(intialFilter)   
 
-            handlePageNumChange(currentPage)
-            console.log(currentPage)
+            // handlePageNumChange(currentPage)
         })
         .catch(err => console.log(err))
     },[specificCategory])
@@ -91,7 +90,7 @@ function Products(){
     }
     useEffect(()=>{
         handlePageNumChange(currentPage)
-    },[currentPage])
+    },[currentPage, category])
     
     return(
         <>
