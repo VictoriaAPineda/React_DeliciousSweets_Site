@@ -1,7 +1,7 @@
 import infoBannerImg from "/src/images/bread_display.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import ProductMultiCarousel from "../MultiCarousel"
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -44,7 +44,9 @@ export default function ProductDetails(){
                 <section id="detail_card_container">
                     {/*[] TODO: takes user back to exact page where they left off.
                     Consider: useNavigation , useLocation */}
-                    <Link to={`/products/${data.category}`}><button className="backBtn"><i className="bi bi-arrow-left"></i>Back</button></Link>
+                    <Link to={`/products/${data.category}/`}>
+                        <button className="backBtn"><i className="bi bi-arrow-left"></i>Back</button>
+                    </Link>
                     <div className="productDetailInfoContainer">
                              <img src={data.image}></img>
                              <div className="info">

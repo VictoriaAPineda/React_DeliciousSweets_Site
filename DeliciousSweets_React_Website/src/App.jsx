@@ -24,12 +24,13 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products">
             {/* Preload a category selection to display */}
-            <Route path= ":cat" element={<Products/>}/>
+            <Route exact path=":cat/:page" element ={<Products/>} /> {/* [] TODO: want to display page as well */}
+            <Route path= ":cat" element={<Products/>}/> {/* catch */}
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/productDetails">
             {/* Each product's personal page with its own data */}
-            <Route path=":id" element={<ProductDetails />}/>
+            <Route exact path=":id" element={<ProductDetails />}/>
           </Route>
 
           

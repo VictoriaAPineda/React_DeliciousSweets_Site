@@ -1,4 +1,4 @@
-import { Link, useParams, useSearchParams } from "react-router-dom"
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom"
 
 import BannerSpecial from "../BannerSpecial";
 import brownieImg from "/src/images/brownines-img.png"
@@ -22,7 +22,14 @@ function Products(){
     const [filteredData, setFilteredData] = useState([]);
     const [category, setCategory] = useState([]); // initial load
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchParams, setSearchParams] = useSearchParams();
+
+    const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
+
+   
+
+    // const {page} = useParams(); // used to retrieve a url(including page# if it exists)
+    // const  p = parseInt(page,10) //convert the string -> int, 10 is decimal
+  
 
     // Retrieveing data from db
     useEffect(()=>{
@@ -33,9 +40,10 @@ function Products(){
             // Initial filter for user's pre-selected category via the dropdown
             const intialFilter = product.data.filter(p=>p.category === specificCategory)
             setCategory(specificCategory)
-            setFilteredData(intialFilter)
-            setSearchParams({page: currentPage})
-            
+            setFilteredData(intialFilter)   
+
+            handlePageNumChange(currentPage)
+            console.log(currentPage)
         })
         .catch(err => console.log(err))
     },[specificCategory])
@@ -46,7 +54,7 @@ function Products(){
             return product.category === category;
         })
         setCategory(category)// Category title that is displayed
-        setFilteredData(filtered)    
+        setFilteredData(filtered)   
     };
    
     // Product display
@@ -67,20 +75,24 @@ function Products(){
         }
     }, [currentPage, numOfPages])// runs whenever user navigates via pagination
 
+    const handlePageNumChange = (pageNumber) =>{
+        setSearchParams({...searchParams, page: pageNumber})
+    }
     function nextPage(){
         if(currentPage !== numOfPages){
-            setCurrentPage(currentPage + 1)
-            setSearchParams({page: currentPage +1})
+            setCurrentPage(currentPage + 1)  
+            console.log("added")  
         }
-        
     }
     function prevPage(){
         if(currentPage !== 1){
             setCurrentPage(currentPage - 1)
-            setSearchParams({page: currentPage - 1})
         }
     }
- 
+    useEffect(()=>{
+        handlePageNumChange(currentPage)
+    },[currentPage])
+    
     return(
         <>
             <section>
@@ -125,7 +137,9 @@ function Products(){
                                     <p className="productDescription">{product.description}</p>
                                     <p className="price">${product.price}</p>
                                     {/* Links to a product's own info page based on their id */}
-                                    <Link className={"view_link"} to={`/productDetails/${product._id}`}><button className="viewBtn" >View</button></Link>
+                                    <Link className={"view_link"} to={`/productDetails/${product._id}`} >
+                                        <button className="viewBtn" >View</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -140,6 +154,12 @@ function Products(){
                             <i className="bi bi-slash-lg"></i>
                             <p>{numOfPages}</p>
                             <button className="nextPageBtn"><i className="bi bi-caret-right-fill" onClick={nextPage}></i></button>
+                            {/* <Link to={`/products/${category}/${p+1}`} className="nextPageBtn">
+                                <i className="bi bi-caret-right-fill" ></i>
+                            </Link> */}
+                          
+                           
+                           
                         </div>
                         <div className="decoLine"></div>
                     </div>
