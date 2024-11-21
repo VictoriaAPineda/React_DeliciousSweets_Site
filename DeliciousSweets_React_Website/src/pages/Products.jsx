@@ -52,12 +52,13 @@ function Products(){
         const filtered = data.filter( product =>{
             return product.category === category;
         })
+        setCurrentPage(1)
         setCategory(category)// Category title that is displayed
         setFilteredData(filtered)   
     };
    
     // Product display
-    const productsPerPage = 12;
+    const productsPerPage = 6;
     // Finds the last product index of current page 
     const lastIndex = currentPage * productsPerPage; // ex: 2nd page x 12 = last product index of 24
     const firstIndex = lastIndex - productsPerPage; // ex: 24 - 12 = 12. 13 is first product index for the 2nd page
