@@ -22,7 +22,7 @@ function Products(){
     const [category, setCategory] = useState([]); 
     const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
     const location = useLocation(); // Hold the current Url information 
-    // Will be deafult to page 1 or will read the URL from detail to get he page number to display
+    // Will be default to page 1 or will read the URL from detail to ge the page number to display
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1);
    
     // Retrieveing data from db
@@ -161,12 +161,6 @@ function Products(){
                             <i className="bi bi-slash-lg"></i>
                             <p>{numOfPages}</p>
                             <button className="nextPageBtn"><i className="bi bi-caret-right-fill" onClick={nextPage}></i></button>
-                            {/* <Link to={`/products/${category}/${p+1}`} className="nextPageBtn">
-                                <i className="bi bi-caret-right-fill" ></i>
-                            </Link> */}
-                          
-                           
-                           
                         </div>
                         <div className="decoLine"></div>
                     </div>
