@@ -8,41 +8,42 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 
 function Products(){
-    /* Getting (destructuring) the Category (:id) from the url in DropdownList.jsx route 
+    /* Getting (destructuring) the Category (:cat) from the url in DropdownList.jsx route 
     ** {`/products/${category}`}
     */
-    const {cat, page} = useParams();
+    const {cat} = useParams();
     const specificCategory = cat;
-
+    
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
     const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
 
     const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
     const [filteredData, setFilteredData] = useState([]);
-    const [category, setCategory] = useState([]); // initial load
-    const [currentPage, setCurrentPage] = useState(1);
+    const [category, setCategory] = useState([]); 
     const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
-    
-    // const {pathname} = useLocation();
-    // const navigate = useNavigate();
-    // console.log(pathname)
-
-
+    const location = useLocation(); // Hold the current Url information 
+    // Will be deafult to page 1 or will read the URL from detail to get he page number to display
+    const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1);
+   
     // Retrieveing data from db
+    /* note prevent page from reloading to defaults after the inital render. */
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
         .then(product => {
-           
             // Sort data by name
             setData(product.data.sort((a,b) => (a.name > b.name) ? 1: -1))
             // Initial filter for user's pre-selected category via the dropdown
             const intialFilter = product.data.filter(p=>p.category === specificCategory)
             setCategory(specificCategory)
             setFilteredData(intialFilter)   
-            handlePageParam('page', currentPage)
+            handlePageParam('page', currentPage)// writes the url
         })
         .catch(err => console.log(err))
     },[specificCategory])// accounts for drop down selection
+    
+    useEffect(()=>{
+        console.log("window href [in products]:"+window.location.href)
+    },[location])
    
     // User selects a category button to display certain products
     const onCategoryClick = (category) => () => {
@@ -84,9 +85,9 @@ function Products(){
     }
     useEffect(()=>{
         handlePageParam('page', currentPage)
-        console.log("searchparam page:"+searchParams.get('page'))
     },[currentPage, category])
 
+    // Adds a new param the URL called 'page' ex: ( page = page number)
     const handlePageParam = (key,value) =>{
         setSearchParams(p =>{
             p.set(key, value)
@@ -120,7 +121,7 @@ function Products(){
             </section>
 
             <section id="products_container">
-                {/*Category Title that is currently displayed */}
+                {/* Category Title that is currently displayed */}
                 <div className="catTitle_container">
                     <div></div>
                         <p className="large-font catTitle">{category}</p>
@@ -137,8 +138,13 @@ function Products(){
                                     <p className="productName">{product.name}</p>
                                     <p className="productDescription">{product.description}</p>
                                     <p className="price">${product.price}</p>
-                                    {/* Links to a product's own info page based on their id */}
-                                    <Link className={"view_link"} to={`/productDetails/${product._id}`}>
+                                    {/* [1] Links to a product's own info page based on their id. 
+                                    *   [2]location.search holds the current URL query string. 
+                                    *   Used here to further specify the page number of the 
+                                    *  'page' parameter to return to the specific page user left before viewing 
+                                    *   a product detail page after using the back button  
+                                    */}
+                                    <Link className={"view_link"} to={`/productDetails/${product._id}`} state={location.search}>
                                         <button className="viewBtn" >View</button>
                                     </Link>
                                 </div>

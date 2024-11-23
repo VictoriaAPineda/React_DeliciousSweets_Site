@@ -1,7 +1,7 @@
 import infoBannerImg from "/src/images/bread_display.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
-import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import ProductMultiCarousel from "../MultiCarousel"
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -13,29 +13,20 @@ export default function ProductDetails(){
     const {id} = useParams();
     const productId = id;
     const [data, setData] =  useState([]);
-    const navigate = useNavigate()
-    const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
+    const location = useLocation();
+    /* 
+       Retrieves the state data from the state from the Link to this page 
+       the data contains the located page number ex: (?page=2) that will be 
+       used to go back to a previos page number a user was on
+    */
+    const pageData = location.state;
 
-    // const {state : {prev}} = useLocation();
-    // const location = useLocation();
-
-    // const pageData = location.state;
-    // console.log("page number of product: [detail page]" + pageData)
-    // console.log("link to send back from detail:" + `/products/${data.category}/${pageData}`)
-
-    const handlePageParam = (key,value) =>{
-        setSearchParams(p =>{
-            p.set(key, value)
-            return p
-        })
-    }
     // Retrieve data from db of selected products to view (products Collection)
     useEffect(() => {
         axios.get('http://localhost:5000/products')
         .then( product => {
             const productFound = product.data.find(p => p._id === productId);
             setData(productFound)  
-            // handlePageParam('name', productFound.name)
         })
         .catch(err=> console.log(err))
     }, [productId]) 
@@ -59,7 +50,7 @@ export default function ProductDetails(){
 
             <div id="wrapper">
                 <section id="detail_card_container">
-                    <Link onClick={()=>{navigate(-1)}}>
+                    <Link to={`/products/${data.category}${pageData}`}>
                         <button  className="backBtn"><i className="bi bi-arrow-left"></i>Back</button>
                     </Link>
                     <div className="productDetailInfoContainer">

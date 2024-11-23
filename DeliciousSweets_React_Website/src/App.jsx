@@ -24,7 +24,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products">
             {/* Preload a category selection to display */}
-            <Route exact path=":cat/:page" element ={<Products/>} /> {/* [] TODO: want to display page as well */}
+            <Route path=":cat/:page" element ={<Products/>} /> {/* [] TODO: want to display page as well */}
             <Route path= ":cat" element={<Products/>}/> {/* catch */}
           </Route>
           <Route path="/cart" element={<Cart />} />
