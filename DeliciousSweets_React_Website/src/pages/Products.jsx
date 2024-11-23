@@ -11,9 +11,8 @@ function Products(){
     /* Getting (destructuring) the Category (:id) from the url in DropdownList.jsx route 
     ** {`/products/${category}`}
     */
-    const {cat} = useParams();
+    const {cat, page} = useParams();
     const specificCategory = cat;
-
 
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
     const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
@@ -22,30 +21,28 @@ function Products(){
     const [filteredData, setFilteredData] = useState([]);
     const [category, setCategory] = useState([]); // initial load
     const [currentPage, setCurrentPage] = useState(1);
-
     const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
+    
+    // const {pathname} = useLocation();
+    // const navigate = useNavigate();
+    // console.log(pathname)
 
-   
-
-    // const {page} = useParams(); // used to retrieve a url(including page# if it exists)
-    // const  p = parseInt(page,10) //convert the string -> int, 10 is decimal
-  
 
     // Retrieveing data from db
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
         .then(product => {
+           
             // Sort data by name
             setData(product.data.sort((a,b) => (a.name > b.name) ? 1: -1))
             // Initial filter for user's pre-selected category via the dropdown
             const intialFilter = product.data.filter(p=>p.category === specificCategory)
             setCategory(specificCategory)
             setFilteredData(intialFilter)   
-
-            // handlePageNumChange(currentPage)
+            handlePageParam('page', currentPage)
         })
         .catch(err => console.log(err))
-    },[specificCategory])
+    },[specificCategory])// accounts for drop down selection
    
     // User selects a category button to display certain products
     const onCategoryClick = (category) => () => {
@@ -75,13 +72,9 @@ function Products(){
         }
     }, [currentPage, numOfPages])// runs whenever user navigates via pagination
 
-    const handlePageNumChange = (pageNumber) =>{
-        setSearchParams({...searchParams, page: pageNumber})
-    }
     function nextPage(){
         if(currentPage !== numOfPages){
             setCurrentPage(currentPage + 1)  
-            console.log("added")  
         }
     }
     function prevPage(){
@@ -90,9 +83,17 @@ function Products(){
         }
     }
     useEffect(()=>{
-        handlePageNumChange(currentPage)
+        handlePageParam('page', currentPage)
+        console.log("searchparam page:"+searchParams.get('page'))
     },[currentPage, category])
-    
+
+    const handlePageParam = (key,value) =>{
+        setSearchParams(p =>{
+            p.set(key, value)
+            return p
+        })
+    }
+
     return(
         <>
             <section>
@@ -137,7 +138,7 @@ function Products(){
                                     <p className="productDescription">{product.description}</p>
                                     <p className="price">${product.price}</p>
                                     {/* Links to a product's own info page based on their id */}
-                                    <Link className={"view_link"} to={`/productDetails/${product._id}`} >
+                                    <Link className={"view_link"} to={`/productDetails/${product._id}`}>
                                         <button className="viewBtn" >View</button>
                                     </Link>
                                 </div>

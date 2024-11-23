@@ -13,13 +13,29 @@ export default function ProductDetails(){
     const {id} = useParams();
     const productId = id;
     const [data, setData] =  useState([]);
+    const navigate = useNavigate()
+    const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
 
+    // const {state : {prev}} = useLocation();
+    // const location = useLocation();
+
+    // const pageData = location.state;
+    // console.log("page number of product: [detail page]" + pageData)
+    // console.log("link to send back from detail:" + `/products/${data.category}/${pageData}`)
+
+    const handlePageParam = (key,value) =>{
+        setSearchParams(p =>{
+            p.set(key, value)
+            return p
+        })
+    }
     // Retrieve data from db of selected products to view (products Collection)
     useEffect(() => {
         axios.get('http://localhost:5000/products')
         .then( product => {
             const productFound = product.data.find(p => p._id === productId);
             setData(productFound)  
+            // handlePageParam('name', productFound.name)
         })
         .catch(err=> console.log(err))
     }, [productId]) 
@@ -31,6 +47,7 @@ export default function ProductDetails(){
             // behavior:'smooth'
         })
     },[])
+    
 
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
     return(
@@ -42,10 +59,8 @@ export default function ProductDetails(){
 
             <div id="wrapper">
                 <section id="detail_card_container">
-                    {/*[] TODO: takes user back to exact page where they left off.
-                    Consider: useNavigation , useLocation */}
-                    <Link to={`/products/${data.category}/`}>
-                        <button className="backBtn"><i className="bi bi-arrow-left"></i>Back</button>
+                    <Link onClick={()=>{navigate(-1)}}>
+                        <button  className="backBtn"><i className="bi bi-arrow-left"></i>Back</button>
                     </Link>
                     <div className="productDetailInfoContainer">
                              <img src={data.image}></img>
