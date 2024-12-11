@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react"
-import { Link, useNavigate, useParams } from "react-router-dom"
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom"
 import axios from 'axios';
 
 function DropDownList(){
 
     const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
     const [uniqueCategory,setUniqueCategory] = useState([]);
- 
 
     useEffect(()=>{
         axios.get('http://localhost:5000/products')

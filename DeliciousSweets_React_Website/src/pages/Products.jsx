@@ -14,7 +14,6 @@ function Products(){
     const {cat} = useParams();
     const dropdownCatSelection = cat;
 
-    
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
     const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
 
@@ -26,7 +25,7 @@ function Products(){
 
     // Will be default to page 1 or will read the URL sent from productDetail to get the page number to display
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1);
-    console.log(searchParams)
+    console.log("products: " +searchParams.get('page'))
   
     // Retrieveing data from db
     useEffect(()=>{
@@ -35,13 +34,22 @@ function Products(){
             // Sort data by name
             setData(product.data.sort((a,b) => (a.name > b.name) ? 1: -1))
             setFilteredData(product.data.filter(p=>p.category === dropdownCatSelection)) 
-            handlePageParam('page', currentPage)// rewrites the url displayed 
+            handlePageParam('page', currentPage)
         })
         .catch(err => console.log(err))
     },[category, dropdownCatSelection]) 
 
+    /*  Fixes page issue where user navigates through dropdown (only, not filter btns) 
+    *   and naviagtes to a page, then selects another category through dropdown, and
+    *   incorrectly displays a diffetnet page of products and page number,
+    *   inseatd of defaulting to page 1
+    *   ex:  viewing page 2 of pastry -> selects brownies = is shown page 2 of brownies, instead *   of page 1
+    */
     useEffect(()=>{
         setCategory(dropdownCatSelection)
+        if(searchParams.get("page") === null){
+            setCurrentPage(1)
+        }
     },[dropdownCatSelection])
 
     // User selects a category button to display certain products
