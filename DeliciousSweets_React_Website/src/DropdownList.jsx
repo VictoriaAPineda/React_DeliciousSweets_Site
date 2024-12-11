@@ -6,6 +6,7 @@ function DropDownList(){
 
     const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
     const [uniqueCategory,setUniqueCategory] = useState([]);
+ 
 
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
@@ -31,7 +32,7 @@ function DropDownList(){
                 uniqueCategory.map((category)=> (
                     <li className= 'dropdown-item' key={category}>
                         {/* Assign each caetgory to a url pathname */}
-                        {/* Use the :id to tell Products.jsx what category to display*/}
+                        {/* Use the :cat to tell Products.jsx what category to display*/}
                         <Link to ={`/products/${category}`}>
                             <p key={category}>{category}</p>
                         </Link>

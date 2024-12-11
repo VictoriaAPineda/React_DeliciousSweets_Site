@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom"
+import { Link, useLocation, useParams, useSearchParams } from "react-router-dom"
 
 import BannerSpecial from "../BannerSpecial";
 import brownieImg from "/src/images/brownines-img.png"
@@ -12,7 +12,8 @@ function Products(){
     ** {`/products/${category}`}
     */
     const {cat} = useParams();
-    const specificCategory = cat;
+    const dropdownCatSelection = cat;
+
     
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
     const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
@@ -22,29 +23,32 @@ function Products(){
     const [category, setCategory] = useState([]); 
     const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
     const location = useLocation(); // Hold the current Url information 
-    // Will be default to page 1 or will read the URL from detail to ge the page number to display
+
+    // Will be default to page 1 or will read the URL sent from productDetail to get the page number to display
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1);
-   
+    console.log(searchParams)
+  
     // Retrieveing data from db
-    /* note prevent page from reloading to defaults after the inital render. */
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
         .then(product => {
             // Sort data by name
             setData(product.data.sort((a,b) => (a.name > b.name) ? 1: -1))
-            // Initial filter for user's pre-selected category via the dropdown
-            const intialFilter = product.data.filter(p=>p.category === specificCategory)
-            setCategory(specificCategory)
-            setFilteredData(intialFilter)   
-            handlePageParam('page', currentPage)// writes the url
+            setFilteredData(product.data.filter(p=>p.category === dropdownCatSelection)) 
+            handlePageParam('page', currentPage)// rewrites the url displayed 
         })
         .catch(err => console.log(err))
-    },[specificCategory])// accounts for drop down selection
-    
+    },[category, dropdownCatSelection]) 
+
     useEffect(()=>{
-        console.log("window href [in products]:"+window.location.href)
-    },[location])
-   
+        setCategory(dropdownCatSelection)
+        // If hover is activated then...
+        
+
+
+
+    },[dropdownCatSelection])
+
     // User selects a category button to display certain products
     const onCategoryClick = (category) => () => {
         const filtered = data.filter( product =>{
@@ -87,7 +91,7 @@ function Products(){
         handlePageParam('page', currentPage)
     },[currentPage, category])
 
-    // Adds a new param the URL called 'page' ex: ( page = page number)
+    // Adds a new param the URL for tracking pages called 'page' ex: ( page = page number)
     const handlePageParam = (key,value) =>{
         setSearchParams(p =>{
             p.set(key, value)
