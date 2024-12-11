@@ -10,9 +10,12 @@ import axios from "axios";
 It will then display details and ordering options. */}
 export default function ProductDetails(){
 
+    // id from url sent by products.jsx
     const {id} = useParams();
     const productId = id;
+    
     const [data, setData] =  useState([]);
+
     const location = useLocation();
     /* 
        Retrieves the state data from the state from the Link to this page 

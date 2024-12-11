@@ -33,6 +33,7 @@ function DropDownList(){
                     <li className= 'dropdown-item' key={category}>
                         {/* Assign each caetgory to a url pathname */}
                         {/* Use the :cat to tell Products.jsx what category to display*/}
+                        {/*TODO: Dropdown should default to page 1 of the category clicked*/}
                         <Link to ={`/products/${category}`}>
                             <p key={category}>{category}</p>
                         </Link>

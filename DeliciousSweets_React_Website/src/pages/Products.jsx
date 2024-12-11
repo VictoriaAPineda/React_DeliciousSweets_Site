@@ -42,11 +42,6 @@ function Products(){
 
     useEffect(()=>{
         setCategory(dropdownCatSelection)
-        // If hover is activated then...
-        
-
-
-
     },[dropdownCatSelection])
 
     // User selects a category button to display certain products
