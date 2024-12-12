@@ -21,30 +21,30 @@ export const responsive = {
   };
 
 /* dummy data for products*/
-export const productData = [
-    {
-        id: 1,
-        image:defaultCardImg,
-        name:"Product 01",
-    },
-    {
-        id: 2,
-        image:defaultCardImg,
-        name:"Product 02",
-    },
-    {
-        id: 3,
-        image:defaultCardImg,
-        name:"Product 03",
-    },
-    {
-        id: 4,
-        image:defaultCardImg,
-        name:"Product 04",
-    },
-    {
-        id: 5,
-        image:defaultCardImg,
-        name:"Product 05",
-    },
-  ]
+// export const productData = [
+//     {
+//         id: 1,
+//         image:defaultCardImg,
+//         name:"Product 01",
+//     },
+//     {
+//         id: 2,
+//         image:defaultCardImg,
+//         name:"Product 02",
+//     },
+//     {
+//         id: 3,
+//         image:defaultCardImg,
+//         name:"Product 03",
+//     },
+//     {
+//         id: 4,
+//         image:defaultCardImg,
+//         name:"Product 04",
+//     },
+//     {
+//         id: 5,
+//         image:defaultCardImg,
+//         name:"Product 05",
+//     },
+//   ]
