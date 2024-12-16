@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-export default function MultiCarousel({productCategory}){
+export default function MultiCarousel({productCategory, moveScreenToTarget}){
  
     const [filteredData, setFilteredData] = useState([])
     const [data, setData] = useState([]);
@@ -24,14 +24,11 @@ export default function MultiCarousel({productCategory}){
     },[productCategory])
 
     const moveDisplayUp = () =>{
-      window.scrollTo({
-        top:0,
-        left:0,
-        // behavior:'smooth'
-    })
+      moveScreenToTarget.current.scrollIntoView();
     }
 
     // Display other products in carousel within the same category of the selected product
+    // Move screen to view product upon selection
     const product = filteredData.map(item =>(
         <Link to={`/productDetails/${item._id}`} onClick={moveDisplayUp}>
           <Product 

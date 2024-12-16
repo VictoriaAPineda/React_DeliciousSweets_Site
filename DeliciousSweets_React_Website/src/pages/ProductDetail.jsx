@@ -2,7 +2,7 @@ import infoBannerImg from "/src/images/bread_display.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
 
@@ -16,6 +16,8 @@ export default function ProductDetails(){
     
     const [data, setData] =  useState([]);
     const navigate = useNavigate();
+    // Target area of screen to move user to view upon clicking on carousel
+    const targetRef = useRef();
 
     // const location = useLocation();
     /* 
@@ -47,7 +49,6 @@ export default function ProductDetails(){
         })
     },[])
  
-
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
     return(
         <>
@@ -56,12 +57,12 @@ export default function ProductDetails(){
                 <p>information</p>
             </section>
 
-            <div id="wrapper">
-                <section id="detail_card_container">
+            <div id="wrapper" ref={targetRef}>
+                <section id="detail_card_container" >
                     {/* <Link to={`/products/${data.category}${pageData}`}> */}
                         <button  className="backBtn" onClick={handlePrevious}><i className="bi bi-arrow-left"></i>Back</button>
                     {/* </Link> */}
-                    <div className="productDetailInfoContainer">
+                    <div className="productDetailInfoContainer" >
                              <img src={data.image}></img>
                              <div className="info">
                                  <p className="detailProductName">{data.name}</p>
@@ -86,7 +87,7 @@ export default function ProductDetails(){
                              </div>
                     </div>
 
-                    {/* TODO: [ ] Bring in data from Reveiws db */}
+                    {/* TODO: Bring in data from Reveiws db */}
                     <div className="specificationAndReviewContainer">
                         {/* Specs.(size/ingredients) and Reviews are tabbed. Clicking to displays section. Specs displayed by default. 
                         Use states.[selected,setSelected] = useState(_default_here_) 
@@ -100,9 +101,9 @@ export default function ProductDetails(){
                     </div>
                 </section>
 
-                {/* TODOS: 1.Carousel of items each link(img) to the product's detail page
-                2.Cart be updated in real-time to cart icon on screen via a circle count
-                3. reviews by proudct's id, in own database
+                {/* TODOS: 
+                    1.Cart be updated in real-time to cart icon on screen via a circle count
+                    2. reviews by proudct's id, in own database
                 */}
                 <section id="advertisments">
                     <div className="mainAdImgs">
@@ -119,7 +120,7 @@ export default function ProductDetails(){
                 
                     {/* Display products within the same category */}
                     <div className="relatedProductsCarouselContainer">
-                        <MultiCarousel productCategory = {data.category}/>
+                        <MultiCarousel productCategory = {data.category} moveScreenToTarget = {targetRef}/>
                     </div>
                 </section>
                
