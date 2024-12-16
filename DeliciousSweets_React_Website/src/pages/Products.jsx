@@ -21,11 +21,22 @@ function Products(){
     const [filteredData, setFilteredData] = useState([]);
     const [category, setCategory] = useState([]); 
     const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
-    const location = useLocation(); // Hold the current Url information 
+    // const location = useLocation(); // Hold the current Url information 
 
-    // Will be default to page 1 or will read the URL sent from productDetail to get the page number to display
+    // Will be default to page 1 or will read the modified URL to display page number within the URL
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1);
-    console.log("products: " +searchParams.get('page'))
+
+    // Adds a new param the URL for tracking pages called 'page' ex: ( page = page number)
+    const handlePageParam = (key,value) =>{
+        setSearchParams(p =>{
+            p.set(key, value)
+            return p
+        })
+    }
+    // Updates/Modifies the page number in the URL parameter as user navigates
+    useEffect(()=>{
+        handlePageParam('page', currentPage)
+    },[currentPage, category])
   
     // Retrieveing data from db
     useEffect(()=>{
@@ -90,18 +101,7 @@ function Products(){
             setCurrentPage(currentPage - 1)
         }
     }
-    useEffect(()=>{
-        handlePageParam('page', currentPage)
-    },[currentPage, category])
-
-    // Adds a new param the URL for tracking pages called 'page' ex: ( page = page number)
-    const handlePageParam = (key,value) =>{
-        setSearchParams(p =>{
-            p.set(key, value)
-            return p
-        })
-    }
-
+   
     return(
         <>
             <section>
@@ -151,7 +151,8 @@ function Products(){
                                     *  'page' parameter to return to the specific page user left before viewing 
                                     *   a product detail page after using the back button  
                                     */}
-                                    <Link className={"view_link"} to={`/productDetails/${product._id}`} state={location.search}>
+                                    {/* removed state={location.search} */}
+                                    <Link className={"view_link"} to={`/productDetails/${product._id}`}>
                                         <button className="viewBtn" >View</button>
                                     </Link>
                                 </div>

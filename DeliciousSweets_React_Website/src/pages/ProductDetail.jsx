@@ -1,10 +1,10 @@
 import infoBannerImg from "/src/images/bread_display.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
-import { Link, useLocation, useParams } from "react-router-dom";
-import ProductMultiCarousel from "../MultiCarousel"
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import MultiCarousel from "../MultiCarousel";
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -15,14 +15,15 @@ export default function ProductDetails(){
     const productId = id;
     
     const [data, setData] =  useState([]);
+    const navigate = useNavigate();
 
-    const location = useLocation();
+    // const location = useLocation();
     /* 
        Retrieves the state data from the state from the Link to this page 
        the data contains the located page number ex: (?page=2) that will be 
        used to go back to a previos page number a user was on
     */
-    const pageData = location.state;
+    // const pageData = location.state;
 
     // Retrieve data from db of selected products to view (products Collection)
     useEffect(() => {
@@ -34,6 +35,10 @@ export default function ProductDetails(){
         .catch(err=> console.log(err))
     }, [productId]) 
 
+    const handlePrevious = () => {
+        navigate(-1);
+    }
+
     useEffect(()=>{
         window.scrollTo({
             top:0,
@@ -41,7 +46,7 @@ export default function ProductDetails(){
             // behavior:'smooth'
         })
     },[])
-    
+ 
 
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
     return(
@@ -53,9 +58,9 @@ export default function ProductDetails(){
 
             <div id="wrapper">
                 <section id="detail_card_container">
-                    <Link to={`/products/${data.category}${pageData}`}>
-                        <button  className="backBtn"><i className="bi bi-arrow-left"></i>Back</button>
-                    </Link>
+                    {/* <Link to={`/products/${data.category}${pageData}`}> */}
+                        <button  className="backBtn" onClick={handlePrevious}><i className="bi bi-arrow-left"></i>Back</button>
+                    {/* </Link> */}
                     <div className="productDetailInfoContainer">
                              <img src={data.image}></img>
                              <div className="info">
@@ -112,11 +117,9 @@ export default function ProductDetails(){
                        
                     </div>
                 
+                    {/* Display products within the same category */}
                     <div className="relatedProductsCarouselContainer">
-                            {/*TODO: Add Carousel of produtcs in same category user seaching in.
-                            Obtainer info based on Products page cat. selection (props) */}  
-                            <ProductMultiCarousel productCategory = {data.category}/>
-
+                        <MultiCarousel productCategory = {data.category}/>
                     </div>
                 </section>
                
