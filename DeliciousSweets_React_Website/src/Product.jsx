@@ -5,7 +5,7 @@ export default function Product(props){
         <div className='carouselCard'>
             <img className='cardImg' src={props.image}/>
             <div className='cardInfo'>
-                <p>{props.name}</p>
+                <p className='carousel_text'>{props.name}</p>
             </div>
         </div>
     )

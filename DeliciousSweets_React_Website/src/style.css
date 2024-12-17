@@ -909,6 +909,7 @@ body{
     z-index: 3; 
     margin-left: 20px;
 }
+
 .carouselCard{
     margin-right: 30px;
 }
@@ -922,11 +923,17 @@ body{
     display: flex;
     justify-content: center;
 }
+.linkToProduct{
+    text-decoration: none;
+}
+.carouselCard .cardInfo .carousel_text{
+    color: white;
+}
+
+
 
 
 /* Cart Page Currently working on */
-
-
 #cart-page-container{
     background-image: url(./images/woodentableBG.jpg);
     background-size: cover;

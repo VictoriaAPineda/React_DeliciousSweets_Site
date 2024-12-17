@@ -120,7 +120,7 @@ export default function ProductDetails(){
                 
                     {/* Display products within the same category */}
                     <div className="relatedProductsCarouselContainer">
-                        <MultiCarousel productCategory = {data.category} moveScreenToTarget = {targetRef}/>
+                        <MultiCarousel productCategory = {data.category} currProductId = {data._id} moveScreenToTarget = {targetRef}/>
                     </div>
                 </section>
                
