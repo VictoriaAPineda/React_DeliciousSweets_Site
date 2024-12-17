@@ -31,6 +31,7 @@ function App() {
           <Route path="/productDetails">
             {/* Each product's personal page with its own data */}
             <Route exact path=":id" element={<ProductDetails />}/>
+            {/* <Route path=":cat/:name" element={<ProductDetails />}/> */}
           </Route>
 
           

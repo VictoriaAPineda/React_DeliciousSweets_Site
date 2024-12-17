@@ -1,7 +1,7 @@
 import infoBannerImg from "/src/images/bread_display.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
@@ -13,13 +13,13 @@ export default function ProductDetails(){
     // id from url sent by products.jsx
     const {id} = useParams();
     const productId = id;
+
     
     const [data, setData] =  useState([]);
     const navigate = useNavigate();
     // Target area of screen to move user to view upon clicking on carousel
     const targetRef = useRef();
-
-    // const location = useLocation();
+    
     /* 
        Retrieves the state data from the state from the Link to this page 
        the data contains the located page number ex: (?page=2) that will be 
@@ -33,6 +33,7 @@ export default function ProductDetails(){
         .then( product => {
             const productFound = product.data.find(p => p._id === productId);
             setData(productFound)  
+            // navigate(`${productFound.category}/${productFound.name}`)
         })
         .catch(err=> console.log(err))
     }, [productId]) 
