@@ -831,27 +831,31 @@ body{
     letter-spacing: 2px;
     /* margin-bottom: 10px; */
 }
+/* product detail - tab group Working.....*/
 .specificationAndReviewContainer{
     margin-top: 20px;
 }
-.tabGroup{
-    display: flex;
-    margin-bottom: -10px;
-}
-.tabbedText{
+.tab-btn{
     background-color: #E5BCA5;
     padding: 10px 20px;
     border-radius: 10px 10px 0px 0px;
     cursor: pointer;
+    border: none;
 }
-.tabbedText.selected{
+.tab-btn.active{
     background-color: #F5DACA;
 }
-.displayedInfo{
+.tabContent{
     background-color: #F5DACA;
     padding: 20px;
-   
+    /* visibility: hidden; */
 }
+.tabContent.active{
+    /* visibility: visible ; */
+}
+
+/* --- */
+
 #advertisments{
     display: flex;
     flex-direction: column;

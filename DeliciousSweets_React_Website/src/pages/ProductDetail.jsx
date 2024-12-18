@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate, useParams, useSearchParams } from "reac
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
+import Tabs from "../Tabs";
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -88,17 +89,11 @@ export default function ProductDetails(){
                              </div>
                     </div>
 
-                    {/* TODO: Bring in data from Reveiws db */}
+                    {/* Tabbed */}
+                    {/* TODO: Bring in data from Reveiws db 
+                    each review matches with a id of a product */}
                     <div className="specificationAndReviewContainer">
-                        {/* Specs.(size/ingredients) and Reviews are tabbed. Clicking to displays section. Specs displayed by default. 
-                        Use states.[selected,setSelected] = useState(_default_here_) 
-                        the one selecetd will hav its bg color changed*/}
-                        <div className="tabGroup">
-                            <p className="tabbedText selected">Specifiction</p>
-                            <p className="tabbedText">Reviews</p>
-                        </div>
-                      
-                        <p className="displayedInfo">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo excepturi repudiandae mollitia rem vero voluptates minima assumenda architecto consequuntur quia praesentium facilis, impedit debitis! Aut porro temporibus rerum voluptatibus neque? Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quia, quis facere dolore in nemo quaerat harum eveniet ex modi sequi. Numquam, illo suscipit! Pariatur quo quasi quas vero eum?</p>
+                        <Tabs/>
                     </div>
                 </section>
 
