@@ -89,10 +89,9 @@ export default function ProductDetails(){
                              </div>
                     </div>
 
-                    {/* Tabbed */}
-                    {/* TODO: Bring in data from Reveiws db 
-                    each review matches with a id of a product */}
+                    {/* Display Product Reviews and specification info*/}
                     <div className="specificationAndReviewContainer">
+                        {/* Pass in product id */}
                         <Tabs/>
                     </div>
                 </section>
