@@ -28,10 +28,12 @@ function Tabs(){
         const starArr = [] // holds the resulting star display
 
         // [1] - Adds on the calculated full stars
+        // A for loop cause there can be multiple full stars
         for(let i = 0; i < fullStar; i++){
             starArr.push(<i key={i} className="bi bi-star-fill"></i>)
         }
         // [2] - Adds on the calculated half stars
+        // if statement as there can be only 1 half star
         if(halfStar){
             starArr.push(<i className="bi bi-star-half"></i>)
         }
