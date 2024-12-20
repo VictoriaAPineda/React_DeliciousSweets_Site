@@ -23,8 +23,6 @@ function Tabs(){
         // break down the score inputted
         const fullStar = Math.floor(score) // holds how many full stars
         const halfStar = score % 1 !== 0 // holds the half star if any
-
-        console.log("full: " + fullStar + " half: " + halfStar)
         const starArr = [] // holds the resulting star display
 
         // [1] - Adds on the calculated full stars
@@ -32,7 +30,7 @@ function Tabs(){
         for(let i = 0; i < fullStar; i++){
             starArr.push(<i key={i} className="bi bi-star-fill"></i>)
         }
-        // [2] - Adds on the calculated half stars
+        // [2] - Adds on the calculated half star (if any)
         // if statement as there can be only 1 half star
         if(halfStar){
             starArr.push(<i className="bi bi-star-half"></i>)
