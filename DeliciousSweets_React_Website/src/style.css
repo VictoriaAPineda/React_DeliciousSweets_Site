@@ -841,6 +841,8 @@ body{
     border-radius: 10px 10px 0px 0px;
     cursor: pointer;
     border: none;
+    font-family: 'Dancing Script';
+    font-size: 1.5rem;
 }
 .tab-btn.active{
     background-color: #F5DACA;
@@ -848,10 +850,16 @@ body{
 .tabContent{
     background-color: #F5DACA;
     padding: 20px;
-    /* visibility: hidden; */
+    border-radius: 0px 10px 0px 0px;
 }
-.tabContent.active{
-    /* visibility: visible ; */
+.review-container{
+    padding-bottom: 15px;
+}
+.review-container .username{
+    font-size: 1.5rem;
+}
+.review-container .review{
+    font-style: italic;
 }
 
 /* --- */
