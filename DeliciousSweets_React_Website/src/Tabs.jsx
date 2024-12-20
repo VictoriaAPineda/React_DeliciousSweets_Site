@@ -22,7 +22,7 @@ function Tabs(){
     const starRatingDisplay = (score) =>{
         // break down the score inputted
         const fullStar = Math.floor(score) // holds how many full stars
-        const halfStar = score % 1 !== 0 // holds how many half stars
+        const halfStar = score % 1 !== 0 // holds the half star if any
 
         console.log("full: " + fullStar + " half: " + halfStar)
         const starArr = [] // holds the resulting star display
