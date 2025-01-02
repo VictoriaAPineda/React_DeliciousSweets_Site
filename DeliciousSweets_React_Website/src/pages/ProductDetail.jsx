@@ -92,7 +92,7 @@ export default function ProductDetails(){
                     {/* Display Product Reviews and specification info*/}
                     <div className="specificationAndReviewContainer">
                         {/* Pass in product id */}
-                        <Tabs/>
+                        <Tabs productDataId ={data._id}/>
                     </div>
                 </section>
 

@@ -6,6 +6,7 @@ const app = express();
 app.use(cors());
 
 const Product = require('./models/product')
+const Review = require('./models/review')
 
 // Connects to MongoDB
 const dbURI = 'mongodb+srv://Victoria:1234AdminMDB@delicioussweetscluster.v5stmxn.mongodb.net/DeliciousSweetsDB?retryWrites=true&w=majority&appName=DeliciousSweetsCluster'
@@ -25,6 +26,16 @@ app.get('/products', (req, res)=>{
         res.json(result)
     })
     .catch((err)=>{
+        console.log(err)
+    })
+})
+// Get Review from db
+app.get('/reviews', (req, res) =>{
+    Review.find()
+    .then((result) => {
+        res.json(result)
+    })
+    .catch((err) =>{
         console.log(err)
     })
 })

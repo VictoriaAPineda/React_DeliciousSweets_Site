@@ -22,7 +22,7 @@ export default function StarRatingDisplay({score}){
     // each half start counts as "one star"
     for(let i = fullStar + (halfStar ? 1 : 0); i < maxStars; i++){
         // Fills up rest of array with empty stars
-        starArr.push(<i class="bi bi-star"></i>)
+        starArr.push(<i className="bi bi-star"></i>)
     }
     return starArr
 }
