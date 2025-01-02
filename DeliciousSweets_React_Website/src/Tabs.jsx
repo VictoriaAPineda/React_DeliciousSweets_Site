@@ -57,8 +57,8 @@ function Tabs({productDataId}){
                  { activeTab === 1 && 
                     <div>
                         {tabs[1].content.map( review =>(
-                        <div className="review-container" key={review.uid}>
-                            <p className="username">{review.name}</p>
+                        <div className="review-container" key={review._id}>
+                            <p className="username">{review.username}</p>
                             <StarRatingDisplay score = {review.rating}/>
                             <p className="review">"{review.review}"</p>
                         </div>
