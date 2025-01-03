@@ -18,6 +18,7 @@ mongoose.connect(dbURI)
     })
     .catch((err) => console.log(err))
 
+// Note: Reload server to see changes or else get error CANNOT GET/
 // Get Products from db 
 // What is retrieved is stored into the /products resource url
 app.get('/products', (req, res)=>{

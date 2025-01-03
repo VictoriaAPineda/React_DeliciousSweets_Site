@@ -1,5 +1,3 @@
-
-
 export default function StarRatingDisplay({score}){
     const maxStars = 5;
   

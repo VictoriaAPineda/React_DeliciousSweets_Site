@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import StarRatingDisplay from "./starRatingDisplay";
 import axios from "axios";
+import Pagination from "./Pagination";
 
 // Note: Mock data set for cookies - > macaroons only filled with reviews (fill in mock data later)
 
@@ -56,14 +57,20 @@ function Tabs({productDataId}){
                 {/* Reviews*/}
                  { activeTab === 1 && 
                     <div>
-                        {tabs[1].content.map( review =>(
-                        <div className="review-container" key={review._id}>
-                            <p className="username">{review.username}</p>
-                            <StarRatingDisplay score = {review.rating}/>
-                            <p className="review">"{review.review}"</p>
-                        </div>
+                        {reviews.map( review =>(
+                            <div className="review-container" key={review._id}>
+                                <p className="username">{review.username}</p>
+                                <StarRatingDisplay score = {review.rating}/>
+                                <p className="review">"{review.review}"</p>
+                            </div>
                         ))}
-                    </div>       
+                        <Pagination 
+                            itemsData = {reviews}
+                            perPageLimit = {2}
+                            setPageItems = {setReviews}
+                        />     
+                    </div>  
+                
                 } 
             </div>
         </div>
