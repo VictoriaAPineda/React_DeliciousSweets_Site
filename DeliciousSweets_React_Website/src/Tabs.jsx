@@ -10,7 +10,7 @@ function Tabs({productDataId}){
     const [specs, setSpecs] = useState([]);
     const [reviews, setReviews] = useState([])
     const [activeTab, setActiveTab] = useState(0);// tab index 0 default
-    const [itemPage, setItemPage] = useState([])
+    const [reviewPage, setReviewPage] = useState([])
 
     /* Retrieveing data from Products db*/
     useEffect(()=>{
@@ -56,20 +56,22 @@ function Tabs({productDataId}){
                 {/* Specs*/}
                 { activeTab === 0 && <p> {tabs[activeTab].content}</p> }
                 {/* Reviews*/}
-                {/* ERRROR! initally loading with all data */}
                  { activeTab === 1 && 
                     <div>
-                        {itemPage.map( review =>(
+                        {reviewPage.map( review =>(
                             <div className="review-container" key={review._id}>
                                 <p className="username">{review.username}</p>
                                 <StarRatingDisplay score = {review.rating}/>
                                 <p className="review">"{review.review}"</p>
                             </div>
                         ))}
+                        {/* reviews -  array of data to be formated
+                        *   setPageItems - function for setting up the formatted array of items
+                        */}
                         <Pagination 
                             itemsData = {reviews}
                             perPageLimit = {3}
-                            setPageItems = {setItemPage}
+                            setPageItems = {setReviewPage}
                         />     
                     </div>  
                 
