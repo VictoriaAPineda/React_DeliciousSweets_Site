@@ -20,9 +20,17 @@ export default function Pagination({ itemsData, perPageLimit, setPageItems}){
 
     const numOfPages = Math.ceil(data.length/itemsPerPage);
 
+    // ERROR: Switching tabs results then returning to reviews messes up page totals and numbers
+
     useEffect(()=>{
         setPageItems(items)
     },[currentPage])
+
+    useEffect(()=>{
+        if(currentPage > numOfPages && numOfPages > 0){
+            setCurrentPage(1)
+        }
+    },[currentPage, numOfPages])
 
     function nextPageBtn(){
         if(currentPage != numOfPages){
