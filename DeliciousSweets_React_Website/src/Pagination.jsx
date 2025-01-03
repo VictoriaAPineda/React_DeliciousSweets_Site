@@ -8,7 +8,6 @@ import { useState } from "react";
     (to update/re-render the format of items displayed)
 */
 export default function Pagination({ itemsData, perPageLimit, setPageItems}){
-
     const [data, setData] = useState(itemsData) // user provided 
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = perPageLimit; // User provided 
@@ -24,7 +23,7 @@ export default function Pagination({ itemsData, perPageLimit, setPageItems}){
 
     useEffect(()=>{
         setPageItems(items)
-    },[currentPage])
+    },[currentPage, items])
 
     useEffect(()=>{
         if(currentPage > numOfPages && numOfPages > 0){

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import StarRatingDisplay from "./starRatingDisplay";
 import axios from "axios";
 import Pagination from "./Pagination";
@@ -30,7 +30,7 @@ function Tabs({productDataId}){
             setReviews(reviews)
         })
         .catch(err => console.log(err))
-    },[productDataId])
+    },[productDataId, activeTab])
 
     const tabs = [
         { label: 'Specifications', content:` Specifications: ${specs}`},
@@ -66,7 +66,7 @@ function Tabs({productDataId}){
                         ))}
                         <Pagination 
                             itemsData = {reviews}
-                            perPageLimit = {2}
+                            perPageLimit = {3}
                             setPageItems = {setReviews}
                         />     
                     </div>  
