@@ -15,8 +15,8 @@ export default function ProductDetails(){
     const {id} = useParams();
     const productId = id;
 
-    
     const [data, setData] =  useState([]);
+    const [quantityCount, setQuantityCount] = useState(0)
     const navigate = useNavigate();
     // Target area of screen to move user to view upon clicking on carousel
     const targetRef = useRef();
@@ -50,6 +50,15 @@ export default function ProductDetails(){
             // behavior:'smooth'
         })
     },[])
+
+    const handleIncrement = () =>{
+        setQuantityCount(quantityCount + 1)
+    }
+
+    const handleDecrement = () =>{
+        const q = quantityCount -1
+        setQuantityCount(q < 0 ? 0 : q)
+    }
  
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
     return(
@@ -80,12 +89,14 @@ export default function ProductDetails(){
                                  <p className="detailPrice">${parseFloat(data.price).toFixed(2)}</p>
                                  <p className="detailDescription">{data.description}</p>
                                  <div className="detailBtnGroup">
-                                     {/*TODO: btns has a onClick event to inc/dec */}
-                                     <i className="bi bi-dash-circle-fill"></i>
-                                     <div className="quantity">0</div>
-                                     <i className="bi bi-plus-circle-fill"></i>
-                                     {/* TODO: Add to Cart will take the latest number and add it in cart*/}
-                                     <button className="addToCartBtn">Add To Cart +</button>
+                                    {/* Minus quantity*/}
+                                    <i className="bi bi-dash-circle-fill" onClick={handleDecrement}></i>
+                                    {/*Current quantity*/}
+                                    <div className="quantity"> {quantityCount}</div>
+                                    {/* Add quantity*/}
+                                    <i className="bi bi-plus-circle-fill" onClick={handleIncrement}></i>
+                                    {/* TODO: Add to Cart will take the latest number and add it in cart*/}
+                                    <button className="addToCartBtn">Add To Cart +</button>
                                  </div>
                              </div>
                     </div>
