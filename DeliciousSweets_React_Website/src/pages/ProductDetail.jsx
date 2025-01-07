@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate, useParams, useSearchParams } from "reac
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
-import Tabs from "../Tabs";
+import ProductInfoTabs from "../ProductInfoTabs"
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -68,6 +68,7 @@ export default function ProductDetails(){
                              <img src={data.image}></img>
                              <div className="info">
                                  <p className="detailProductName">{data.name}</p>
+                                 {/* TODO: Average of Reviwers Ratings */}
                                  <div className="detailStars">
                                      <i className="bi bi-star-fill"></i>
                                      <i className="bi bi-star-fill"></i>
@@ -76,7 +77,7 @@ export default function ProductDetails(){
                                      <i className="bi bi-star-half"></i>
                                  </div>
                                 
-                                 <p className="detailPrice">{data.price}</p>
+                                 <p className="detailPrice">${parseFloat(data.price).toFixed(2)}</p>
                                  <p className="detailDescription">{data.description}</p>
                                  <div className="detailBtnGroup">
                                      {/*TODO: btns has a onClick event to inc/dec */}
@@ -92,7 +93,7 @@ export default function ProductDetails(){
                     {/* Display Product Reviews and specification info*/}
                     <div className="specificationAndReviewContainer">
                         {/* Pass in product id */}
-                        <Tabs productDataId ={data._id}/>
+                        <ProductInfoTabs productDataId ={data._id}/>
                     </div>
                 </section>
 

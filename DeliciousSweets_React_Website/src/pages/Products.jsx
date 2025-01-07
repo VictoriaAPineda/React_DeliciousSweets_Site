@@ -7,6 +7,7 @@ import doughnutImg from "/src/images/doughnuts.jpg"
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
+
 function Products(){
     /* Getting (destructuring) the Category (:cat) from the url in DropdownList.jsx route 
     ** {`/products/${category}`}
@@ -15,12 +16,15 @@ function Products(){
     const dropdownCatSelection = cat;
 
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
-    const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
+    const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastrie"];
 
     const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
     const [filteredData, setFilteredData] = useState([]);
     const [category, setCategory] = useState([]); 
     const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
+    // const [productPage, setProductPage] = useState([])
+
+
     // const location = useLocation(); // Hold the current Url information 
 
     // Will be default to page 1 or will read the modified URL to display page number within the URL
@@ -49,6 +53,9 @@ function Products(){
         })
         .catch(err => console.log(err))
     },[category, dropdownCatSelection]) 
+
+
+   
 
     /*  Fixes page issue where user navigates through dropdown (only, not filter btns) 
     *   and naviagtes to a page, then selects another category through dropdown, and
@@ -101,7 +108,7 @@ function Products(){
             setCurrentPage(currentPage - 1)
         }
     }
-   
+
     return(
         <>
             <section>
@@ -137,14 +144,15 @@ function Products(){
                 {/* Products display */}
                 <div className="products_grid_container">
                     {/* Each product's displayed div */}
-                    { products.map((product)=> (
+                    {products.map((product)=> (
                         <div key={product._id}>
                              <div className="product box-shadow">
                                 <img src={product.image}></img>
                                 <div className="product_details_container">
                                     <p className="productName">{product.name}</p>
                                     <p className="productDescription">{product.description}</p>
-                                    <p className="price">${product.price}</p>
+                                    <p className="price">${parseFloat(product.price).toFixed(2)}</p>
+                                    
                                     {/* [1] Links to a product's own info page based on their id. 
                                     *   [2]location.search holds the current URL query string. 
                                     *   Used here to further specify the page number of the 
@@ -159,8 +167,8 @@ function Products(){
                             </div>
                         </div>
                     ))}
-     
-                    {/* Page Nav */}
+                
+                    {/* Page Nav*/}
                     <div className="pagination_container">
                         <div className="decoLine"></div>
                         <div className="navigation">
@@ -171,7 +179,8 @@ function Products(){
                             <button className="nextPageBtn"><i className="bi bi-caret-right-fill" onClick={nextPage}></i></button>
                         </div>
                         <div className="decoLine"></div>
-                    </div>
+                    </div> 
+
                 </div>
             </section>
         </>
