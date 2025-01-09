@@ -45,7 +45,7 @@ export default function MultiCarousel({productCategory, moveScreenToTarget, curr
     return(
         <>
             <div className='productsCarousel-container'>
-                <Carousel responsive={responsive} >
+                <Carousel responsive={responsive}>
                   {product}
                 </Carousel>
             </div>

@@ -1,9 +1,15 @@
+import { useContext } from 'react';
 import cardIcon from '/src/images/cardIcon.png';
 import timeIcon from '/src/images/clock.png';
 import truckIcon from '/src/images/delivery_truck.png';
 import phoneIcon from '/src/images/telephone.png';
+import { Cart } from "../contextAPI/CartContext";
 
-function Cart(){
+function UserCart(){
+    const {cart} = useContext(Cart);
+    console.log(cart)
+
+
     return(
         <>
 
@@ -20,7 +26,7 @@ function Cart(){
                                 <p className="quantity-col-title">Qty.</p>
                                 <p className="total-col-title">Total</p>
                             </div>
-        
+                            {/* Visual Mockup */}
                             <div className="order">
                                 <div className="product-data">
                                     <p>[IMG]</p>
@@ -127,7 +133,7 @@ function Cart(){
                                 <div className='assistance_contact'>
                                     <p>Need Assistance?</p>
                                     <div className="phoneContact">
-                                        <img class="phoneIcon" src={phoneIcon}></img>
+                                        <img className="phoneIcon" src={phoneIcon}></img>
                                         <p>555-555-5555</p>
                                 </div>
                                
@@ -147,4 +153,4 @@ function Cart(){
         </>
     )
 }
-export default Cart;
+export default UserCart;

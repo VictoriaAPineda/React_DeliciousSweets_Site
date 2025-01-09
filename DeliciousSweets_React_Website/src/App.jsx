@@ -4,9 +4,10 @@ import Home from "./pages/Home"
 import About from "./pages/About"
 import Contact from "./pages/Contact"
 import Products from "./pages/Products"
-import Cart  from "./pages/Cart"
+
 import { Route, Routes } from "react-router-dom"
 import ProductDetails from "./pages/ProductDetail"
+import UserCart from "./pages/UserCart"
 
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -27,7 +28,7 @@ function App() {
             <Route path=":cat/:page" element ={<Products/>} /> {/* [] TODO: want to display page as well */}
             <Route path= ":cat" element={<Products/>}/> {/* catch */}
           </Route>
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<UserCart />} />
           <Route path="/productDetails">
             {/* Each product's personal page with its own data */}
             <Route exact path=":id" element={<ProductDetails />}/>

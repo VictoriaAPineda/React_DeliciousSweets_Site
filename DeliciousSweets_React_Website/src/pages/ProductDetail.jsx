@@ -2,10 +2,11 @@ import infoBannerImg from "/src/images/bread_display.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
 import ProductInfoTabs from "../ProductInfoTabs"
+import { Cart } from "../contextAPI/CartContext";
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -20,6 +21,8 @@ export default function ProductDetails(){
     const navigate = useNavigate();
     // Target area of screen to move user to view upon clicking on carousel
     const targetRef = useRef();
+    const {cart, setCart} = useContext(Cart);
+    // console.log(useContext(Cart))
     
     /* 
        Retrieves the state data from the state from the Link to this page 
@@ -59,6 +62,15 @@ export default function ProductDetails(){
         const q = quantityCount -1
         setQuantityCount(q < 0 ? 0 : q)
     }
+
+    const addToCart = (item) =>{
+        if(item.quantity >= 1){
+            setCart([...cart,item])
+        }else{
+            console.log("Must be at least 1 to order")
+        }
+    }
+ 
  
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
     return(
@@ -96,7 +108,7 @@ export default function ProductDetails(){
                                     {/* Add quantity*/}
                                     <i className="bi bi-plus-circle-fill" onClick={handleIncrement}></i>
                                     {/* TODO: Add to Cart will take the latest number and add it in cart*/}
-                                    <button className="addToCartBtn">Add To Cart +</button>
+                                    <button className="addToCartBtn" onClick={()=>addToCart({productID: data._id, quantity: quantityCount, price: data.price})}>Add To Cart +</button>
                                  </div>
                              </div>
                     </div>
