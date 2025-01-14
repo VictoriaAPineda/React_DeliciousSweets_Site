@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import logo from "./logo/Delicious_Sweets.png"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import React from 'react'
 import DropdownMenu from "./DropdownMenu";
 import { Cart } from "./contextAPI/CartContext";
@@ -17,11 +17,7 @@ export default function Navbar() {
         setIsOpen(false);
     }
 
-    // const totaItemCount = () => {
-    //     const itemCount = cart.quantity.reduce((acc, quantity) => {
-    //         return acc + quantity
-    //     })
-    // }
+    const cartQuantity = cart.reduce((acc, item)=>acc+ item.itemQuantity, 0)
 
   return (
     <>
@@ -45,7 +41,7 @@ export default function Navbar() {
                         <li>
                             <DropdownMenu/>
                         </li>
-                        <li><Link to="/cart">Cart {cart.length} <i className="bi bi-cart2"></i></Link></li>
+                        <li><Link to="/cart">Cart <i className="bi bi-cart2"></i>({cartQuantity})</Link></li>
                     </ul>
                 </nav>
                 {/* list/hamburger icon for mobile menu */}

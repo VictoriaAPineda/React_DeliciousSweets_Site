@@ -1,14 +1,74 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import cardIcon from '/src/images/cardIcon.png';
 import timeIcon from '/src/images/clock.png';
 import truckIcon from '/src/images/delivery_truck.png';
 import phoneIcon from '/src/images/telephone.png';
-import { Cart } from "../contextAPI/CartContext";
+import CartContext, { Cart } from "../contextAPI/CartContext";
+import axios from 'axios';
 
 function UserCart(){
-    const {cart} = useContext(Cart);
-    console.log(cart)
+    const [cartItems, setCartItems] = useState([])
+    const {cart, setCart} = useContext(Cart);
+    
+    // Use cart data to load up data from Products by the productID provided
+    useEffect(()=>{
+        axios.get('http://localhost:5000/products')
+        .then( item => {
+            // Obtain the product's ids from cart 
+            const idArr = cart.map(i => i.itemId)
+            // Match the ids against the ids in Products db
+            setCartItems(item.data.filter( items => idArr.includes(items._id)))
+        })
+        .catch(err => console.log(err))
+    }, [cart])
 
+   // Calc total cost
+    const calcTotalCartCost = () => {
+        let total =  0;
+        // For each of the items in the cart
+        cartItems.forEach( item =>{
+            // macth the ids to find price in product db
+            const matchingQuantity = cart.find( q => q.itemId === item._id)
+            if(matchingQuantity){
+                total += item.price * matchingQuantity.itemQuantity
+            }
+        })
+        return total.toFixed(2)
+    }
+
+    // Calc total per item
+    const itemCost = (item) =>{
+        let total = 0
+        const quanitityFound =  cart.find( i=> i.itemId === item._id)
+        if(quanitityFound){
+            total = item.price * quanitityFound.itemQuantity
+        }
+        return total.toFixed(2)
+    }
+
+    // display quantity in input 
+    const displayQuantity = (item) =>{
+        const quanitityFound =  cart.find( i=> i.itemId === item._id)
+        if(quanitityFound){
+            return quanitityFound.itemQuantity
+        }
+    }
+    // user changes to quantity of a specific item
+    const handleCartItemQuantity = (event, item) => {
+        const newQuantity = parseInt(event.target.value)
+        
+        setCart( prevCart => prevCart.map(i =>{
+            if(i.itemId === item._id){
+                return {...i, itemQuantity: newQuantity}
+            }
+        }))
+
+    }
+    // console.log(cart)
+    // TODO: delete btn
+    // TODO: decimal places in cost, rounding bounds 
+    // TODO: adjust css for input field of item quantity
+    // ERROR: add to cart of detail not clearing aftr nav to anothr page [done]
 
     return(
         <>
@@ -24,40 +84,21 @@ function UserCart(){
                                 <p className="item-col-title">Item</p>
                                 <p className="price-col-title">Price</p>
                                 <p className="quantity-col-title">Qty.</p>
-                                <p className="total-col-title">Total</p>
+                                <p className="total-col-title">Item's Total</p>
                             </div>
-                            {/* Visual Mockup */}
-                            <div className="order">
-                                <div className="product-data">
-                                    <p>[IMG]</p>
-                                    <p>Name of Product</p>
+
+                            {cartItems.map((item)=>(
+                                <div className="order" key={item._id}>
+                                    <div className="product-data">
+                                        <p>{item.image}</p>
+                                        <p>{item.name}</p>
+                                    </div>
+                                    <p className="price-data">${item.price}</p>
+                                    <input className="qty-data" defaultValue = {displayQuantity(item)} onChange={(e)=>handleCartItemQuantity(e, item)}type="number" min={'1'}/>
+                                    <p className="total-data">${itemCost(item)}</p>
+                                    <button className="del-btn">X</button>
                                 </div>
-                                <p className="price-data">$19.99</p>
-                                <input className="qty-data" type="number" min={'1'}/>
-                                <p className="total-data">$19.99</p>
-                                <button className="del-btn">X</button>
-                            </div>
-                            <div className="order">
-                                <div className="product-data">
-                                    <p>[IMG]</p>
-                                    <p>Name of Product</p>
-                                </div>
-                                <p className="price-data">$19.99</p>
-                                <input className="qty-data" type="number" min={'1'}/>
-                                <p className="total-data">$19.99</p>
-                                <button className="del-btn">X</button>
-                            </div>
-                            <div className="order">
-                                <div className="product-data">
-                                    <p>[IMG]</p>
-                                    <p>Name of Product</p>
-                                </div>
-                                <p className="price-data">$19.99</p>
-                                <input className="qty-data" type="number" min={'1'}/>
-                                <p className="total-data">$19.99</p>
-                                <button className="del-btn">X</button>
-                            </div>
-          
+                            ))}
                             
                         </div>
 
@@ -76,7 +117,7 @@ function UserCart(){
                                     </div>
                                     <div className="total">
                                         <p>Total Order</p>
-                                        <p>$13.00</p>
+                                        <p>${calcTotalCartCost()}</p>
                                     </div>
                                 </div>
                                

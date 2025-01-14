@@ -16,7 +16,7 @@ function Products(){
     const dropdownCatSelection = cat;
 
     const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
-    const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastrie"];
+    const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
 
     const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
     const [filteredData, setFilteredData] = useState([]);

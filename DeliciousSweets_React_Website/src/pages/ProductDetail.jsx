@@ -38,6 +38,7 @@ export default function ProductDetails(){
             const productFound = product.data.find(p => p._id === productId);
             setData(productFound)  
             // navigate(`${productFound.category}/${productFound.name}`)
+            setQuantityCount(0) // clear input after user naviagtes away
         })
         .catch(err=> console.log(err))
     }, [productId]) 
@@ -63,15 +64,18 @@ export default function ProductDetails(){
         setQuantityCount(q < 0 ? 0 : q)
     }
 
-    const addToCart = (item) =>{
-        if(item.quantity >= 1){
-            setCart([...cart,item])
+    const addToCart = (id, quantity) => {
+        if(quantity >= 1){
+            const newCartObj = {
+                itemId: id,
+                itemQuantity: quantity 
+            }
+            setCart([...cart, newCartObj])           
         }else{
+            // TODO: Add a window pop up
             console.log("Must be at least 1 to order")
         }
     }
- 
- 
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
     return(
         <>
@@ -108,7 +112,7 @@ export default function ProductDetails(){
                                     {/* Add quantity*/}
                                     <i className="bi bi-plus-circle-fill" onClick={handleIncrement}></i>
                                     {/* TODO: Add to Cart will take the latest number and add it in cart*/}
-                                    <button className="addToCartBtn" onClick={()=>addToCart({productID: data._id, quantity: quantityCount, price: data.price})}>Add To Cart +</button>
+                                    <button className="addToCartBtn" onClick={()=>addToCart(data._id, quantityCount)}>Add To Cart +</button>
                                  </div>
                              </div>
                     </div>
