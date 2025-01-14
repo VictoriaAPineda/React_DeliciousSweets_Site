@@ -7,7 +7,7 @@ import CartContext, { Cart } from "../contextAPI/CartContext";
 import axios from 'axios';
 
 function UserCart(){
-    const [cartItems, setCartItems] = useState([])
+    const [cartItemsData, setcartItemsData] = useState([])
     const {cart, setCart} = useContext(Cart);
     
     // Use cart data to load up data from Products by the productID provided
@@ -17,59 +17,58 @@ function UserCart(){
             // Obtain the product's ids from cart 
             const idArr = cart.map(i => i.itemId)
             // Match the ids against the ids in Products db
-            setCartItems(item.data.filter( items => idArr.includes(items._id)))
+            setcartItemsData(item.data.filter( items => idArr.includes(items._id)))
         })
         .catch(err => console.log(err))
     }, [cart])
 
-   // Calc total cost
+
+    // Combine cart and cartItemsData into a array to add on the quanitity for easier accessing
+    const cartItemMergedData = cartItemsData.map((item) =>{
+        let itemObject = cart.find( item2 => item2.itemId === item._id)
+        // If the item is found (true) then add it to the combined array along with its properties
+        return itemObject ? {...item, ...itemObject} : item
+    })
+
+  
+   console.log(cartItemMergedData)
+   
+   // Calc total cost of whole cart
     const calcTotalCartCost = () => {
-        let total =  0;
-        // For each of the items in the cart
-        cartItems.forEach( item =>{
-            // macth the ids to find price in product db
-            const matchingQuantity = cart.find( q => q.itemId === item._id)
-            if(matchingQuantity){
-                total += item.price * matchingQuantity.itemQuantity
-            }
-        })
+        let total = cartItemMergedData.reduce((acc, item) => acc + (item.price * item.itemQuantity), 0)
         return total.toFixed(2)
     }
 
-    // Calc total per item
+    // Calc an item's total
     const itemCost = (item) =>{
-        let total = 0
-        const quanitityFound =  cart.find( i=> i.itemId === item._id)
-        if(quanitityFound){
-            total = item.price * quanitityFound.itemQuantity
-        }
+        let total = 0;
+        total = item.price * item.itemQuantity
         return total.toFixed(2)
     }
 
-    // display quantity in input 
-    const displayQuantity = (item) =>{
-        const quanitityFound =  cart.find( i=> i.itemId === item._id)
-        if(quanitityFound){
-            return quanitityFound.itemQuantity
-        }
-    }
-    // user changes to quantity of a specific item
-    const handleCartItemQuantity = (event, item) => {
+    // User's changes to quantity of a specific item
+    const handleCartItemQuantity = (event, itemToChange) => {
+        // Grab the user's input value
         const newQuantity = parseInt(event.target.value)
-        
-        setCart( prevCart => prevCart.map(i =>{
-            if(i.itemId === item._id){
-                return {...i, itemQuantity: newQuantity}
-            }
-        }))
 
+        setCart( prevCart => prevCart.map(item => 
+            item.itemId === itemToChange._id ? {...item, itemQuantity : newQuantity} : item))
     }
-    // console.log(cart)
-    // TODO: delete btn
-    // TODO: decimal places in cost, rounding bounds 
+
+    // delete item from cart
+    const handleDeleteItem = (itemToDel) => {
+        const updateCart = cart.filter((item) => item.itemId  !== itemToDel._id)
+        setCart(updateCart)
+    };
+
     // TODO: adjust css for input field of item quantity
-    // ERROR: add to cart of detail not clearing aftr nav to anothr page [done]
-    // allow updates to the cart item quantity in detailed page (changes sholud reflect)
+    // TODO: css responsiveness & styling
+    // ERROR: add to cart of detail not clearing aftr nav to anothr page 
+    /* TODO: Fix logic! - adding items on detail page add intially to cart, however, 
+    * if user goes back to page to add more, its shown on cart number icon, but not 
+    * ine actual cart. 
+    * ideas? - keep the quanity relfected on the deatil page is user goes back and adjusts. 
+    */
 
     return(
         <>
@@ -88,18 +87,19 @@ function UserCart(){
                                 <p className="total-col-title">Item's Total</p>
                             </div>
 
-                            {cartItems.map((item)=>(
+                             {  cartItemMergedData.length >= 1 && cartItemMergedData.map((item)=>(
                                 <div className="order" key={item._id}>
                                     <div className="product-data">
-                                        <p>{item.image}</p>
+                                       <img src={item.image}></img>
                                         <p>{item.name}</p>
                                     </div>
                                     <p className="price-data">${item.price}</p>
-                                    <input className="qty-data" defaultValue = {displayQuantity(item)} onChange={(e)=>handleCartItemQuantity(e, item)}type="number" min={'1'}/>
+                                    <input className="qty-data" defaultValue = {item.itemQuantity} onChange={(e)=>handleCartItemQuantity(e, item)} type = "number" min={'0'}/>
                                     <p className="total-data">${itemCost(item)}</p>
-                                    <button className="del-btn">X</button>
+                                    <button className="del-btn" onClick={() => handleDeleteItem(item)}>X</button>
                                 </div>
                             ))}
+                            {cartItemMergedData.length <= 0 && <h1>Cart is empty!</h1>}
                             
                         </div>
 
@@ -110,11 +110,11 @@ function UserCart(){
                                 <div>
                                     <div className="subtotal"> 
                                         <p>Subtotal</p>
-                                        <p>$12.00</p>
+                                        <p>$....tbi</p>
                                     </div>
                                     <div className="tax">
                                         <p>Tax</p>
-                                        <p>$1.00</p>
+                                        <p>$...tbi</p>
                                     </div>
                                     <div className="total">
                                         <p>Total Order</p>
