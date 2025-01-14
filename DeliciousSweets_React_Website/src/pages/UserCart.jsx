@@ -69,6 +69,7 @@ function UserCart(){
     // TODO: decimal places in cost, rounding bounds 
     // TODO: adjust css for input field of item quantity
     // ERROR: add to cart of detail not clearing aftr nav to anothr page [done]
+    // allow updates to the cart item quantity in detailed page (changes sholud reflect)
 
     return(
         <>
