@@ -9,7 +9,7 @@ import axios from 'axios';
 function UserCart(){
     const [cartItemsData, setcartItemsData] = useState([])
     const {cart, setCart} = useContext(Cart);
-    
+
     // Use cart data to load up data from Products by the productID provided
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
@@ -30,7 +30,8 @@ function UserCart(){
         return itemObject ? {...item, ...itemObject} : item
     })
 
-  
+
+   console.log("Cart Order")
    console.log(cartItemMergedData)
    
    // Calc total cost of whole cart

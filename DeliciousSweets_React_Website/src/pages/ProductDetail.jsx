@@ -65,13 +65,23 @@ export default function ProductDetails(){
     }
 
     const addToCart = (id, quantity) => {
-        if(quantity >= 1){
+        // Check to see if item is already in cart
+        const repeatItem = cart.find((item) => item.itemId === id)
+        if(repeatItem){
+            // Add the added-on quantity to the item
+            setCart((prev)=> prev.map((item) => 
+                item.itemId === id ? {...item, itemQuantity : item.itemQuantity + quantity }: item
+            ))
+        } 
+        // If new item, add to cart
+        else if(quantity >= 1){
             const newCartObj = {
                 itemId: id,
                 itemQuantity: quantity 
             }
-            setCart([...cart, newCartObj])           
-        }else{
+            setCart([...cart, newCartObj])     
+        } 
+        else{
             // TODO: Add a window pop up
             console.log("Must be at least 1 to order")
         }
