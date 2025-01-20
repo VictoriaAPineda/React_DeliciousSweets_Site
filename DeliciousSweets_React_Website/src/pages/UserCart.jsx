@@ -33,6 +33,7 @@ function UserCart(){
 
    console.log("Cart Order")
    console.log(cartItemMergedData)
+   console.log(cartItemMergedData)
    
    // Calc total cost of whole cart
     const calcTotalCartCost = () => {
@@ -52,8 +53,17 @@ function UserCart(){
         // Grab the user's input value
         const newQuantity = parseInt(event.target.value)
 
-        setCart( prevCart => prevCart.map(item => 
-            item.itemId === itemToChange._id ? {...item, itemQuantity : newQuantity} : item))
+        setCart((prevCart) => {
+                const updatedCart = prevCart.map((item) =>{
+                    if(item.itemId === itemToChange._id){
+                        return {...item, itemQuantity :  newQuantity}
+                    }
+                    return item
+                })
+                // When quantity reaches 0 removes from cart
+                return updatedCart.filter((item) => item.itemQuantity > 0)
+            }            
+        )
     }
 
     // delete item from cart
@@ -64,13 +74,7 @@ function UserCart(){
 
     // TODO: adjust css for input field of item quantity
     // TODO: css responsiveness & styling
-    // ERROR: add to cart of detail not clearing aftr nav to anothr page 
-    /* TODO: Fix logic! - adding items on detail page add intially to cart, however, 
-    * if user goes back to page to add more, its shown on cart number icon, but not 
-    * ine actual cart. 
-    * ideas? - keep the quanity relfected on the deatil page is user goes back and adjusts. 
-    */
-
+ 
     return(
         <>
 
@@ -87,11 +91,12 @@ function UserCart(){
                                 <p className="quantity-col-title">Qty.</p>
                                 <p className="total-col-title">Item's Total</p>
                             </div>
-
-                             {  cartItemMergedData.length >= 1 && cartItemMergedData.map((item)=>(
+                            {/* Display Cart items if at least 1 item is in cart */}
+                             {  cartItemMergedData.length >= 1 && cartItemMergedData.map((item)=>( 
                                 <div className="order" key={item._id}>
+                                    
                                     <div className="product-data">
-                                       <img src={item.image}></img>
+                                        <img src={item.image}></img>
                                         <p>{item.name}</p>
                                     </div>
                                     <p className="price-data">${item.price}</p>
@@ -100,6 +105,7 @@ function UserCart(){
                                     <button className="del-btn" onClick={() => handleDeleteItem(item)}>X</button>
                                 </div>
                             ))}
+                            {/* Display if no items are in cart */}
                             {cartItemMergedData.length <= 0 && <h1>Cart is empty!</h1>}
                             
                         </div>
