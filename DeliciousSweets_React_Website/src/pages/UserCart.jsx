@@ -56,6 +56,7 @@ function UserCart(){
         setCart((prevCart) => {
                 const updatedCart = prevCart.map((item) =>{
                     if(item.itemId === itemToChange._id){
+                        // Changes the object's quantity property value, keeps all else same
                         return {...item, itemQuantity :  newQuantity}
                     }
                     return item

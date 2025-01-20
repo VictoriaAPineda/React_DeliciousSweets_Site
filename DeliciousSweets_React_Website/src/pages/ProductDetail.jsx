@@ -7,6 +7,8 @@ import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
 import ProductInfoTabs from "../ProductInfoTabs"
 import { Cart } from "../contextAPI/CartContext";
+import ModalPopup from "../ModalPopup";
+
 
 {/*This page is shown when user clicks on view btn of a product.
 It will then display details and ordering options. */}
@@ -17,7 +19,10 @@ export default function ProductDetails(){
     const productId = id;
 
     const [data, setData] =  useState([]);
-    const [quantityCount, setQuantityCount] = useState(0)
+    const [quantityCount, setQuantityCount] = useState(0);
+
+    const [isModalOpen, setIsModalOpen] = useState(true) // false
+
     const navigate = useNavigate();
     // Target area of screen to move user to view upon clicking on carousel
     const targetRef = useRef();
@@ -64,6 +69,10 @@ export default function ProductDetails(){
         setQuantityCount(q < 0 ? 0 : q)
     }
 
+    const handleModalClose = () =>{
+        setIsModalOpen(false)
+    }
+
     const addToCart = (id, quantity) => {
         // Check to see if item is already in cart
         const repeatItem = cart.find((item) => item.itemId === id)
@@ -79,16 +88,18 @@ export default function ProductDetails(){
                 itemId: id,
                 itemQuantity: quantity 
             }
-            setCart([...cart, newCartObj])     
+            setCart([...cart, newCartObj])   
         } 
         else{
-            // TODO: Add a window pop up
-            console.log("Must be at least 1 to order")
+            setIsModalOpen(true)
         }
     }
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
     return(
-        <>
+     
+        <>   
+            {isModalOpen && <ModalPopup msg='Must be at least 1 to add to cart' onClose={handleModalClose}/>}
+            
             <section id="detailImgBannerContainer">
                 <img src={infoBannerImg}></img>
                 <p>information</p>

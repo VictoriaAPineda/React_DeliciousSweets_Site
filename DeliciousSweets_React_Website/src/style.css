@@ -260,6 +260,25 @@ body{
     margin-right: 5px;
 }
 
+/* Modal popup */
+.modal-container{
+    display: flex;
+    flex-direction: column; 
+    position: fixed;
+    justify-content: center;
+    align-items: center; 
+    z-index: 1000; 
+    background-color: #fff;
+    top: 10%;
+    left: 50%;
+    width: 500px;
+    height: 250px;
+    transform: translate(-50%, 50%);
+
+}
+
+
+
 /* Home webpage */
 #main-img-container{
     display: flex;
@@ -832,7 +851,7 @@ body{
     letter-spacing: 2px;
     /* margin-bottom: 10px; */
 }
-/* product detail - tab group Working.....*/
+/* product detail - tab group */
 .specificationAndReviewContainer{
     margin-top: 20px;
 }
@@ -863,7 +882,6 @@ body{
     font-style: italic;
 }
 
-/* --- */
 
 #advertisments{
     display: flex;
