@@ -78,9 +78,13 @@ export default function ProductDetails(){
         const repeatItem = cart.find((item) => item.itemId === id)
         if(repeatItem){
             // Add the added-on quantity to the item
-            setCart((prev)=> prev.map((item) => 
-                item.itemId === id ? {...item, itemQuantity : item.itemQuantity + quantity }: item
-            ))
+            if(quantity < 1){
+                setIsModalOpen(true)
+            }else{
+                setCart((prev)=> prev.map((item) => 
+                    item.itemId === id ? {...item, itemQuantity : item.itemQuantity + quantity }: item
+                ))
+            }
         } 
         // If new item, add to cart
         else if(quantity >= 1){
