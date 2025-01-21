@@ -33,7 +33,7 @@ function UserCart(){
 
    console.log("Cart Order")
    console.log(cartItemMergedData)
-   console.log(cartItemMergedData)
+
    
    // Calc total cost of whole cart
     const calcTotalCartCost = () => {

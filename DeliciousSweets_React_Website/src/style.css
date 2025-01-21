@@ -269,14 +269,36 @@ body{
     align-items: center; 
     z-index: 1000; 
     background-color: #fff;
-    top: 10%;
+    bottom: 60%;
     left: 50%;
-    width: 500px;
-    height: 250px;
+    width: 400px;
+    height: 400px;
     transform: translate(-50%, 50%);
-
+    border-radius: 10px;
+    padding: 50px;
+    /* border: #2b221e 5px solid; */
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.4), 0 7px 20px 0 rgba(0, 0, 0, 0.4);
 }
-
+.modal-container .modal-title{
+    font-family: 'Dancing Script', serif;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.modal-container .error-icon{
+    font-size: 50px;
+}
+.modal-container .modal-msg{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.modal-container .modal-close-btn{
+    width: 30%;
+    padding: 7px;
+    border-radius: 10px;
+    border: none;
+    background-color: #2b221e;
+    color: #fff;
+}
 
 
 /* Home webpage */

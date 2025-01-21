@@ -7,7 +7,8 @@ import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
 import ProductInfoTabs from "../ProductInfoTabs"
 import { Cart } from "../contextAPI/CartContext";
-import ModalPopup from "../ModalPopup";
+import ErrorModal from "../ErrorModal";
+import NotifModal from "../NotifModal"
 
 
 {/*This page is shown when user clicks on view btn of a product.
@@ -21,7 +22,8 @@ export default function ProductDetails(){
     const [data, setData] =  useState([]);
     const [quantityCount, setQuantityCount] = useState(0);
 
-    const [isModalOpen, setIsModalOpen] = useState(true) // false
+    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false) 
+    const [isNotifModalOpen, setIsNotifModalOpen] = useState(false) 
 
     const navigate = useNavigate();
     // Target area of screen to move user to view upon clicking on carousel
@@ -69,8 +71,15 @@ export default function ProductDetails(){
         setQuantityCount(q < 0 ? 0 : q)
     }
 
-    const handleModalClose = () =>{
-        setIsModalOpen(false)
+    const handleErrorModalClose = () =>{
+        setIsErrorModalOpen(false)
+    }
+
+    const handleAddCartClick = ()=>{
+        // Add to cart msg pop up won't run if 0 is being added
+        if(quantityCount >= 1){
+            setIsNotifModalOpen(true)
+        }
     }
 
     const addToCart = (id, quantity) => {
@@ -78,8 +87,8 @@ export default function ProductDetails(){
         const repeatItem = cart.find((item) => item.itemId === id)
         if(repeatItem){
             // Add the added-on quantity to the item
-            if(quantity < 1){
-                setIsModalOpen(true)
+            if(quantity <= 0){
+                setIsErrorModalOpen(true)
             }else{
                 setCart((prev)=> prev.map((item) => 
                     item.itemId === id ? {...item, itemQuantity : item.itemQuantity + quantity }: item
@@ -92,18 +101,20 @@ export default function ProductDetails(){
                 itemId: id,
                 itemQuantity: quantity 
             }
-            setCart([...cart, newCartObj])   
+            setCart([...cart, newCartObj])  
         } 
         else{
-            setIsModalOpen(true)
+            setIsErrorModalOpen(true)
         }
     }
     /* TODO: [ ] Cleanup pathname to simple name of product instead of objectID */
     return(
      
         <>   
-            {isModalOpen && <ModalPopup msg='Must be at least 1 to add to cart' onClose={handleModalClose}/>}
-            
+            {isErrorModalOpen && <ErrorModal msg='Quantity of order must be at least 1 to be added to cart' onClose={handleErrorModalClose}/>}
+
+            {isNotifModalOpen && <NotifModal msg='Added to cart!' close ={()=> setIsNotifModalOpen(false)}/>}
+
             <section id="detailImgBannerContainer">
                 <img src={infoBannerImg}></img>
                 <p>information</p>
@@ -137,7 +148,9 @@ export default function ProductDetails(){
                                     {/* Add quantity*/}
                                     <i className="bi bi-plus-circle-fill" onClick={handleIncrement}></i>
                                     {/* TODO: Add to Cart will take the latest number and add it in cart*/}
-                                    <button className="addToCartBtn" onClick={()=>addToCart(data._id, quantityCount)}>Add To Cart +</button>
+                                    <button className="addToCartBtn" onClick={()=>{addToCart(data._id, quantityCount);
+                                    handleAddCartClick()
+                                    }}>Add To Cart +</button>
                                  </div>
                              </div>
                     </div>
