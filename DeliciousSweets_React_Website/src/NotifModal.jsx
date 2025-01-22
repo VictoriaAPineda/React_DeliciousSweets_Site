@@ -5,14 +5,14 @@ const NotifModal = ({msg, close}) => {
     useEffect(() => {
         const timer = setTimeout(() => {
           close();
-        }, 1000); 
+        }, 3000); 
         return () => clearTimeout(timer);
       }, [close]);
 
     return(
         /* customize own css ...*/
-        <div className="modal-container">
-            <p className="modal-msg">{msg}</p>
+        <div className="notif-modal-container">
+            <p className="notif-modal-msg">{msg}</p>
         </div>
     
     )

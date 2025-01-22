@@ -112,7 +112,7 @@ export default function ProductDetails(){
      
         <>   
             {isErrorModalOpen && <ErrorModal msg='Quantity of order must be at least 1 to be added to cart' onClose={handleErrorModalClose}/>}
-
+            {/* Pass in the function to close pop up (changes the state to no longer display)*/ }
             {isNotifModalOpen && <NotifModal msg='Added to cart!' close ={()=> setIsNotifModalOpen(false)}/>}
 
             <section id="detailImgBannerContainer">

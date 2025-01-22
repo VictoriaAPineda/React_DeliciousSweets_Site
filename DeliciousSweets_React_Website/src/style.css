@@ -299,6 +299,27 @@ body{
     background-color: #2b221e;
     color: #fff;
 }
+/* Notifcation modal popup*/ 
+.notif-modal-container{
+    display: flex;
+    flex-direction: column; 
+    position: fixed;
+    justify-content: center;
+    align-items: center; 
+    z-index: 1000; 
+    background-color: #fff;
+    top: 10%;
+    left: 50%;
+    width: 150px;
+    height: 25px;
+    transform: translate(-50%, 50%);
+    border-radius: 10px;
+    padding-top: 8px;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.4), 0 7px 20px 0 rgba(0, 0, 0, 0.4);
+}
+.notif-modal-msg{
+    font-size: 0.75rem;
+}
 
 
 /* Home webpage */
@@ -1473,6 +1494,24 @@ body{
     .detailBtnGroup .addToCartBtn {
         font-size: 1rem;
     }
+    .modal-container {
+        width: 250px;
+        height: 250px;
+    }
+    .modal-container .error-icon {
+        font-size: 1.8rem;
+    }
+    .modal-title{
+        font-size: 1.5rem;
+    }
+    .modal-msg{
+        font-size: 0.75rem;
+    }
+    .modal-container .modal-close-btn {
+        width: 40%;
+    }
+    
+    
 }
 @media (max-width:750px){
     .story_txt_container p + p {
