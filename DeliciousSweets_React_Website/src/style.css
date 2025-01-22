@@ -1041,6 +1041,12 @@ body{
     color: #673434;
     width: 100%;/* fills the parent's remaing space*/
 }
+.cart-empty-msg-container{
+    text-align: center;
+    position: relative;
+    top: 20%
+}
+
 /*list of orders */
 #title-order-grid-container{
     display: grid;
@@ -1064,15 +1070,24 @@ body{
 .order{
     display: grid;
     text-align: center;
+    align-items: center;
     grid-template-columns: repeat(6,1fr);
     grid-template-rows: 70px;
     /*adjust...*/
-    padding: 20px 0px 0px 15px;
+    padding: 20px 0px 15px 15px;
     border-bottom: #BEBEBE dashed 3px;
 }
 .order .product-data{
     display: flex;
     grid-column: 1/3;
+    align-items: center;
+}
+.product-data img{
+    margin-right: 10px;
+    width: 100px;
+    height: 80px;
+    border-radius: 10%;
+  
 }
 .order .price-data{
     grid-column: 3/4;
@@ -1080,12 +1095,17 @@ body{
 .order .qty-data{
     grid-column: 4/5;
     width: 3rem;
-    margin-left: 10%;
+    margin-left: 50px;
+    padding-left: 5px;
     height: 2.5rem;
+
 }
 .order .total-data{
     grid-column: 5/6;
 }
+
+
+
 .order .del-btn{
     grid-column: 6/7;
     width: 2rem;
@@ -1319,6 +1339,10 @@ body{
     .product_details_container .price{
         font-size: 1rem;
     }
+    /* Cart Page */
+    .order .qty-data {
+        margin-left: 20px;
+    }
 
 }
 /* Mobile versions */
@@ -1510,6 +1534,19 @@ body{
     .modal-container .modal-close-btn {
         width: 40%;
     }
+    /* Cart page */
+    #title-order-grid-container {
+        padding-left: 45px;
+    }
+    .item-col-title, .price-col-title, .quantity-col-title, .total-col-title {
+        font-size: 1.5rem;
+    }
+    .product-data img {
+        margin-right: 10px;
+        width: 80px;
+        height: 60px;
+        border-radius: 10%;
+    }
     
     
 }
@@ -1579,6 +1616,23 @@ body{
         object-fit:fill;
         width: 100%;
     }
+    /* Cart page */
+    .item-col-title, .price-col-title, .quantity-col-title, .total-col-title {
+        font-size: 1rem;
+    }
+    .order {
+        font-size: 0.75rem;
+    }
+    .order .product-data {
+        white-space: wrap;
+    }
+    .order .qty-data {
+        width: 2.5rem;
+    }
+    #title-order-grid-container {
+        padding-left: 20px;
+        grid-template-rows: 35px;
+    }
 }
 @media (max-width: 749px){
     /* About page */
@@ -1596,4 +1650,20 @@ body{
         top: 35%;
         font-size: 2rem;
     }
+    /* Cart page */
+    .order {
+        font-size: 0.6rem;
+    }
+    #title-order-grid-container {
+        padding-left: 50px;
+    }
+    .product-data img {
+        width: 60px;
+        height: 40px;
+    }
+    .order .qty-data {
+        width: 2rem;
+        font-size: 0.6rem;
+    }
+
 }

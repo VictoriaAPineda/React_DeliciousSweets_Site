@@ -73,7 +73,6 @@ function UserCart(){
         setCart(updateCart)
     };
 
-    // TODO: adjust css for input field of item quantity
     // TODO: css responsiveness & styling
  
     return(
@@ -93,9 +92,9 @@ function UserCart(){
                                 <p className="total-col-title">Item's Total</p>
                             </div>
                             {/* Display Cart items if at least 1 item is in cart */}
+                            {/*TODO: Link back to item with the name */}
                              {  cartItemMergedData.length >= 1 && cartItemMergedData.map((item)=>( 
-                                <div className="order" key={item._id}>
-                                    
+                                <div className="order" key={item._id}>                   
                                     <div className="product-data">
                                         <img src={item.image}></img>
                                         <p>{item.name}</p>
@@ -107,7 +106,13 @@ function UserCart(){
                                 </div>
                             ))}
                             {/* Display if no items are in cart */}
-                            {cartItemMergedData.length <= 0 && <h1>Cart is empty!</h1>}
+                            {cartItemMergedData.length <= 0 && 
+                            <div className='cart-empty-msg-container'>
+                                <h1>Oh Noes!</h1>
+                                <h1>Your Cart Is Empty!</h1>
+                                <p>Quick! Fill the cart with goodies to start enjoying our treats</p>
+                            </div>
+                           }
                             
                         </div>
 
