@@ -7,8 +7,8 @@ import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
 import ProductInfoTabs from "../ProductInfoTabs"
 import { Cart } from "../contextAPI/CartContext";
-import ErrorModal from "../ErrorModal";
-import NotifModal from "../NotifModal"
+import ErrorModal from "../modals/ErrorModal";
+import NotifModal from "../modals/NotifModal"
 
 
 {/*This page is shown when user clicks on view btn of a product.

@@ -1,7 +1,24 @@
 import { Link } from "react-router-dom"
 import logo from "./logo/Delicious_Sweets.png"
+import { useState } from "react"
+import axios from "axios"
 export default function Footerbar(){
-    {/* Use Grid here!*/}
+
+    const [emailData, setEmailData] = useState('')
+
+    const handleSumbit = async (e) => {
+        e.preventDefault()
+        try{
+            const postData = {
+                email: emailData
+            }
+            await axios.post('http://localhost:5000/emails', postData)
+            .then( res => res.data)
+        }catch(err){
+            console.log(err)
+        }
+    }
+
     return(
         <>
             <section id="footer-section">
@@ -34,10 +51,19 @@ export default function Footerbar(){
 
                         <div  className="footercol">
                             <p className="col-heading" > Heading Three</p>
-                            <div>
-                                <input id="subscribe-input"/>
-                                <button id="subscribe-btn">Subscribe</button>
-                            </div>
+                            {/* TODO: Validation check , Pop up to notify acceptance/ already in system/ wrong format 
+                            ??? : not working...*/}
+                            <form action="/emails" method="POST">
+                                <input 
+                                    placeholder="enter email"
+                                    type="text" 
+                                    id="subscribe-input" 
+                                    name="email"
+                                    value={emailData}
+                                    onChange={(e) => setEmailData(e.target.value)}
+                                />
+                                <button tyep="submit" id="subscribe-btn" onClick={handleSumbit} >Subscribe</button>
+                            </form>
                            
                         
                             <div className="social-btn-group">
