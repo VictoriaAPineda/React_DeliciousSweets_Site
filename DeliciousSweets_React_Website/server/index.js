@@ -73,28 +73,3 @@ app.post('/emails', async (req, res) => {
         console.log(err)
     }
 })
-
-
-
-
-// const bodyParser = require('body-parser') // for form posting
-// const router = require('./routes/router')
-
-// app.use(bodyParser.json())
-// app.use(bodyParser.urlencoded({extended:false}))
-
-// const corsOptions = {
-//     origin:'*',
-//     credentials: true,
-//     optionSuccessStatus: 200
-// }
-// app.use(cors(corsOptions))
-// app.use('/', router)
-
-
-// app.listen(5000);
-
-// const port = 4000 // frontend runs on port 5173
-// const server = app.listen(port, ()=>{
-//     console.log(`Server is running on port ${port}`)
-// })
