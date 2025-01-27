@@ -37,6 +37,8 @@ export default function Footerbar(){
                     setIsNotifModalOpen(true)
                     await axios.post('http://localhost:5000/emails', postData)
                 .then( res => res.data)
+                setEmailData('')
+                
                 }catch(err){
                     console.log(err)
                 }
