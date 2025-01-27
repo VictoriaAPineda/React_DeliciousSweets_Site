@@ -9,7 +9,8 @@ export default function Footerbar(){
     const [emailData, setEmailData] = useState('')
     const [emailList, setEmailList] = useState([])
     const [isNotifModalOpen, setIsNotifModalOpen] = useState(false) 
-    const [isErrorModalOpen, setIsErrorModalOpen] = useState(false) 
+    const [isDuplicateErrorModalOpen, setIsDuplicateErrorModalOpen] = useState(false) 
+    const [isInvalidError2ModalOpen, setIsInvalidError2ModalOpen] = useState(false) 
 
     // List of all emails that have subscribed
     useEffect(()=>{
@@ -22,40 +23,48 @@ export default function Footerbar(){
         })
     },[])
 
-
     const handleSumbit = async (e) => {
         e.preventDefault()
-        // [1] Check for format 
-
-
-
-        // [2] Check for duplicates
-        const emailMatch =  emailList.find(e => e.email === emailData)
-        if(!emailMatch){
-            try{
-                const postData = {
-                    email: emailData
+        // [1] Check valid for format 
+        if(emailValidation(emailData)){
+            // [2] Check for duplicates
+            const emailMatch =  emailList.find(e => e.email === emailData)
+            if(!emailMatch){
+                try{
+                    const postData = {
+                        email: emailData
+                    }
+                    setIsNotifModalOpen(true)
+                    await axios.post('http://localhost:5000/emails', postData)
+                .then( res => res.data)
+                }catch(err){
+                    console.log(err)
                 }
-                setIsNotifModalOpen(true)
-                await axios.post('http://localhost:5000/emails', postData)
-            .then( res => res.data)
-            }catch(err){
-                console.log(err)
+            }else{
+                setIsDuplicateErrorModalOpen(true)
             }
         }else{
-            setIsErrorModalOpen(true)
+            setIsInvalidError2ModalOpen(true)
         }
     }
-    
+
+    const emailValidation = (emailInput) => {
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+        return emailRegex.test(emailInput)
+    }
+
     const handleErrorModalClose = () =>{
-        setIsErrorModalOpen(false)
+        setIsDuplicateErrorModalOpen(false)
+        setIsInvalidError2ModalOpen(false)
     }
 
     return(
         <>
             {isNotifModalOpen && <NotifModal msg='Email Subscribed!' close ={()=> setIsNotifModalOpen(false)}/>}
 
-            {isErrorModalOpen && <ErrorModal msg ='Already Subscribed!' onClose = {handleErrorModalClose}/>}
+            {isDuplicateErrorModalOpen && <ErrorModal msg ='Already Subscribed!' onClose = {handleErrorModalClose}/>}
+
+            {isInvalidError2ModalOpen && <ErrorModal msg ='Invalid Email!' onClose = {handleErrorModalClose}/>}
 
             <section id="footer-section">
                 <div>
@@ -87,8 +96,7 @@ export default function Footerbar(){
 
                         <div  className="footercol">
                             <p className="col-heading" > Heading Three</p>
-                            {/* TODO: Validation check , Pop up to notify acceptance/ already in system/ wrong format 
-                            ??? : not working...*/}
+
                             <form action="/emails" method="POST">
                                 <input 
                                     placeholder="enter email"
