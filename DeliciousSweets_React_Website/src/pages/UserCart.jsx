@@ -3,7 +3,7 @@ import cardIcon from '/src/images/cardIcon.png';
 import timeIcon from '/src/images/clock.png';
 import truckIcon from '/src/images/delivery_truck.png';
 import phoneIcon from '/src/images/telephone.png';
-import CartContext, { Cart } from "../contextAPI/CartContext";
+import { Cart } from "../contextAPI/CartContext";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -46,10 +46,11 @@ function UserCart(){
         let total = calcSubTotalCartCost() * 0.0825
         return total.toFixed(2)
     }
-    // cart total cost ?? not working...
+    // cart total cost
     const calcTotalCost = () => {
-        let totalCost =  (calcSubTotalCartCost() + calcSalesTax());
-        return totalCost
+        let totalCost =  parseFloat(calcSubTotalCartCost()) + parseFloat(calcSalesTax());
+        console.log("Total Cost: " + totalCost)
+        return totalCost.toFixed(2)
     }
 
     // Calc an item's total
