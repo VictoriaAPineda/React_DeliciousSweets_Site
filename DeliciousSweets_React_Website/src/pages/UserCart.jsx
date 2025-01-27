@@ -5,6 +5,7 @@ import truckIcon from '/src/images/delivery_truck.png';
 import phoneIcon from '/src/images/telephone.png';
 import CartContext, { Cart } from "../contextAPI/CartContext";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function UserCart(){
     const [cartItemsData, setcartItemsData] = useState([])
@@ -35,10 +36,20 @@ function UserCart(){
    console.log(cartItemMergedData)
 
    
-   // Calc total cost of whole cart
-    const calcTotalCartCost = () => {
-        let total = cartItemMergedData.reduce((acc, item) => acc + (item.price * item.itemQuantity), 0)
+    // Calc sub total cost of whole cart
+    const calcSubTotalCartCost = () => {
+        let subtotal = cartItemMergedData.reduce((acc, item) => acc + (item.price * item.itemQuantity), 0)
+        return subtotal.toFixed(2)
+    }
+    // sales tax
+    const calcSalesTax = () => {
+        let total = calcSubTotalCartCost() * 0.0825
         return total.toFixed(2)
+    }
+    // cart total cost ??
+    const calcTotalCost = () => {
+        let totalCost =  (calcSubTotalCartCost() + calcSalesTax());
+        return totalCost
     }
 
     // Calc an item's total
@@ -97,9 +108,11 @@ function UserCart(){
                                 <div className="order" key={item._id}>                   
                                     <div className="product-data">
                                         <img src={item.image}></img>
-                                        <p>{item.name}</p>
+                                        <Link className= "item-name-link" to={`/productDetails/${item._id}`}>
+                                            <p>{item.name}</p>
+                                        </Link>
                                     </div>
-                                    <p className="price-data">${item.price}</p>
+                                    <p className="price-data">${item.price.toFixed(2)}</p>
                                     <input className="qty-data" defaultValue = {item.itemQuantity} onChange={(e)=>handleCartItemQuantity(e, item)} type = "number" min={'0'}/>
                                     <p className="total-data">${itemCost(item)}</p>
                                     <button className="del-btn" onClick={() => handleDeleteItem(item)}>X</button>
@@ -123,15 +136,15 @@ function UserCart(){
                                 <div>
                                     <div className="subtotal"> 
                                         <p>Subtotal</p>
-                                        <p>$....tbi</p>
+                                        <p>${calcSubTotalCartCost()}</p>
                                     </div>
                                     <div className="tax">
-                                        <p>Tax</p>
-                                        <p>$...tbi</p>
+                                        <p>Sales Tax</p>
+                                        <p>${calcSalesTax()}</p>
                                     </div>
                                     <div className="total">
                                         <p>Total Order</p>
-                                        <p>${calcTotalCartCost()}</p>
+                                        <p>${calcTotalCost()}</p>
                                     </div>
                                 </div>
                                
