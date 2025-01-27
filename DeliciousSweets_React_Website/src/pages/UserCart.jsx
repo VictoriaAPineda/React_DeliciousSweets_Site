@@ -46,7 +46,7 @@ function UserCart(){
         let total = calcSubTotalCartCost() * 0.0825
         return total.toFixed(2)
     }
-    // cart total cost ??
+    // cart total cost ?? not working...
     const calcTotalCost = () => {
         let totalCost =  (calcSubTotalCartCost() + calcSalesTax());
         return totalCost
