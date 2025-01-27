@@ -131,7 +131,9 @@ function UserCart(){
                         </div>
 
                         {/* Customer order form input */}
-                        <div className="customer-details-container">
+                        {/* TODO: Shipping (if user adds it)
+                        Prep: Orders db setup */}
+                        <form action = "#" method = "POST" className="customer-details-container">
                             <div className="order-summary-container">
                                 <p className='orderSum_header'>Order Summary</p>
                                 <div>
@@ -150,6 +152,8 @@ function UserCart(){
                                 </div>
                                
                             </div>
+
+
                             <div className='order-contact-container'>
                                 <div className="contact_header">
                                     <p>Contact</p>
@@ -196,7 +200,7 @@ function UserCart(){
                                     <input type="text" />
                                     <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
                                 </div>
-
+                                {/* Form submit btn */}
                                 <button className='order-btn'>Place Order</button>
 
                                 <div className='assistance_contact'>
@@ -209,7 +213,7 @@ function UserCart(){
                                 </div>
                             
                             </div>
-                        </div>
+                        </form>
                     </div>
                    
                 </div>
