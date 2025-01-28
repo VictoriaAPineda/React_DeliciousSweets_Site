@@ -16,7 +16,6 @@ export default function Navbar() {
     const closeMenu = () =>{
         setIsOpen(false);
     }
-
     const cartQuantity = cart.reduce((acc, item)=>acc+ item.itemQuantity, 0)
 
   return (
@@ -39,7 +38,8 @@ export default function Navbar() {
                         <li><Link to="/contact">Contact Us</Link></li>
                         <li><Link to="/about">About</Link></li>
                         <li>
-                            <DropdownMenu/>
+                            {/* menu state = if meny is displayed*/}
+                            <DropdownMenu menuState = {isOpen}/>
                         </li>
                         <li><Link to="/cart">Cart <i className="bi bi-cart2"></i>({cartQuantity})</Link></li>
                     </ul>

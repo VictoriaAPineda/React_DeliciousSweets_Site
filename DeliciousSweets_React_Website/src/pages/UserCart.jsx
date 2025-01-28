@@ -200,7 +200,7 @@ function UserCart(){
                                     <input type="text" />
                                     <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
                                 </div>
-                                {/* Form submit btn */}
+                                {/* Form submit btn - add a confrim notif */}
                                 <button className='order-btn'>Place Order</button>
 
                                 <div className='assistance_contact'>

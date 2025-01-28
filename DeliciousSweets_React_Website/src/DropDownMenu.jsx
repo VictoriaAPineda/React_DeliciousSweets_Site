@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link } from "react-router-dom"
 import DropDownList from './DropdownList';
 
-export default function DropdownMenu(){
+export default function DropdownMenu({menuState}){
     const [open, setOpen] = useState(false);
     const [openSubmenu, setSubmenu] = useState(false);
 
@@ -21,6 +21,13 @@ export default function DropdownMenu(){
             document.removeEventListener("mousedown", handler);
         }
     });
+    /* If menu is closed, close the submenu to avoid it being still opened */
+    useEffect(()=>{
+        if(!menuState){
+            setSubmenu(false)
+        }
+    }, [menuState])
+
     return(
         <>
         {/* [] TODO: Revamp to a single drop down, use CSS to make the nesscary changes to reduce code ? */}
