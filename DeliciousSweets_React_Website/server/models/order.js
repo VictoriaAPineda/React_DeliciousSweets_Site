@@ -14,15 +14,32 @@ const orderSchema = new Schema({
         type: String,
         required: true
     },
+    phone:{
+        type: String,
+        required: true
+    },
     ccn:{
         type: String,
         required: true
     },
-    pickupTime:{
-        type: String,
+    pickupInfo:{
+        pickupDate:{
+            type: Date
+        },
+        pickupTime:{
+            type: String
+        }
     },
-    delivery:{
-        type: String,
+    deliveryInfo:{
+        deliveryDate:{
+            type: Date
+        },
+        deliveryTime:{
+            type: String
+        },
+        deliveryTime:{
+            type: String
+        }
     },
     cart:{
         productID:{

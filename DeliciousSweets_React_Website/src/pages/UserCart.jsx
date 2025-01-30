@@ -32,8 +32,8 @@ function UserCart(){
     })
 
 
-   console.log("Cart Order")
-   console.log(cartItemMergedData)
+//    console.log("Cart Order")
+//    console.log(cartItemMergedData)
 
    
     // Calc sub total cost of whole cart
@@ -46,18 +46,21 @@ function UserCart(){
         let total = calcSubTotalCartCost() * 0.0825
         return total.toFixed(2)
     }
-    // cart total cost
-    const calcTotalCost = () => {
-        let totalCost =  parseFloat(calcSubTotalCartCost()) + parseFloat(calcSalesTax());
-        console.log("Total Cost: " + totalCost)
-        return totalCost.toFixed(2)
-    }
-
     // Calc an item's total
     const itemCost = (item) =>{
         let total = 0;
         total = item.price * item.itemQuantity
         return total.toFixed(2)
+    }
+    // shipping
+    const calcDelivery = () =>{
+        return 0.00
+    }
+    // cart total cost
+    const calcTotalCost = () => {
+        let totalCost =  parseFloat(calcSubTotalCartCost()) + parseFloat(calcSalesTax()); 
+        // add shipping if applicable
+        return totalCost.toFixed(2)
     }
 
     // User's changes to quantity of a specific item
@@ -145,6 +148,10 @@ function UserCart(){
                                         <p>Sales Tax</p>
                                         <p>${calcSalesTax()}</p>
                                     </div>
+                                    <div className="shipping">
+                                        <p>Shipping</p>
+                                        <p>${calcDelivery()}</p>
+                                    </div>
                                     <div className="total">
                                         <p>Total Order</p>
                                         <p>${calcTotalCost()}</p>
@@ -188,17 +195,26 @@ function UserCart(){
                                         <img className='timeIcon' src={timeIcon}></img>
                                     </div>
                                    
-                                    <input type="date"/>
-                                    <input type="time" name="" id="" min="" max=""/>
+                                     {/* Pickup Input*/}
+                                    <div className='formatDateandTimeDisplay'>
+                                        <input type="date"/>
+                                        <input type="time" name="" id="" min="" max=""/>
+                                    </div>
                                     <p>OR</p>
                                     <div className="delivery_header">
                                         <p>Delivery</p>
                                         <img className='truckIcon' src={truckIcon}></img>
                                     </div>
-                                    
-                                    <label htmlFor="">Address</label>
-                                    <input type="text" />
-                                    <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
+                                    {/* Delivery input */}
+                                    <div className='formatDateandTimeDisplay'>
+                                        <input type="date"/>
+                                        <input type="time" name="" id="" min="" max=""/>
+                                        <label htmlFor="">Address</label>
+                                        <input type="text" />
+                                        <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
+                                    </div>
+
+                                  
                                 </div>
                                 {/* Form submit btn - add a confrim notif */}
                                 <button className='order-btn'>Place Order</button>

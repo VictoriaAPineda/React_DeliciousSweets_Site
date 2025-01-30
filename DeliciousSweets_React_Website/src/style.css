@@ -1146,7 +1146,7 @@ body{
     flex-direction: column;
     align-items: center;
 }
-.order-summary-container .subtotal, .tax, .total{
+.order-summary-container .subtotal, .tax, .total, .shipping{
     display: flex;
     justify-content: space-between;
     gap: 35px;
@@ -1214,6 +1214,8 @@ body{
 .card-input-container div input{
     width: 39%;
 }
+
+
 .order-method-container{
     border-top:#B6B6B6 3px dashed;
     border-bottom:#B6B6B6 3px dashed;
@@ -1226,6 +1228,16 @@ body{
     justify-content: center;
     align-items: center;
 }
+.order-method-container .formatDateandTimeDisplay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.order-method-container .formatDateandTimeDisplay input{
+    border: none;
+    padding: 3px;
+}
 .order-method-container .timeIcon{
     width: 8%;
     margin-left: 10px;
@@ -1234,10 +1246,6 @@ body{
 .order-method-container .truckIcon{
     width: 14%;
     margin-left: 10px;
-}
-.order-method-container input{
-    border: none;
-    padding: 3px;
 }
 .order-method-container .deliveryNote{
     white-space: pre-wrap;
