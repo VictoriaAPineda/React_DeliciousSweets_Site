@@ -235,10 +235,12 @@ function UserCart(){
                                         </div>
                                     </div>
                                     <div className='formatDateandTimeDisplay'>
+                                        {/* Pickup Date */}
                                         <input type="date" name="" 
                                             disabled={orderMethodSelected === 'delivery'} 
                                             onChange={handlePickupDateField} 
                                             value={pickupDate}/>
+                                        {/* Pickup Time */}
                                         <input type="time" name="" id="" min="" max="" 
                                             disabled={orderMethodSelected === 'delivery'}
                                             onChange={handlePickupTimeField}
@@ -257,14 +259,17 @@ function UserCart(){
                                         </div>
                                     </div>
                                     <div className='formatDateandTimeDisplay'>
+                                        {/* Delivery Date */}
                                         <input type="date" name='' 
                                             disabled={orderMethodSelected === 'pickup'} 
                                             onChange={handleOrderDeliveryDate} 
                                             value={deliveryDate}/>
+                                        {/* Delivery Time */}
                                         <input type="time" name="" id="" min="" max="" 
                                             disabled={orderMethodSelected === 'pickup'} 
                                             onChange={handleDeliveryTime}
                                             value={deliveryTime}/>
+                                        {/* Delivery Address */}
                                         <label htmlFor="">Address</label>
                                         <input type="text" name='' 
                                             disabled={orderMethodSelected === 'pickup'} 
