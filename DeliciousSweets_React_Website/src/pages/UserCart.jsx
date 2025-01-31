@@ -11,6 +11,12 @@ function UserCart(){
     const [cartItemsData, setcartItemsData] = useState([])
     const {cart, setCart} = useContext(Cart);
 
+    // Order Method form behavior and data
+    const [orderMethodSelected, setOrderMethodSelected] = useState('')
+    const [dateFields, setDateFields] = useState('')
+    const [timeFields, setTimeFields] = useState('')
+    const [addressField, setAddressField] = useState('')
+
     // Use cart data to load up data from Products by the productID provided
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
@@ -31,11 +37,9 @@ function UserCart(){
         return itemObject ? {...item, ...itemObject} : item
     })
 
-
 //    console.log("Cart Order")
 //    console.log(cartItemMergedData)
 
-   
     // Calc sub total cost of whole cart
     const calcSubTotalCartCost = () => {
         let subtotal = cartItemMergedData.reduce((acc, item) => acc + (item.price * item.itemQuantity), 0)
@@ -88,6 +92,25 @@ function UserCart(){
         setCart(updateCart)
     };
 
+
+    // Selecting a button will clear/disable fields accordingly
+    const handleOrderRadioBtn = (e) =>{
+        setOrderMethodSelected(e.target.value)
+        setDateFields('')
+        setTimeFields('')
+        setAddressField('')
+    }
+    // Handle/track the data inputed into the fields
+    const handleOrderDateFields = (e) =>{
+        setDateFields(e.target.value)
+    }
+    const handleTimeFields = (e) => {
+        setTimeFields(e.target.value)
+    }
+    const handleAddressField = (e) =>{
+        setAddressField(e.target.value)
+    }
+
     // TODO: css responsiveness & styling
  
     return(
@@ -107,7 +130,6 @@ function UserCart(){
                                 <p className="total-col-title">Item's Total</p>
                             </div>
                             {/* Display Cart items if at least 1 item is in cart */}
-                            {/*TODO: Link back to item with the name */}
                              {  cartItemMergedData.length >= 1 && cartItemMergedData.map((item)=>( 
                                 <div className="order" key={item._id}>                   
                                     <div className="product-data">
@@ -190,27 +212,47 @@ function UserCart(){
                                 </div>
 
                                 <div className="order-method-container">
+                                    {/* Pickup Option */}
                                     <div className="time_header">
-                                        <p>Pick Up Time</p>
-                                        <img className='timeIcon' src={timeIcon}></img>
+                                        <input type='radio'name="order-method" className='order-method-btn' value= "pickup" checked={orderMethodSelected === 'pickup'} onChange={handleOrderRadioBtn}/>
+                                        <div>
+                                            <p>Pick Up Time</p>
+                                            <img className='timeIcon' src={timeIcon}></img>
+                                        </div>
                                     </div>
-                                   
-                                     {/* Pickup Input*/}
                                     <div className='formatDateandTimeDisplay'>
-                                        <input type="date"/>
-                                        <input type="time" name="" id="" min="" max=""/>
+                                        <input type="date" name="" 
+                                            disabled={orderMethodSelected === 'delivery'} 
+                                            onChange={handleOrderDateFields} 
+                                            value={dateFields}/>
+                                        <input type="time" name="" id="" min="" max="" 
+                                            disabled={orderMethodSelected === 'delivery'}
+                                            onChange={handleTimeFields}
+                                            value={timeFields}/>
                                     </div>
                                     <p>OR</p>
+                                    {/* Delivery Option */}
                                     <div className="delivery_header">
-                                        <p>Delivery</p>
-                                        <img className='truckIcon' src={truckIcon}></img>
+                                        <input type='radio'name="order-method" className='order-method-btn' value="delivery" checked={orderMethodSelected === 'delivery'} onChange={handleOrderRadioBtn}/>
+                                        <div>
+                                            <p>Delivery</p>
+                                            <img className='truckIcon' src={truckIcon}></img>
+                                        </div>
                                     </div>
-                                    {/* Delivery input */}
                                     <div className='formatDateandTimeDisplay'>
-                                        <input type="date"/>
-                                        <input type="time" name="" id="" min="" max=""/>
+                                        <input type="date" name='' 
+                                            disabled={orderMethodSelected === 'pickup'} 
+                                            onChange={handleOrderDateFields} 
+                                            value={dateFields}/>
+                                        <input type="time" name="" id="" min="" max="" 
+                                            disabled={orderMethodSelected === 'pickup'} 
+                                            onChange={handleTimeFields}
+                                            value={timeFields}/>
                                         <label htmlFor="">Address</label>
-                                        <input type="text" />
+                                        <input type="text" name='' 
+                                            disabled={orderMethodSelected === 'pickup'} 
+                                            onChange={handleAddressField}
+                                            value={addressField}/>
                                         <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
                                     </div>
 
