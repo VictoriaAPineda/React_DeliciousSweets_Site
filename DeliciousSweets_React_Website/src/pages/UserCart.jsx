@@ -19,6 +19,8 @@ function UserCart(){
     const [deliveryTime, setDeliveryTime] = useState('')
     const [deliveryAddressField, setdeliveryAddressField] = useState('')
 
+    // TODO: Other fields states with validation...
+
     // Use cart data to load up data from Products by the productID provided
     useEffect(()=>{
         axios.get('http://localhost:5000/products')
@@ -58,7 +60,7 @@ function UserCart(){
         total = item.price * item.itemQuantity
         return total.toFixed(2)
     }
-    // shipping
+    // shipping [work in progress ....]
     const calcDelivery = () =>{
         return 0.00
     }
