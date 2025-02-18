@@ -37,7 +37,7 @@ const orderSchema = new Schema({
         deliveryTime:{
             type: String
         },
-        deliveryTime:{
+        deliveryAddress:{
             type: String
         }
     },

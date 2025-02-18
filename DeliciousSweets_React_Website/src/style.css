@@ -1293,6 +1293,9 @@ body{
   margin-left: 10px;
   margin-right: 10px;
 }
+.order-btn:hover{
+    cursor: pointer;
+}
 .assistance_contact{
     display: flex;
     flex-direction: column;

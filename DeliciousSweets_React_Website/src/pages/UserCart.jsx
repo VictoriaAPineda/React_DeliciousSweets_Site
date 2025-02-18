@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useReducer, useState } from 'react';
 import cardIcon from '/src/images/cardIcon.png';
 import timeIcon from '/src/images/clock.png';
 import truckIcon from '/src/images/delivery_truck.png';
@@ -6,20 +6,38 @@ import phoneIcon from '/src/images/telephone.png';
 import { Cart } from "../contextAPI/CartContext";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
 
 function UserCart(){
     const [cartItemsData, setcartItemsData] = useState([])
     const {cart, setCart} = useContext(Cart);
 
-    // Order Method form behavior and data
-    const [orderMethodSelected, setOrderMethodSelected] = useState('pickup')
-    const [pickupDate, setPickupDate] = useState('')
-    const [deliveryDate, setDeliveryDate] = useState('')
-    const [pickupTime, setPickupTime] = useState('')
-    const [deliveryTime, setDeliveryTime] = useState('')
-    const [deliveryAddressField, setdeliveryAddressField] = useState('')
+    // Initial values for form 
+    const initalState ={
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        ccn: '',
+        address: '', 
+        selectedOptionBtn: 'pickup',
 
-    // TODO: Other fields states with validation...
+        dateInputPickup: new Date().toLocaleDateString(),
+        timeInputPickup:'',
+
+        dateInputDelivery: '',
+        timeInputDelivery: '',
+
+        isPickupDateDisabled: false,
+        isPickupTimeDisabled: false,
+        
+        isDeliveryDateDisabled: true,
+        isDeliveryTimeDisabled: true,
+
+        isDeliveryAddressDisabled: true,
+    }
+    const [state, dispatch] = useReducer(OrderFormReducer, initalState)
 
     // Use cart data to load up data from Products by the productID provided
     useEffect(()=>{
@@ -32,8 +50,6 @@ function UserCart(){
         })
         .catch(err => console.log(err))
     }, [cart])
-
-
     // Combine cart and cartItemsData into a array to add on the quanitity for easier accessing
     const cartItemMergedData = cartItemsData.map((item) =>{
         let itemObject = cart.find( item2 => item2.itemId === item._id)
@@ -41,8 +57,7 @@ function UserCart(){
         return itemObject ? {...item, ...itemObject} : item
     })
 
-//    console.log("Cart Order")
-//    console.log(cartItemMergedData)
+    // console.log(cartItemMergedData) // use to for order cart model
 
     // Calc sub total cost of whole cart
     const calcSubTotalCartCost = () => {
@@ -70,7 +85,6 @@ function UserCart(){
         // add shipping if applicable
         return totalCost.toFixed(2)
     }
-
     // User's changes to quantity of a specific item
     const handleCartItemQuantity = (event, itemToChange) => {
         // Grab the user's input value
@@ -89,45 +103,136 @@ function UserCart(){
             }            
         )
     }
-
     // delete item from cart
     const handleDeleteItem = (itemToDel) => {
         const updateCart = cart.filter((item) => item.itemId  !== itemToDel._id)
         setCart(updateCart)
     };
 
+    // -- Handles and Dispatches for the OrderFormReducer ---
+    // TODO: Validation of form data
+    const handleOrderRadioBtn = (e) => {
+        dispatch({
+            type: 'Method_Selected', 
+            payload: e.target.value
+        })
+    }
+    const handleTextInputChange = (e) => {
+        dispatch({
+            type: 'Text_Input_Changed',
+            name: e.target.name,
+            value: e.target.value
+        })
+    }
+    const handleDatePickupSelection = (dateInput) => {
+        dispatch({
+            type: 'Date_Pickup_Selected', 
+            payload: dateInput.toLocaleDateString()
+        })
+    }
+    const handleDateDeliverySelection = (dateInput) =>{
+        dispatch({
+            type: 'Date_Delivery_Selected',
+            payload: dateInput.toLocaleDateString()
+        })
+    }
+    const handleTimePickupSelection = (timeInput) => {
+        dispatch({
+            type: 'Time_Pickup_Selected',
+            payload: timeInput.target.value
+        })
+    }
+    const handleTimeDeliverySelection = (timeInput) => {
+        dispatch({
+            type: 'Time_Delivery_Selected',
+            payload: timeInput.target.value
+        })
+    }
+    const handleFormSubmit = (e) =>{
+        e.preventDefault();
+        // TODO: send to db server
+        console.log('Form data submitted')
+        console.log(state)
+    }
 
-    // Selecting a button will clear/disable fields accordingly
-    const handleOrderRadioBtn = (e) =>{
-        setOrderMethodSelected(e.target.value)
-        setPickupDate('')
-        setDeliveryDate('')
-        setPickupTime('')
-        setDeliveryTime('')
-        setdeliveryAddressField('')
-    }
-    // Handle/track the data inputed into the fields
-    const handlePickupDateField = (e) =>{
-        setPickupDate(e.target.value)
-    }
-    const handleOrderDeliveryDate = (e) =>{
-        setDeliveryDate(e.target.value)
-    }
-    const handlePickupTimeField = (e) =>{
-        setPickupTime(e.target.value)
-    }
-    const handleDeliveryTime = (e) => {
-        setDeliveryTime(e.target.value)
-    }
-    const handledeliveryAddressField = (e) =>{
-        setdeliveryAddressField(e.target.value)
-    }
+    // Reducer function to handle all the form data
+    function OrderFormReducer (state, action) {
+        // console.log('Previous State:', state);
+        // console.log('Action:', action);
+        switch (action.type) {
+            /* Handles radio btn group interaction
+            *   On switch, the unselected radio btn group fields:
+            *   1) Should be cleared of data 
+            *   2) Fields be disabled
+            */
+            case 'Method_Selected':
+                if(action.payload === 'pickup'){
+                    return{
+                        ...state, 
+                        selectedOptionBtn:  action.payload,
+                        isPickupDateDisabled: false, //f
+                        isDeliveryDateDisabled: true,//t
+                        dateInputDelivery: '',
+                        isDeliveryTimeDisabled: true,
+                        isPickupTimeDisabled: false,
+                        timeInputDelivery: '',
+                        isDeliveryAddressDisabled: true,
+                        address: '',
 
+                    }
+                }
+                if( action.payload === 'delivery'){
+                    return{
+                        ...state, 
+                        selectedOptionBtn:  action.payload,
+                        isPickupDateDisabled: true,//t
+                        isDeliveryDateDisabled: false,//f
+                        dateInputPickup: '',
+                        isPickupTimeDisabled: true,
+                        isDeliveryTimeDisabled: false,
+                        timeInputPickup: '', 
+                        isDeliveryAddressDisabled: false,
+                    }
+                }
+            case 'Text_Input_Changed':
+                return{
+                    ...state, 
+                    [action.name]:action.value
+                };
+            case 'Date_Pickup_Selected': 
+                return{
+                    ...state, 
+                    dateInputPickup: action.payload
+                };
+            case 'Date_Delivery_Selected':
+                return{
+                    ...state,
+                    dateInputDelivery: action.payload
+                }
+            case 'Time_Pickup_Selected':
+                return{
+                    ...state, 
+                    timeInputPickup: action.payload
+                }
+            case 'Time_Delivery_Selected':
+                return{
+                    ...state,
+                    timeInputDelivery: action.payload
+                }
+            case 'Form_Submitted':
+                return{
+                    // TODO: 
+                    // submit form data to db server
+                    // clear form to initial state
+                    // Pop up notification of success
+                }
+            default:
+                 return state
+            }
+    }
     // TODO: css responsiveness & styling
- 
     return(
         <>
-
             <section id="cart-page-container">
     
                 <div className="cart-order-container">
@@ -170,7 +275,7 @@ function UserCart(){
                         {/* Customer order form input */}
                         {/* TODO: Shipping (if user adds it)
                         Prep: Orders db setup */}
-                        <form action = "#" method = "POST" className="customer-details-container">
+                        <form action = "#" method = "POST" onSubmit={handleFormSubmit} className="customer-details-container">
                             <div className="order-summary-container">
                                 <p className='orderSum_header'>Order Summary</p>
                                 <div>
@@ -191,19 +296,33 @@ function UserCart(){
                                         <p>${calcTotalCost()}</p>
                                     </div>
                                 </div>
-                               
                             </div>
-
 
                             <div className='order-contact-container'>
                                 <div className="contact_header">
                                     <p>Contact</p>
                                 </div>
-                         
-                                <input type="text" placeholder='First Name'/>
-                                <input type='text' placeholder='Last Name'/>
-                                <input type="email" placeholder='Email'/>
-                                <input type="text" placeholder='Phone Number'/>
+                                <input 
+                                    type="text" 
+                                    name="firstName" 
+                                    value={state.name}
+                                    onChange={handleTextInputChange}
+                                    placeholder='First Name'/>
+                                <input 
+                                    type='text' 
+                                    name="lastName"
+                                    onChange={handleTextInputChange}
+                                    placeholder='Last Name'/>
+                                <input 
+                                    type="email" 
+                                    name="email"
+                                    onChange={handleTextInputChange}
+                                    placeholder='Email'/>
+                                <input 
+                                    type="text" 
+                                    name="phone"
+                                    onChange={handleTextInputChange}
+                                    placeholder='Phone Number'/>
                             </div>
 
                             <div className="payment-container">
@@ -215,7 +334,11 @@ function UserCart(){
                                 <div className="cardInfo-container">
                                     <p>Card Information</p>
                                     <div className="card-input-container">
-                                        <input type="text" placeholder='Card Number'/>
+                                        <input 
+                                            type="text" 
+                                            name='ccn'
+                                            onChange={handleTextInputChange}
+                                            placeholder='Card Number'/>
                                         <div>
                                             <input type='text' placeholder='MM / YY'/>
                                             <input type="text" maxLength={3} placeholder='CVC'/>
@@ -226,11 +349,15 @@ function UserCart(){
                                 <div className="order-method-container">
                                     {/* Pickup Option */}
                                     <div className="time_header">
-                                        <input type='radio'name="order-method" 
-                                            className='order-method-btn' value= "pickup" 
-                                            checked={orderMethodSelected === 'pickup'} 
+                                        {/* Pickup Button*/}
+                                        <input 
+                                            type='radio'
+                                            name="order-method" 
+                                            className='order-method-btn' 
+                                            value= "pickup" 
+                                            checked={state.selectedOptionBtn === 'pickup'}
                                             onChange={handleOrderRadioBtn}
-                                            />
+                                        />
                                         <div>
                                             <p>Pick Up</p>
                                             <img className='timeIcon' src={timeIcon}></img>
@@ -238,23 +365,35 @@ function UserCart(){
                                     </div>
                                     <div className='formatDateandTimeDisplay'>
                                         {/* Pickup Date */}
-                                        <input type="date" name="" 
-                                            disabled={orderMethodSelected === 'delivery'} 
-                                            onChange={handlePickupDateField} 
-                                            value={pickupDate}/>
+                                        <DatePicker 
+                                            name=''
+                                            selected={state.dateInputPickup}
+                                            onChange={handleDatePickupSelection}
+                                            disabled={state.isPickupDateDisabled}
+                                        />
                                         {/* Pickup Time */}
-                                        <input type="time" name="" id="" min="" max="" 
-                                            disabled={orderMethodSelected === 'delivery'}
-                                            onChange={handlePickupTimeField}
-                                            value={pickupTime}/>
+                                        <input 
+                                            type="time"
+                                            name="" 
+                                            id="" 
+                                            min="" max="" 
+                                            value={state.timeInputPickup}
+                                            onChange={handleTimePickupSelection}
+                                            disabled={state.isPickupTimeDisabled}
+                                            />
                                     </div>
                                     <p>OR</p>
                                     {/* Delivery Option */}
                                     <div className="delivery_header">
-                                        <input type='radio'name="order-method" 
-                                            className='order-method-btn' value="delivery" 
-                                            checked={orderMethodSelected === 'delivery'} 
-                                            onChange={handleOrderRadioBtn}/>
+                                        {/* Delivery Button*/}
+                                        <input 
+                                            type='radio'
+                                            name="order-method" 
+                                            className='order-method-btn' 
+                                            value="delivery" 
+                                            onChange={handleOrderRadioBtn}
+                                            checked={state.selectedOptionBtn === 'delivery'}
+                                            />
                                         <div>
                                             <p>Delivery</p>
                                             <img className='truckIcon' src={truckIcon}></img>
@@ -262,28 +401,36 @@ function UserCart(){
                                     </div>
                                     <div className='formatDateandTimeDisplay'>
                                         {/* Delivery Date */}
-                                        <input type="date" name='' 
-                                            disabled={orderMethodSelected === 'pickup'} 
-                                            onChange={handleOrderDeliveryDate} 
-                                            value={deliveryDate}/>
+                                            <DatePicker 
+                                                name=''
+                                                selected={state.dateInputDelivery}
+                                                onChange={handleDateDeliverySelection}
+                                                disabled={state.isDeliveryDateDisabled}
+                                            />
                                         {/* Delivery Time */}
-                                        <input type="time" name="" id="" min="" max="" 
-                                            disabled={orderMethodSelected === 'pickup'} 
-                                            onChange={handleDeliveryTime}
-                                            value={deliveryTime}/>
+                                        <input 
+                                            type="time" 
+                                            name="" 
+                                            id="" 
+                                            min="" max="" 
+                                            onChange={handleTimeDeliverySelection}
+                                            value={state.timeInputDelivery}
+                                            disabled={state.isDeliveryTimeDisabled}/>
                                         {/* Delivery Address */}
                                         <label htmlFor="">Address</label>
-                                        <input type="text" name='' 
-                                            disabled={orderMethodSelected === 'pickup'} 
-                                            onChange={handledeliveryAddressField}
-                                            value={deliveryAddressField}/>
+                                        <input 
+                                            type="text" 
+                                            name='address' 
+                                            value={state.address}
+                                            onChange={handleTextInputChange}
+                                            disabled={state.isDeliveryAddressDisabled}
+                                        />
                                         <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
                                     </div>
-
                                   
                                 </div>
                                 {/* Form submit btn - add a confrim notif */}
-                                <button className='order-btn'>Place Order</button>
+                                <button className='order-btn' type='submit'>Place Order</button>
 
                                 <div className='assistance_contact'>
                                     <p>Need Assistance?</p>
@@ -301,10 +448,6 @@ function UserCart(){
                 </div>
 
             </section>
-
-
-
-       
         </>
     )
 }
