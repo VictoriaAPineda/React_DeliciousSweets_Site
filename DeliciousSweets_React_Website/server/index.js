@@ -17,7 +17,8 @@ app.use(cors(corsOptions))
 
 const Product = require('./models/product')
 const Review = require('./models/review');
-const Email = require('./models/email')
+const Email = require('./models/email');
+const Order = require('./models/order');
 
 // Connects to MongoDB
 const dbURI = 'mongodb+srv://Victoria:1234AdminMDB@delicioussweetscluster.v5stmxn.mongodb.net/DeliciousSweetsDB?retryWrites=true&w=majority&appName=DeliciousSweetsCluster'
@@ -71,5 +72,16 @@ app.post('/emails', async (req, res) => {
         res.json(email)
     }catch(err){
         console.log(err)
+    }
+})
+// Post Orders of customer
+app.post('/orders', async (req, res) => {
+    try {
+        const order = new Order(req.body);
+        console.log(order)
+        await order.save()
+        res.json(order)
+    } catch (error) {
+        console.log()
     }
 })

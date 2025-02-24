@@ -57,7 +57,7 @@ function UserCart(){
         return itemObject ? {...item, ...itemObject} : item
     })
 
-    // console.log(cartItemMergedData) // use to for order cart model
+    console.log(cartItemMergedData) // use to for order cart model
 
     // Calc sub total cost of whole cart
     const calcSubTotalCartCost = () => {
@@ -148,9 +148,45 @@ function UserCart(){
             payload: timeInput.target.value
         })
     }
-    const handleFormSubmit = (e) =>{
+
+    const handleFormSubmit = async (e) =>{
         e.preventDefault();
-        // TODO: send to db server
+        const custCart = cartItemMergedData.map(itemOrder => ({
+            productID: itemOrder._id,
+            quantity: itemOrder.itemQuantity, 
+            price: itemOrder.price
+
+        }))
+        // console.log(custCart)
+        // TODO: 
+        // data/format validation of form
+        // clear form to initial state
+        // Pop up notification of success
+        try {
+            const formData = {
+                firstName: state.firstName,
+                lastName: state.lastName,
+                email: state.email,
+                phone: state.phone,
+                ccn: state.ccn, 
+                pickupInfo: {
+                    pickupDate: state.dateInputPickup,
+                    pickupTime: state.timeInputPickup,
+                }, 
+                deliveryInfo:{
+                    deliveryDate: state.dateInputDelivery,
+                    deliveryTime: state.timeInputDelivery,
+                    deliveryAddress: state.address,
+                },
+                cart: custCart, 
+                totalCost: calcTotalCost(),
+            }
+            await axios.post('http://localhost:5000/orders', formData)
+            .then(res => res.data)
+            // clear form...
+        } catch (error) {
+            console.log(error)
+        }
         console.log('Form data submitted')
         console.log(state)
     }
@@ -218,13 +254,6 @@ function UserCart(){
                 return{
                     ...state,
                     timeInputDelivery: action.payload
-                }
-            case 'Form_Submitted':
-                return{
-                    // TODO: 
-                    // submit form data to db server
-                    // clear form to initial state
-                    // Pop up notification of success
                 }
             default:
                  return state
