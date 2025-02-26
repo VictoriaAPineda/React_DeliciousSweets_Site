@@ -8,10 +8,15 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import ErrorModal from '../modals/ErrorModal'
+import NotifModal from '../modals/NotifModal'
 
 function UserCart(){
     const [cartItemsData, setcartItemsData] = useState([])
     const {cart, setCart} = useContext(Cart);
+    const [isCartEmpty, setIsCartEmpty] = useState(false)
+    const [isOrderSuccessful, setIsOrderSuccessful] = useState(false)
+  
 
     // Initial values for form 
     const initalState ={
@@ -57,7 +62,7 @@ function UserCart(){
         return itemObject ? {...item, ...itemObject} : item
     })
 
-    console.log(cartItemMergedData) // use to for order cart model
+    // console.log(cartItemMergedData) // use to for order cart model
 
     // Calc sub total cost of whole cart
     const calcSubTotalCartCost = () => {
@@ -111,6 +116,7 @@ function UserCart(){
 
     // -- Handles and Dispatches for the OrderFormReducer ---
     // TODO: Validation of form data
+    // length, type, 
     const handleOrderRadioBtn = (e) => {
         dispatch({
             type: 'Method_Selected', 
@@ -149,6 +155,10 @@ function UserCart(){
         })
     }
 
+    const handleErrorModalClose = () =>{
+        setIsCartEmpty(false)
+    }
+
     const handleFormSubmit = async (e) =>{
         e.preventDefault();
         const custCart = cartItemMergedData.map(itemOrder => ({
@@ -157,38 +167,45 @@ function UserCart(){
             price: itemOrder.price
 
         }))
-        // console.log(custCart)
-        // TODO: 
-        // data/format validation of form
-        // clear form to initial state
-        // Pop up notification of success
-        try {
-            const formData = {
-                firstName: state.firstName,
-                lastName: state.lastName,
-                email: state.email,
-                phone: state.phone,
-                ccn: state.ccn, 
-                pickupInfo: {
-                    pickupDate: state.dateInputPickup,
-                    pickupTime: state.timeInputPickup,
-                }, 
-                deliveryInfo:{
-                    deliveryDate: state.dateInputDelivery,
-                    deliveryTime: state.timeInputDelivery,
-                    deliveryAddress: state.address,
-                },
-                cart: custCart, 
-                totalCost: calcTotalCost(),
+        // [1] = Only submit if at least 1 item is in cart 
+        if(custCart.length === 0){
+            setIsCartEmpty(true)
+        }else{
+            // TODO: 
+            // data/format validation of form
+            // clear form to initial state
+            // Pop up notification of success
+            // hckec to make sure the fields if pickup/delivery is elsect that theres no emepty
+            try {
+                const formData = {
+                    firstName: state.firstName,
+                    lastName: state.lastName,
+                    email: state.email,
+                    phone: state.phone,
+                    ccn: state.ccn, 
+                    pickupInfo: {
+                        pickupDate: state.dateInputPickup,
+                        pickupTime: state.timeInputPickup,
+                    }, 
+                    deliveryInfo:{
+                        deliveryDate: state.dateInputDelivery,
+                        deliveryTime: state.timeInputDelivery,
+                        deliveryAddress: state.address,
+                    },
+                    cart: custCart, 
+                    totalCost: calcTotalCost(),
+                }
+                await axios.post('http://localhost:5000/orders', formData)
+                .then(res => res.data)
+                setIsOrderSuccessful(true)
+                // console.log(state)
+                
+                // dispatch({ type:'Form_Cleared' })
+              
+            } catch (error) {
+                console.log(error)
             }
-            await axios.post('http://localhost:5000/orders', formData)
-            .then(res => res.data)
-            // clear form...
-        } catch (error) {
-            console.log(error)
-        }
-        console.log('Form data submitted')
-        console.log(state)
+        }       
     }
 
     // Reducer function to handle all the form data
@@ -206,23 +223,22 @@ function UserCart(){
                     return{
                         ...state, 
                         selectedOptionBtn:  action.payload,
-                        isPickupDateDisabled: false, //f
-                        isDeliveryDateDisabled: true,//t
+                        isPickupDateDisabled: false,
+                        isDeliveryDateDisabled: true,
                         dateInputDelivery: '',
                         isDeliveryTimeDisabled: true,
                         isPickupTimeDisabled: false,
                         timeInputDelivery: '',
                         isDeliveryAddressDisabled: true,
                         address: '',
-
                     }
                 }
                 if( action.payload === 'delivery'){
                     return{
                         ...state, 
                         selectedOptionBtn:  action.payload,
-                        isPickupDateDisabled: true,//t
-                        isDeliveryDateDisabled: false,//f
+                        isPickupDateDisabled: true,
+                        isDeliveryDateDisabled: false,
                         dateInputPickup: '',
                         isPickupTimeDisabled: true,
                         isDeliveryTimeDisabled: false,
@@ -255,6 +271,8 @@ function UserCart(){
                     ...state,
                     timeInputDelivery: action.payload
                 }
+            // case 'Form_Cleared':
+            //     return initalState;
             default:
                  return state
             }
@@ -262,6 +280,8 @@ function UserCart(){
     // TODO: css responsiveness & styling
     return(
         <>
+            {isCartEmpty && <ErrorModal msg="Must have at least 1 item in cart to place order." onClose={handleErrorModalClose} />}
+            {isOrderSuccessful && <NotifModal msg="Order Successful!" close ={()=> setIsOrderSuccessful(false)}/>}
             <section id="cart-page-container">
     
                 <div className="cart-order-container">
@@ -336,22 +356,30 @@ function UserCart(){
                                     name="firstName" 
                                     value={state.name}
                                     onChange={handleTextInputChange}
-                                    placeholder='First Name'/>
+                                    placeholder='First Name'
+                                    required
+                                    />
                                 <input 
                                     type='text' 
                                     name="lastName"
                                     onChange={handleTextInputChange}
-                                    placeholder='Last Name'/>
+                                    placeholder='Last Name'
+                                    required
+                                    />
                                 <input 
                                     type="email" 
                                     name="email"
                                     onChange={handleTextInputChange}
-                                    placeholder='Email'/>
+                                    placeholder='Email'
+                                    required
+                                    />
                                 <input 
                                     type="text" 
                                     name="phone"
                                     onChange={handleTextInputChange}
-                                    placeholder='Phone Number'/>
+                                    placeholder='Phone Number'
+                                    required
+                                    />
                             </div>
 
                             <div className="payment-container">
@@ -367,10 +395,16 @@ function UserCart(){
                                             type="text" 
                                             name='ccn'
                                             onChange={handleTextInputChange}
-                                            placeholder='Card Number'/>
+                                            placeholder='Card Number'
+                                            required
+                                            />
                                         <div>
-                                            <input type='text' placeholder='MM / YY'/>
-                                            <input type="text" maxLength={3} placeholder='CVC'/>
+                                            <input type='text' placeholder='MM / YY'
+                                            required
+                                            />
+                                            <input type="text" maxLength={3} placeholder='CVC'
+                                            required
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -459,7 +493,7 @@ function UserCart(){
                                   
                                 </div>
                                 {/* Form submit btn - add a confrim notif */}
-                                <button className='order-btn' type='submit'>Place Order</button>
+                                <button className='order-btn' type='submit' >Place Order</button>
 
                                 <div className='assistance_contact'>
                                     <p>Need Assistance?</p>
