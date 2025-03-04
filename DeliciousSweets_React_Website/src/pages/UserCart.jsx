@@ -17,29 +17,25 @@ function UserCart(){
     const [isCartEmpty, setIsCartEmpty] = useState(false)
     const [isOrderSuccessful, setIsOrderSuccessful] = useState(false)
   
-
     // Initial values for form 
-    const initalState ={
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        ccn: '',
-        address: '', 
-        selectedOptionBtn: 'pickup',
-
+    const initalState = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        ccn: "",
+        ccExpireDate: "",
+        ccVerify: "",
+        address: "", 
+        selectedOptionBtn: "pickup",
         dateInputPickup: new Date().toLocaleDateString(),
-        timeInputPickup:'',
-
-        dateInputDelivery: '',
-        timeInputDelivery: '',
-
+        timeInputPickup:"",
+        dateInputDelivery: "",
+        timeInputDelivery: "",
         isPickupDateDisabled: false,
         isPickupTimeDisabled: false,
-        
         isDeliveryDateDisabled: true,
         isDeliveryTimeDisabled: true,
-
         isDeliveryAddressDisabled: true,
     }
     const [state, dispatch] = useReducer(OrderFormReducer, initalState)
@@ -114,102 +110,8 @@ function UserCart(){
         setCart(updateCart)
     };
 
-    // -- Handles and Dispatches for the OrderFormReducer ---
-    // TODO: Validation of form data
-    // length, type, 
-    const handleOrderRadioBtn = (e) => {
-        dispatch({
-            type: 'Method_Selected', 
-            payload: e.target.value
-        })
-    }
-    const handleTextInputChange = (e) => {
-        dispatch({
-            type: 'Text_Input_Changed',
-            name: e.target.name,
-            value: e.target.value
-        })
-    }
-    const handleDatePickupSelection = (dateInput) => {
-        dispatch({
-            type: 'Date_Pickup_Selected', 
-            payload: dateInput.toLocaleDateString()
-        })
-    }
-    const handleDateDeliverySelection = (dateInput) =>{
-        dispatch({
-            type: 'Date_Delivery_Selected',
-            payload: dateInput.toLocaleDateString()
-        })
-    }
-    const handleTimePickupSelection = (timeInput) => {
-        dispatch({
-            type: 'Time_Pickup_Selected',
-            payload: timeInput.target.value
-        })
-    }
-    const handleTimeDeliverySelection = (timeInput) => {
-        dispatch({
-            type: 'Time_Delivery_Selected',
-            payload: timeInput.target.value
-        })
-    }
-
-    const handleErrorModalClose = () =>{
-        setIsCartEmpty(false)
-    }
-
-    const handleFormSubmit = async (e) =>{
-        e.preventDefault();
-        const custCart = cartItemMergedData.map(itemOrder => ({
-            productID: itemOrder._id,
-            quantity: itemOrder.itemQuantity, 
-            price: itemOrder.price
-
-        }))
-        // [1] = Only submit if at least 1 item is in cart 
-        if(custCart.length === 0){
-            setIsCartEmpty(true)
-        }else{
-            // TODO: 
-            // data/format validation of form
-            // clear form to initial state
-            // Pop up notification of success
-            // hckec to make sure the fields if pickup/delivery is elsect that theres no emepty
-            try {
-                const formData = {
-                    firstName: state.firstName,
-                    lastName: state.lastName,
-                    email: state.email,
-                    phone: state.phone,
-                    ccn: state.ccn, 
-                    pickupInfo: {
-                        pickupDate: state.dateInputPickup,
-                        pickupTime: state.timeInputPickup,
-                    }, 
-                    deliveryInfo:{
-                        deliveryDate: state.dateInputDelivery,
-                        deliveryTime: state.timeInputDelivery,
-                        deliveryAddress: state.address,
-                    },
-                    cart: custCart, 
-                    totalCost: calcTotalCost(),
-                }
-                await axios.post('http://localhost:5000/orders', formData)
-                .then(res => res.data)
-                setIsOrderSuccessful(true)
-                // console.log(state)
-                
-                // dispatch({ type:'Form_Cleared' })
-              
-            } catch (error) {
-                console.log(error)
-            }
-        }       
-    }
-
-    // Reducer function to handle all the form data
-    function OrderFormReducer (state, action) {
+     // Reducer function to handle all the form data
+     function OrderFormReducer (state, action) {
         // console.log('Previous State:', state);
         // console.log('Action:', action);
         switch (action.type) {
@@ -271,12 +173,105 @@ function UserCart(){
                     ...state,
                     timeInputDelivery: action.payload
                 }
-            // case 'Form_Cleared':
-            //     return initalState;
+            case 'Form_Cleared':
+                return {initalState}
             default:
-                 return state
+                return state
             }
     }
+    // -- Handles and Dispatches for the OrderFormReducer ---
+    // TODO: Validation of form data
+    // length, type, 
+    const handleOrderRadioBtn = (e) => {
+        dispatch({
+            type: 'Method_Selected', 
+            payload: e.target.value
+        })
+    }
+    const handleTextInputChange = (e) => {
+        dispatch({
+            type: 'Text_Input_Changed',
+            name: e.target.name,
+            value: e.target.value
+        })
+    }
+    const handleDatePickupSelection = (dateInput) => {
+        dispatch({
+            type: 'Date_Pickup_Selected', 
+            payload: dateInput.toLocaleDateString()
+        })
+    }
+    const handleDateDeliverySelection = (dateInput) =>{
+        dispatch({
+            type: 'Date_Delivery_Selected',
+            payload: dateInput.toLocaleDateString()
+        })
+    }
+    const handleTimePickupSelection = (timeInput) => {
+        dispatch({
+            type: 'Time_Pickup_Selected',
+            payload: timeInput.target.value
+        })
+    }
+    const handleTimeDeliverySelection = (timeInput) => {
+        dispatch({
+            type: 'Time_Delivery_Selected',
+            payload: timeInput.target.value
+        })
+    }
+    const handleErrorModalClose = () =>{
+        setIsCartEmpty(false)
+    }
+    const handleFormSubmit = async (e) =>{
+        e.preventDefault();
+        const custCart = cartItemMergedData.map(itemOrder => ({
+            productID: itemOrder._id,
+            quantity: itemOrder.itemQuantity, 
+            price: itemOrder.price
+
+        }))
+        // [1] = Only submit if at least 1 item is in cart 
+        if(custCart.length === 0){
+            setIsCartEmpty(true)
+        }else{
+            // TODO: 
+            // data/format validation of form
+            // clear form to initial state
+            // Pop up notification of success
+            // hckec to make sure the fields if pickup/delivery is elsect that theres no emepty
+            try {
+                const formData = {
+                    firstName: state.firstName,
+                    lastName: state.lastName,
+                    email: state.email,
+                    phone: state.phone,
+                    ccn: state.ccn, 
+                    pickupInfo: {
+                        pickupDate: state.dateInputPickup,
+                        pickupTime: state.timeInputPickup,
+                    }, 
+                    deliveryInfo:{
+                        deliveryDate: state.dateInputDelivery,
+                        deliveryTime: state.timeInputDelivery,
+                        deliveryAddress: state.address,
+                    },
+                    cart: custCart, 
+                    totalCost: calcTotalCost(),
+                }
+                await axios.post('http://localhost:5000/orders', formData)
+                .then(res => res.data)
+                setIsOrderSuccessful(true) 
+                dispatch({type: 'Form_Cleared'}) // Clear Fields
+                //TODO: Clear out current cart / redirect to another sub screen 
+                // display success page + offer a reciept (later)
+              
+            } catch (error) {
+                console.log(error)
+            }
+        }       
+    }
+
+   
     // TODO: css responsiveness & styling
     return(
         <>
@@ -354,7 +349,7 @@ function UserCart(){
                                 <input 
                                     type="text" 
                                     name="firstName" 
-                                    value={state.name}
+                                    value={state.firstName || ""}
                                     onChange={handleTextInputChange}
                                     placeholder='First Name'
                                     required
@@ -362,6 +357,7 @@ function UserCart(){
                                 <input 
                                     type='text' 
                                     name="lastName"
+                                    value={state.lastName || ""}
                                     onChange={handleTextInputChange}
                                     placeholder='Last Name'
                                     required
@@ -369,6 +365,7 @@ function UserCart(){
                                 <input 
                                     type="email" 
                                     name="email"
+                                    value={state.email || ""}
                                     onChange={handleTextInputChange}
                                     placeholder='Email'
                                     required
@@ -376,6 +373,7 @@ function UserCart(){
                                 <input 
                                     type="text" 
                                     name="phone"
+                                    value={state.phone || ""}
                                     onChange={handleTextInputChange}
                                     placeholder='Phone Number'
                                     required
@@ -394,15 +392,22 @@ function UserCart(){
                                         <input 
                                             type="text" 
                                             name='ccn'
+                                            value={state.ccn || ""}
                                             onChange={handleTextInputChange}
                                             placeholder='Card Number'
                                             required
                                             />
                                         <div>
                                             <input type='text' placeholder='MM / YY'
+                                            name='ccExpireDate'
+                                            value={state.ccExpireDate || ""}
+                                            onChange={handleTextInputChange}
                                             required
                                             />
                                             <input type="text" maxLength={3} placeholder='CVC'
+                                            name='ccVerify'
+                                            value={state.ccVerify || ""}
+                                            onChange={handleTextInputChange}
                                             required
                                             />
                                         </div>
@@ -440,7 +445,7 @@ function UserCart(){
                                             name="" 
                                             id="" 
                                             min="" max="" 
-                                            value={state.timeInputPickup}
+                                            value={state.timeInputPickup || ""}
                                             onChange={handleTimePickupSelection}
                                             disabled={state.isPickupTimeDisabled}
                                             />
@@ -477,14 +482,14 @@ function UserCart(){
                                             id="" 
                                             min="" max="" 
                                             onChange={handleTimeDeliverySelection}
-                                            value={state.timeInputDelivery}
+                                            value={state.timeInputDelivery || ""}
                                             disabled={state.isDeliveryTimeDisabled}/>
                                         {/* Delivery Address */}
                                         <label htmlFor="">Address</label>
                                         <input 
                                             type="text" 
                                             name='address' 
-                                            value={state.address}
+                                            value={state.address || ""}
                                             onChange={handleTextInputChange}
                                             disabled={state.isDeliveryAddressDisabled}
                                         />
@@ -493,7 +498,7 @@ function UserCart(){
                                   
                                 </div>
                                 {/* Form submit btn - add a confrim notif */}
-                                <button className='order-btn' type='submit' >Place Order</button>
+                                <button className='order-btn' type='submit'>Place Order</button>
 
                                 <div className='assistance_contact'>
                                     <p>Need Assistance?</p>
