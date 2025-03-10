@@ -239,6 +239,7 @@ function UserCart(){
             // clear form to initial state
             // Pop up notification of success
             // hckec to make sure the fields if pickup/delivery is elsect that theres no emepty
+            // upon success send user to another page to show msg and offer a reciprt to print
             try {
                 const formData = {
                     firstName: state.firstName,
@@ -438,6 +439,8 @@ function UserCart(){
                                             selected={state.dateInputPickup}
                                             onChange={handleDatePickupSelection}
                                             disabled={state.isPickupDateDisabled}
+                                            showIcon
+                                            icon="bi bi-calendar"
                                         />
                                         {/* Pickup Time */}
                                         <input 
@@ -448,7 +451,7 @@ function UserCart(){
                                             value={state.timeInputPickup || ""}
                                             onChange={handleTimePickupSelection}
                                             disabled={state.isPickupTimeDisabled}
-                                            />
+                                        />
                                     </div>
                                     <p>OR</p>
                                     {/* Delivery Option */}
@@ -469,12 +472,14 @@ function UserCart(){
                                     </div>
                                     <div className='formatDateandTimeDisplay'>
                                         {/* Delivery Date */}
-                                            <DatePicker 
-                                                name=''
-                                                selected={state.dateInputDelivery}
-                                                onChange={handleDateDeliverySelection}
-                                                disabled={state.isDeliveryDateDisabled}
-                                            />
+                                        <DatePicker 
+                                            name=''
+                                            selected={state.dateInputDelivery}
+                                            onChange={handleDateDeliverySelection}
+                                            disabled={state.isDeliveryDateDisabled}
+                                            showIcon
+                                            icon='bi bi-calendar'
+                                        />
                                         {/* Delivery Time */}
                                         <input 
                                             type="time" 
@@ -484,7 +489,9 @@ function UserCart(){
                                             onChange={handleTimeDeliverySelection}
                                             value={state.timeInputDelivery || ""}
                                             disabled={state.isDeliveryTimeDisabled}/>
-                                        {/* Delivery Address */}
+                                    </div>
+                                    {/* Delivery Address */}
+                                    <div className='order-address-container'>
                                         <label htmlFor="">Address</label>
                                         <input 
                                             type="text" 
@@ -494,8 +501,7 @@ function UserCart(){
                                             disabled={state.isDeliveryAddressDisabled}
                                         />
                                         <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
-                                    </div>
-                                  
+                                        </div>
                                 </div>
                                 {/* Form submit btn - add a confrim notif */}
                                 <button className='order-btn' type='submit'>Place Order</button>

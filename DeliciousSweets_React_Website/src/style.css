@@ -1182,6 +1182,28 @@ body{
     width: 40%;
     margin-left: 10px;
 }
+.calendar-input-container{
+    display: flex;
+    width: 80%;
+    height: 24px;
+    margin-bottom: 10px;
+    padding-right: 5px;
+}
+.react-datepicker__input-container{
+    display: flex;
+    justify-content:left;
+    align-items: center;
+}
+.react-datepicker__input-container input{
+    border: 1px red solid;
+}
+.react-datepicker__input-container .bi::before, [class*=" bi-"]::before, [class^=bi-]::before{
+    position: relative;
+    left: 115px;
+    bottom: 11px;
+}
+
+
 .payment-container input{
     width: 80%;
     margin-bottom: 15px;
@@ -1235,15 +1257,17 @@ body{
   align-items: center;
   font-size: 1.75rem;
 }
+/* .....*/
 .order-method-container .formatDateandTimeDisplay{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100%;    
+    /* align-items: center; */
+    /* width: 100%;     */
 }
 .order-method-container .formatDateandTimeDisplay input{
     border: none;
     padding: 3px;
+    width: 100%;
 }
 .order-method-container .order-method-btn{
     width: 15px;
@@ -1267,10 +1291,20 @@ body{
     height: 30px;
     margin-left: 10px;
 }
+.order-method-container .order-address-container{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.order-address-container input{
+    border: none;
+    /* width: 73%; */
+}
 .order-method-container .deliveryNote{
     white-space: pre-wrap;
     font-size: 0.75rem;
     padding-bottom: 10px;
+    text-align: center;
 }
 .payment-container .phoneIcon{
     width: 20%;
