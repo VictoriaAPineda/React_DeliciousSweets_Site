@@ -1296,6 +1296,10 @@ body{
    flex-direction: column;
    align-items: center;
 }
+.order-address-container label{
+    margin-left: 35px;
+    margin-bottom: 10px;
+}
 .order-address-container input{
     border: none;
     /* width: 73%; */
