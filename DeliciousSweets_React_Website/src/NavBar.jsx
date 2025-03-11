@@ -41,7 +41,7 @@ export default function Navbar() {
                             {/* menu state = if meny is displayed*/}
                             <DropdownMenu menuState = {isOpen}/>
                         </li>
-                        <li><Link to="/cart">Cart <i className="bi bi-cart2" id="cart-icon"></i>({cartQuantity})</Link></li>
+                        <li><Link to="/cart">Cart <i className="bi bi-cart2"></i>({cartQuantity})</Link></li>
                     </ul>
                 </nav>
                 {/* list/hamburger icon for mobile menu */}
