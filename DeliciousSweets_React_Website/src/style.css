@@ -71,6 +71,9 @@ body{
     align-items: center;
 }
 .search-icon {
+    position: relative;
+    right: 120px;
+    top: 10px;
     color: #fff;
     font-size: 1rem;
     white-space: nowrap;
@@ -79,6 +82,12 @@ body{
 #search{
     padding-left:5px;
     padding-right: 5PX;
+}
+#cart-icon{
+    /* added icons wandering...*/
+    position: relative;
+    top: 10px;
+    right: 117px;
 }
 .nav-menu{
     display: flex;
@@ -1455,8 +1464,9 @@ body{
         margin-bottom: 20px;
     }
     .list-trigger{
+        /* added positioning */
         position: absolute;
-        right: 30px;
+        right: 150px;
         font-size: 40px;
         display: block;
     }
@@ -1480,7 +1490,7 @@ body{
         display: block;
         position: fixed;
         top: 20px;
-        right: 20px;
+        right: 130px; /* moved*/
     }
     .dropdown-trigger{
         display: flex
