@@ -1,4 +1,5 @@
 import { useContext, useEffect, useReducer, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import cardIcon from '/src/images/cardIcon.png';
 import timeIcon from '/src/images/clock.png';
 import truckIcon from '/src/images/delivery_truck.png';
@@ -16,6 +17,7 @@ function UserCart(){
     const {cart, setCart} = useContext(Cart);
     const [isCartEmpty, setIsCartEmpty] = useState(false)
     const [isOrderSuccessful, setIsOrderSuccessful] = useState(false)
+    const navigate = useNavigate()
   
     // Initial values for form 
     const initalState = {
@@ -236,10 +238,7 @@ function UserCart(){
         }else{
             // TODO: 
             // data/format validation of form
-            // clear form to initial state (before redirect)
-            // Pop up notification of success
-            // hckec to make sure the fields if pickup/delivery is elsect that theres no emepty
-            // upon success send user to another page to show msg and offer a reciprt to print
+            // make sure the fields if pickup/delivery is selected, no emepty
             try {
                 const formData = {
                     firstName: state.firstName,
@@ -263,8 +262,7 @@ function UserCart(){
                 .then(res => res.data)
                 setIsOrderSuccessful(true) 
                 dispatch({type: 'Form_Cleared'}) // Clear Fields
-                //TODO: Clear out current cart / redirect to another sub screen 
-                // display success page + offer a reciept (later)
+                navigate('/receipt')
               
             } catch (error) {
                 console.log(error)

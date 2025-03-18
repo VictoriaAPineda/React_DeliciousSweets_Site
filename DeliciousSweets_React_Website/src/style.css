@@ -1347,6 +1347,13 @@ body{
     color:#4B3C37 ;
 
 }
+/* Receipt Page */
+#receipt-container{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
 
 
 
