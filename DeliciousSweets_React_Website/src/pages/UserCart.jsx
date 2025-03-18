@@ -236,7 +236,7 @@ function UserCart(){
         }else{
             // TODO: 
             // data/format validation of form
-            // clear form to initial state
+            // clear form to initial state (before redirect)
             // Pop up notification of success
             // hckec to make sure the fields if pickup/delivery is elsect that theres no emepty
             // upon success send user to another page to show msg and offer a reciprt to print
