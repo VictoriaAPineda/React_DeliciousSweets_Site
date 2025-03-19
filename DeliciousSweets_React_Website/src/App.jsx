@@ -5,7 +5,6 @@ import About from "./pages/About"
 import Contact from "./pages/Contact"
 import Products from "./pages/Products"
 import Receipt from "./pages/Receipt"
-
 import { Route, Routes } from "react-router-dom"
 import ProductDetails from "./pages/ProductDetail"
 import UserCart from "./pages/UserCart"
@@ -13,11 +12,12 @@ import UserCart from "./pages/UserCart"
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  
   return (
     <>
       <Navbar /> {/* Main navigation */}
    
-      <div className="container">
+      {/* <div className="container"> */}
         <Routes>
           {/* Collection of links used within website,
           they are define here*/}
@@ -35,12 +35,9 @@ function App() {
             <Route exact path=":id" element={<ProductDetails />}/>
             {/* <Route path=":cat/:name" element={<ProductDetails />}/> */}
           </Route>
-          <Route path="/receipt" element={<Receipt />}/>
-
-          
-
+          <Route path="/receipt" element={<Receipt/>}/>
         </Routes>
-      </div>
+      {/* </div> */}
       <Footerbar />
     
     </>

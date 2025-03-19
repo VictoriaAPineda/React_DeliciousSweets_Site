@@ -262,7 +262,7 @@ function UserCart(){
                 .then(res => res.data)
                 setIsOrderSuccessful(true) 
                 dispatch({type: 'Form_Cleared'}) // Clear Fields
-                navigate('/receipt')
+                navigate('/receipt', {state: {id: 2}})// testing data sent
               
             } catch (error) {
                 console.log(error)
