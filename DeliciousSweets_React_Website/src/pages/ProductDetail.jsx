@@ -30,7 +30,6 @@ export default function ProductDetails(){
     const targetRef = useRef();
     const {cart, setCart} = useContext(Cart);
     // console.log(useContext(Cart))
-    
     /* 
        Retrieves the state data from the state from the Link to this page 
        the data contains the located page number ex: (?page=2) that will be 

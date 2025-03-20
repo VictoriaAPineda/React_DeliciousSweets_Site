@@ -224,6 +224,7 @@ function UserCart(){
     const handleErrorModalClose = () =>{
         setIsCartEmpty(false)
     }
+    console.log(cartItemMergedData)
     const handleFormSubmit = async (e) =>{
         e.preventDefault();
         const custCart = cartItemMergedData.map(itemOrder => ({
@@ -262,7 +263,9 @@ function UserCart(){
                 .then(res => res.data)
                 setIsOrderSuccessful(true) 
                 dispatch({type: 'Form_Cleared'}) // Clear Fields
-                navigate('/receipt', {state: {id: 2}})// testing data sent
+                navigate('/receipt', {state: {form : formData, cart: cartItemMergedData, total: calcTotalCost()} })// testing data sent
+               
+              
               
             } catch (error) {
                 console.log(error)

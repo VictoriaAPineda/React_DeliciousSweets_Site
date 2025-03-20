@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
         width: '80%',
         // alignSelf: 'center',
         justifyContent: 'center',
-        margin: 'auto'
+        margin: 'auto',
+        textAlign:'center'
       },
       header:{
         borderTop: 'none'
@@ -54,18 +55,14 @@ const styles = StyleSheet.create({
       },
       bold: {
         fontWeight: 'bold'
+      }, 
+      alignRight:{
+        textAlign: 'left'
       }
   });
 
-const fetchedPurchaseData = JSON.parse(localStorage.getItem('cartItems'));
-// console.log(fetchedPurchaseData)
-
-// TODO: Display the order for printout
-const MyDocument = () => {
-    // ???
-    // const location = useLocation();
-    // const cartReceived = location.state;
-    // console.log(cartReceived)
+// TODO: Work on styling / aligning
+const MyDocument = ({cart, total}) => {
 
     return(
         <Document>
@@ -77,21 +74,35 @@ const MyDocument = () => {
                         <Text style={styles.col1}>Item Name</Text>
                         <Text style={styles.col2}>Quantity</Text>
                         <Text style={styles.col3}>Price Per Unit</Text>
-                        <Text style={styles.col4}>Cost</Text>
+                        <Text style={styles.col4}>Total</Text>
                     </View>
                     {/* Data Rows of Orders */}
-                    {fetchedPurchaseData.map((row, index) => (
+                    {cart.map((row, index) => (
                     <View key={index} style={styles.row} wrap={false}>
-                            <Text style={styles.col1}>{row.itemId}</Text>
+                            <Text style={styles.col1}>{row.name}</Text>
                             <Text style={styles.col2}>{row.itemQuantity}</Text>
+                            <Text style={styles.col2}>{row.price}</Text>
+                            <Text style={styles.col3}>{row.itemQuantity * row.price}</Text>
                     </View>
                     ))}
+                    {/* Summation */}
+                    <View>
+                      <Text style={[styles.row, styles.bold, styles.alignRight]}>Overall Total: {total}</Text>
+
+                    </View>
                 </View>
             </Page>
         </Document>
         );
 }
 function Receipt (){
+
+  const {state} = useLocation()
+
+  const cartData = state.cart // cartItemMergedData (UserCart.jsx)
+  const cartTotal = state.total; // calcTotalCost() (UserCart.jsx)
+
+  
     return(
         <>
             <section id="receipt-container">
@@ -99,7 +110,7 @@ function Receipt (){
                 <p>Here's your receipt!</p>
           
                 <PDFViewer width="80%" height="700">
-                    <MyDocument />
+                    <MyDocument cart = {cartData} total = {cartTotal}/>
                 </PDFViewer>
             </section>
         </>
