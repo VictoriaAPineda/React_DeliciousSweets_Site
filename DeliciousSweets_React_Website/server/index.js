@@ -2,6 +2,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors'); // Ability to access our server from different domains
 const app = express();
+// require('react-dotenv').config();
+// const process = require('process')
+// const env = process.env;
+
+
 // const { urlencoded } = require('body-parser');
 // For Form Posting to Server
 const bodyParser = require('body-parser') 
@@ -15,6 +20,10 @@ const corsOptions = {
 }
 app.use(cors(corsOptions))
 
+// console.log("Key?")
+// const key = import.meta.env.VITE_MONGODB_KEY;
+// console.log(key)
+
 const Product = require('./models/product')
 const Review = require('./models/review');
 const Email = require('./models/email');
@@ -22,6 +31,8 @@ const Order = require('./models/order');
 
 // Connects to MongoDB
 const dbURI = 'mongodb+srv://Victoria:1234AdminMDB@delicioussweetscluster.v5stmxn.mongodb.net/DeliciousSweetsDB?retryWrites=true&w=majority&appName=DeliciousSweetsCluster'
+
+// NOTE: Will need an accpetable IP to view/use data
 
 mongoose.connect(dbURI)
     .then((result)=> {
