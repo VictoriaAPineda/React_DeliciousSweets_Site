@@ -60,17 +60,23 @@ function UserCart(){
         return itemObject ? {...item, ...itemObject} : item
     })
 
+    localStorage.setItem('UserCart', JSON.stringify(cartItemMergedData));
+
     // console.log(cartItemMergedData) // use to for order cart model
 
     // Calc sub total cost of whole cart
     const calcSubTotalCartCost = () => {
-        let subtotal = cartItemMergedData.reduce((acc, item) => acc + (item.price * item.itemQuantity), 0)
-        return subtotal.toFixed(2)
+        let subtotal = cartItemMergedData.reduce((acc, item) => acc + (item.price * item.itemQuantity), 0);
+        let subtotalRounded = subtotal.toFixed(2);
+        localStorage.setItem('CartSubtotal', subtotalRounded)
+        return subtotalRounded;
     }
     // sales tax
     const calcSalesTax = () => {
-        let total = calcSubTotalCartCost() * 0.0825
-        return total.toFixed(2)
+        let totalTax = calcSubTotalCartCost() * 0.0825;
+        let totalTaxRounded = totalTax.toFixed(2);
+        localStorage.setItem('CartTax', totalTaxRounded);
+        return totalTaxRounded;
     }
     // Calc an item's total
     const itemCost = (item) =>{
@@ -78,15 +84,29 @@ function UserCart(){
         total = item.price * item.itemQuantity
         return total.toFixed(2)
     }
-    // shipping [work in progress ....]
+    // Shipping fee
     const calcDelivery = () =>{
-        return 0.00
+        if(state.selectedOptionBtn === 'pickup'){
+            let fee = 0.00
+            let feeRounded = fee.toFixed(2)
+            localStorage.setItem('Shipping', feeRounded)
+            return feeRounded;
+        } else{
+            // Realistically calc distance here, but will use flat fee here
+            let fee = 8.00
+            let feeRounded = fee.toFixed(2)
+            localStorage.setItem('Shipping', feeRounded)
+            return feeRounded;
+        }
     }
     // cart total cost
     const calcTotalCost = () => {
-        let totalCost =  parseFloat(calcSubTotalCartCost()) + parseFloat(calcSalesTax()); 
-        // add shipping if applicable
-        return totalCost.toFixed(2)
+
+        let totalCost =  parseFloat(calcSubTotalCartCost()) + parseFloat(calcSalesTax()) + parseInt(calcDelivery());
+        let roundedTotalCost = totalCost.toFixed(2)
+        localStorage.setItem('CartTotal', JSON.stringify(roundedTotalCost)); 
+        // TODO: add shipping if applicable
+        return roundedTotalCost
     }
     // User's changes to quantity of a specific item
     const handleCartItemQuantity = (event, itemToChange) => {
@@ -224,7 +244,7 @@ function UserCart(){
     const handleErrorModalClose = () =>{
         setIsCartEmpty(false)
     }
-    console.log(cartItemMergedData)
+
     const handleFormSubmit = async (e) =>{
         e.preventDefault();
         const custCart = cartItemMergedData.map(itemOrder => ({
@@ -263,17 +283,14 @@ function UserCart(){
                 .then(res => res.data)
                 setIsOrderSuccessful(true) 
                 dispatch({type: 'Form_Cleared'}) // Clear Fields
-                navigate('/receipt', {state: {form : formData, cart: cartItemMergedData, total: calcTotalCost()} })// testing data sent
-               
-              
-              
+                // setCart([]) // clear cart (not local storage yet)
+                navigate('/receipt')
             } catch (error) {
                 console.log(error)
             }
         }       
     }
 
-   
     // TODO: css responsiveness & styling
     return(
         <>

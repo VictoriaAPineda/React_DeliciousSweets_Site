@@ -2,10 +2,9 @@
 *  [?] Cart should be cleared upon completion/submit. For now cart will be cleared on leaving
 * receipt view due to not yet creating a personal user object acct to pull up the order from database. The order is save to a database
 */
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import {Page, Text, View, Document, StyleSheet} from '@react-pdf/renderer';
 import { PDFViewer } from "@react-pdf/renderer";
-import { useLocation } from "react-router-dom";
 
 
 // Styling the PDF Display
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
         textAlign:'center'
       },
       header:{
-        borderTop: 'none'
+        // borderTop: 'none'
       },
       row:{
         display:'flex',
@@ -41,6 +40,12 @@ const styles = StyleSheet.create({
         paddingBottom: 8,
         fontSize: 10
       }, 
+      borderBtm:{
+        borderBottom: '1px solid black'
+      },
+      noborderTop:{
+        borderTop: 'none'
+      },
       col1:{
         width: '25%',
       },
@@ -57,13 +62,38 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
       }, 
       alignRight:{
-        textAlign: 'left'
+        textAlign: 'right'
+      }, 
+      padright:{
+        paddingRight: 40
       }
   });
 
-// TODO: Work on styling / aligning
-const MyDocument = ({cart, total}) => {
+const userCartOrder = JSON.parse(localStorage.getItem('UserCart'));
+const userCartOrderTotal = JSON.parse(localStorage.getItem('CartTotal'));
+const userCartSubtotal = JSON.parse(localStorage.getItem('CartSubtotal'));
+const deliveryFee =  JSON.parse(localStorage.getItem('Shipping'));
+const tax =  JSON.parse(localStorage.getItem('CartTax'));
 
+// TODO: Once user leaves page, the localstorage will be wiped.
+// Order info will remain on database
+
+/* TODO: Form
+*   [1] - List contact info 
+*   [2] - pickup/delivery info
+*   [3] - last 4 digits of card
+*/  
+
+// window.addEventListener("beforeunload", function (e){
+//   let confirmMsg = "Leaving page?"
+//   e.returnValue = confirmMsg;
+//   return confirmMsg
+
+// });
+
+
+const MyDocument = () => {
+    // TODO: Work on styling / aligning
     return(
         <Document>
             <Page size="A4" style={styles.page}>
@@ -77,18 +107,23 @@ const MyDocument = ({cart, total}) => {
                         <Text style={styles.col4}>Total</Text>
                     </View>
                     {/* Data Rows of Orders */}
-                    {cart.map((row, index) => (
+                    {userCartOrder.map((row, index) => (
                     <View key={index} style={styles.row} wrap={false}>
                             <Text style={styles.col1}>{row.name}</Text>
                             <Text style={styles.col2}>{row.itemQuantity}</Text>
-                            <Text style={styles.col2}>{row.price}</Text>
-                            <Text style={styles.col3}>{row.itemQuantity * row.price}</Text>
+                            <Text style={styles.col2}>${row.price}</Text>
+                            <Text style={styles.col3}>${(row.itemQuantity * row.price).toFixed(2)}</Text>
                     </View>
                     ))}
                     {/* Summation */}
                     <View>
-                      <Text style={[styles.row, styles.bold, styles.alignRight]}>Overall Total: {total}</Text>
-
+                    <Text style={[styles.row, styles.alignRight, styles.padright]}>Subtotal: ${userCartSubtotal}</Text>
+                      <Text style={[styles.row, styles.alignRight, styles.padright, styles.noborderTop]}>Tax: ${tax}</Text>
+                      <Text style={[styles.row, styles.alignRight, styles.padright, styles.noborderTop]}>Shipping: ${deliveryFee.toFixed(2)}</Text>
+                     
+                    </View>
+                    <View>
+                      <Text style={[styles.row, styles.bold, styles.alignRight, styles.padright, styles.borderBtm]}>Overall Total: ${userCartOrderTotal} </Text>
                     </View>
                 </View>
             </Page>
@@ -96,13 +131,6 @@ const MyDocument = ({cart, total}) => {
         );
 }
 function Receipt (){
-
-  const {state} = useLocation()
-
-  const cartData = state.cart // cartItemMergedData (UserCart.jsx)
-  const cartTotal = state.total; // calcTotalCost() (UserCart.jsx)
-
-  
     return(
         <>
             <section id="receipt-container">
@@ -110,7 +138,7 @@ function Receipt (){
                 <p>Here's your receipt!</p>
           
                 <PDFViewer width="80%" height="700">
-                    <MyDocument cart = {cartData} total = {cartTotal}/>
+                    <MyDocument/>
                 </PDFViewer>
             </section>
         </>

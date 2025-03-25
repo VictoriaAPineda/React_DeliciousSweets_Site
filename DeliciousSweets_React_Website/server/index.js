@@ -2,10 +2,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors'); // Ability to access our server from different domains
 const app = express();
-// require('react-dotenv').config();
-// const process = require('process')
-// const env = process.env;
-
 
 // const { urlencoded } = require('body-parser');
 // For Form Posting to Server
@@ -19,10 +15,6 @@ const corsOptions = {
     optionSuccessStatus: 200
 }
 app.use(cors(corsOptions))
-
-// console.log("Key?")
-// const key = import.meta.env.VITE_MONGODB_KEY;
-// console.log(key)
 
 const Product = require('./models/product')
 const Review = require('./models/review');
