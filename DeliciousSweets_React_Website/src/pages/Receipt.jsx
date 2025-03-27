@@ -12,16 +12,7 @@ const styles = StyleSheet.create({
     page: {
         flexDirection: 'column',
         backgroundColor: '#E4E4E4',
-        // display: 'flex',
-        // justifyContent: 'center',
-        // alignItems: 'center'
       },
-    //   section: {
-    //     margin: 10,
-    //     padding: 10,
-    //     flexGrow: 1
-    //   }, 
-
       table:{
         width: '80%',
         // alignSelf: 'center',
@@ -84,14 +75,6 @@ const tax =  JSON.parse(localStorage.getItem('CartTax'));
 *   [3] - last 4 digits of card
 */  
 
-// window.addEventListener("beforeunload", function (e){
-//   let confirmMsg = "Leaving page?"
-//   e.returnValue = confirmMsg;
-//   return confirmMsg
-
-// });
-
-
 const MyDocument = () => {
     // TODO: Work on styling / aligning
     return(
@@ -130,16 +113,17 @@ const MyDocument = () => {
         </Document>
         );
 }
-function Receipt (){
+function Receipt ({onClose}){
     return(
         <>
-            <section id="receipt-container">
+            <section id="receipt-container" className="full-view-popup">
                 <p>Success!</p>
                 <p>Here's your receipt!</p>
           
                 <PDFViewer width="80%" height="700">
                     <MyDocument/>
                 </PDFViewer>
+                <button onClick={onClose}>Close</button>
             </section>
         </>
     )

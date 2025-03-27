@@ -9,9 +9,6 @@ const CartContext = ({children}) =>{
         const localData = localStorage.getItem('cartItems');
         return localData ? JSON.parse(localData) : [];
     });
-    // const clearCart = () => {
-    //     setCart([]);
-    // }
     // Set items in cart to localstrorage to prevent loss of data unpon,
     // cartpage refresh. * Items will be wiped upon final cart submission
     useEffect(()=>{

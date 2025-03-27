@@ -11,13 +11,15 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import ErrorModal from '../modals/ErrorModal'
 import NotifModal from '../modals/NotifModal'
+import Receipt from './Receipt'
 
 function UserCart(){
     const [cartItemsData, setcartItemsData] = useState([])
     const {cart, setCart} = useContext(Cart);
     const [isCartEmpty, setIsCartEmpty] = useState(false)
-    const [isOrderSuccessful, setIsOrderSuccessful] = useState(false)
+    // const [isOrderSuccessful, setIsOrderSuccessful] = useState(false)
     const navigate = useNavigate()
+    const [isReceiptOpen, setIsReceiptOpen] = useState(false)
   
     // Initial values for form 
     const initalState = {
@@ -244,6 +246,12 @@ function UserCart(){
     const handleErrorModalClose = () =>{
         setIsCartEmpty(false)
     }
+    const handleReceiptClose = () =>{
+        setIsReceiptOpen(false)
+        navigate('/');
+        // Clear Cart
+        setCart([])
+    }
 
     const handleFormSubmit = async (e) =>{
         e.preventDefault();
@@ -281,21 +289,24 @@ function UserCart(){
                 }
                 await axios.post('http://localhost:5000/orders', formData)
                 .then(res => res.data)
-                setIsOrderSuccessful(true) 
+                // setIsOrderSuccessful(true) 
                 dispatch({type: 'Form_Cleared'}) // Clear Fields
                 // setCart([]) // clear cart (not local storage yet)
-                navigate('/receipt')
+                // navigate('/receipt')
+                setIsReceiptOpen(true)
             } catch (error) {
                 console.log(error)
             }
         }       
     }
-
     // TODO: css responsiveness & styling
     return(
         <>
+            {/* Add pop recieipet here forthis page, close btn to then wipe data */}
+            {isReceiptOpen && <Receipt onClose={handleReceiptClose}/>}
+
             {isCartEmpty && <ErrorModal msg="Must have at least 1 item in cart to place order." onClose={handleErrorModalClose} />}
-            {isOrderSuccessful && <NotifModal msg="Order Successful!" close ={()=> setIsOrderSuccessful(false)}/>}
+            {/* {isOrderSuccessful && <NotifModal msg="Order Successful!" close ={()=> setIsOrderSuccessful(false)}/>} */}
             <section id="cart-page-container">
     
                 <div className="cart-order-container">

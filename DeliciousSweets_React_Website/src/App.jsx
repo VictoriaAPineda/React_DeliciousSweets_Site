@@ -35,7 +35,7 @@ function App() {
             <Route exact path=":id" element={<ProductDetails />}/>
             {/* <Route path=":cat/:name" element={<ProductDetails />}/> */}
           </Route>
-          <Route path="/receipt" element={<Receipt/>}/>
+          {/* <Route path="/receipt" element={<Receipt/>}/> */}
         </Routes>
       {/* </div> */}
       <Footerbar />
