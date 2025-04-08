@@ -4,3 +4,9 @@ Status: Ongoing
 
 Project Website Mock Design 
 Subject to change
+
+Notes: 
+Run Server: npm start
+Run project file: npm run dev
+MongoDB Access and valid IP neeeded to get/display products from database for now.
+
