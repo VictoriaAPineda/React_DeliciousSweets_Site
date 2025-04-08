@@ -2,10 +2,9 @@
 *  [?] Cart should be cleared upon completion/submit. For now cart will be cleared on leaving
 * receipt view due to not yet creating a personal user object acct to pull up the order from database. The order is save to a database
 */
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import {Page, Text, View, Document, StyleSheet} from '@react-pdf/renderer';
 import { PDFViewer } from "@react-pdf/renderer";
-
 
 // Styling the PDF Display
 const styles = StyleSheet.create({
@@ -60,15 +59,6 @@ const styles = StyleSheet.create({
       }
   });
 
-const userCartOrder = JSON.parse(localStorage.getItem('UserCart'));
-const userCartOrderTotal = JSON.parse(localStorage.getItem('CartTotal'));
-const userCartSubtotal = JSON.parse(localStorage.getItem('CartSubtotal'));
-const deliveryFee =  JSON.parse(localStorage.getItem('Shipping'));
-const tax =  JSON.parse(localStorage.getItem('CartTax'));
-
-// TODO: Once user leaves page, the localstorage will be wiped.
-// Order info will remain on database
-
 /* TODO: Form
 *   [1] - List contact info 
 *   [2] - pickup/delivery info
@@ -76,9 +66,17 @@ const tax =  JSON.parse(localStorage.getItem('CartTax'));
 */  
 
 const MyDocument = () => {
+    const userCartOrder = JSON.parse(localStorage.getItem('UserCart'));
+    const userCartOrderTotal = JSON.parse(localStorage.getItem('CartTotal'));
+    const userCartSubtotal = JSON.parse(localStorage.getItem('CartSubtotal'));
+    const deliveryFee =  JSON.parse(localStorage.getItem('Shipping'));
+    const tax =  JSON.parse(localStorage.getItem('CartTax'));
     // TODO: Work on styling / aligning
     return(
-        <Document>
+        <Document> 
+            {/* Fixes issue of PDF displaying old/prev receipet, allows time for new receipt to render*/}        
+            {!userCartOrder && <p>Loading....</p>}
+
             <Page size="A4" style={styles.page}>
                 {/* Table */}
                 <View style={styles.table}>
@@ -100,7 +98,7 @@ const MyDocument = () => {
                     ))}
                     {/* Summation */}
                     <View>
-                    <Text style={[styles.row, styles.alignRight, styles.padright]}>Subtotal: ${userCartSubtotal}</Text>
+                    <Text style={[styles.row, styles.alignRight, styles.padright]}>Subtotal: ${userCartSubtotal.toFixed(2)}</Text>
                       <Text style={[styles.row, styles.alignRight, styles.padright, styles.noborderTop]}>Tax: ${tax}</Text>
                       <Text style={[styles.row, styles.alignRight, styles.padright, styles.noborderTop]}>Shipping: ${deliveryFee.toFixed(2)}</Text>
                      
@@ -114,6 +112,8 @@ const MyDocument = () => {
         );
 }
 function Receipt ({onClose}){
+
+  
     return(
         <>
             <section id="receipt-container" className="full-view-popup">
@@ -121,7 +121,8 @@ function Receipt ({onClose}){
                 <p>Here's your receipt!</p>
           
                 <PDFViewer width="80%" height="700">
-                    <MyDocument/>
+               
+                    <MyDocument/> 
                 </PDFViewer>
                 <button onClick={onClose}>Close</button>
             </section>

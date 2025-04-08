@@ -64,7 +64,8 @@ function UserCart(){
 
     localStorage.setItem('UserCart', JSON.stringify(cartItemMergedData));
 
-    // console.log(cartItemMergedData) // use to for order cart model
+    // console.log("cartmergeddata")
+    // console.log (cartItemMergedData) // use to for order cart model
 
     // Calc sub total cost of whole cart
     const calcSubTotalCartCost = () => {
@@ -250,7 +251,8 @@ function UserCart(){
         setIsReceiptOpen(false)
         navigate('/');
         // Clear Cart
-        setCart([])
+        setCart([]) 
+        localStorage.clear();
     }
 
     const handleFormSubmit = async (e) =>{
