@@ -1,7 +1,7 @@
 import infoBannerImg from "/src/images/bread_display.jpg";
 import adImg1 from "/src/images/orangeCake.jpg";
 import adImg2 from "/src/images/chocolateCupcake.jpg";
-import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import MultiCarousel from "../MultiCarousel";
@@ -10,12 +10,12 @@ import { Cart } from "../contextAPI/CartContext";
 import ErrorModal from "../modals/ErrorModal";
 import NotifModal from "../modals/NotifModal"
 
-
-{/*This page is shown when user clicks on view btn of a product.
-It will then display details and ordering options. */}
+{/* This page is shown when user clicks on view btn of a product.
+*   It will then display details and ordering options. 
+*/}
 export default function ProductDetails(){
 
-    // id from url sent by products.jsx
+    // Product id from url string sent by products.jsx
     const {id} = useParams();
     const productId = id;
 
@@ -26,10 +26,15 @@ export default function ProductDetails(){
     const [isNotifModalOpen, setIsNotifModalOpen] = useState(false) 
 
     const navigate = useNavigate();
-    // Target area of screen to move user to view upon clicking on carousel
+    
+    /* 
+    * Target area of screen to move to when user clicks on MultiCarousel
+    * of other products. So as not to have user manually scroll back up
+    */
     const targetRef = useRef();
+
     const {cart, setCart} = useContext(Cart);
-    // console.log(useContext(Cart))
+
     /* 
        Retrieves the state data from the state from the Link to this page 
        the data contains the located page number ex: (?page=2) that will be 
@@ -49,11 +54,13 @@ export default function ProductDetails(){
         .catch(err=> console.log(err))
     }, [productId]) 
 
+    // View previous product viewed
     const handlePrevious = () => {
         navigate(-1);
     }
 
     useEffect(()=>{
+        // Handles the scroll effect for the Multicarousel.jsx
         window.scrollTo({
             top:0,
             left:0,
@@ -67,6 +74,7 @@ export default function ProductDetails(){
 
     const handleDecrement = () =>{
         const q = quantityCount -1
+        // Prevents negative value
         setQuantityCount(q < 0 ? 0 : q)
     }
 
