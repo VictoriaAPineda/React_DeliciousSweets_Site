@@ -12,25 +12,27 @@ function Products(){
     /* Getting (destructuring) the Category (:cat) from the url in DropdownList.jsx route 
     ** {`/products/${category}`}
     */
-    const {cat} = useParams();
+    
+    // Retrieves category in site url path chosen through dropdown menu
+    const {cat} = useParams(); // hook accesses route parameter ex: /brownie
     const dropdownCatSelection = cat;
 
-    const bannerImages = [brownieImg,cupcakeImg,doughnutImg,];    
+    const bannerImages = [brownieImg,cupcakeImg,doughnutImg,]; 
+
     const categoryList = ["brownie", "cake", "cheesecake","cookie" , "cupcake", "doughnut","pastry"];
 
     const [data, setData] = useState([]) // State to hold the data retrieved from MongoDB
     const [filteredData, setFilteredData] = useState([]);
     const [category, setCategory] = useState([]); 
-    const [searchParams, setSearchParams] = useSearchParams() // read/modify the query param to url
-    // const [productPage, setProductPage] = useState([])
-
+    const [searchParams, setSearchParams] = useSearchParams() // read/modify the query string at the current url
 
     // const location = useLocation(); // Hold the current Url information 
 
     // Will be default to page 1 or will read the modified URL to display page number within the URL
     const [currentPage, setCurrentPage] = useState(Number(searchParams.get('page')) || 1);
 
-    // Adds a new param the URL for tracking pages called 'page' ex: ( page = page number)
+    // Adds a new parameter the URL for tracking pages called 'page' with page number as its value
+    // ex: /products/brownie?page=1
     const handlePageParam = (key,value) =>{
         setSearchParams(p =>{
             p.set(key, value)
@@ -38,6 +40,7 @@ function Products(){
         })
     }
     // Updates/Modifies the page number in the URL parameter as user navigates
+    // within Products page
     useEffect(()=>{
         handlePageParam('page', currentPage)
     },[currentPage, category])
@@ -48,20 +51,19 @@ function Products(){
         .then(product => {
             // Sort data by name
             setData(product.data.sort((a,b) => (a.name > b.name) ? 1: -1))
+            // Filter what products are shown by user selected category
             setFilteredData(product.data.filter(p=>p.category === dropdownCatSelection)) 
+            // Sets the current page number in url
             handlePageParam('page', currentPage)
         })
         .catch(err => console.log(err))
     },[category, dropdownCatSelection]) 
 
-
-   
-
-    /*  Fixes page issue where user navigates through dropdown (only, not filter btns) 
-    *   and naviagtes to a page, then selects another category through dropdown, and
+    /*  Fixes page issue where user navigates through dropdown only s(not filter btns) 
+    *   , naviagtes to a page, then selects another category through dropdown, and
     *   incorrectly displays a diffetnet page of products and page number,
-    *   inseatd of defaulting to page 1
-    *   ex:  viewing page 2 of pastry -> selects brownies = is shown page 2 of brownies, instead *   of page 1
+    *   instead of defaulting to page 1
+    *   ex:  Viewing page 2 of pastry -> selects brownies -> is shown page 2 of brownies, instead of page 1
     */
     useEffect(()=>{
         setCategory(dropdownCatSelection)
@@ -86,7 +88,7 @@ function Products(){
     const lastIndex = currentPage * productsPerPage; // ex: 2nd page x 12 = last product index of 24
     const firstIndex = lastIndex - productsPerPage; // ex: 24 - 12 = 12. 13 is first product index for the 2nd page
     const products = filteredData.slice(firstIndex, lastIndex); // Divide up the data into pages 
-    const numOfPages = Math.ceil(filteredData.length / productsPerPage); // 49/12 = 4.08 = 5 pages total
+    const numOfPages = Math.ceil(filteredData.length / productsPerPage); // ex: 49/12 = 4.08 = 5 pages total
 
     useEffect(()=>{
         /** Prevents an issue where user is on higher n-page of a category of products,
@@ -152,13 +154,7 @@ function Products(){
                                     <p className="productName">{product.name}</p>
                                     <p className="productDescription">{product.description}</p>
                                     <p className="price">${parseFloat(product.price).toFixed(2)}</p>
-                                    
-                                    {/* [1] Links to a product's own info page based on their id. 
-                                    *   [2]location.search holds the current URL query string. 
-                                    *   Used here to further specify the page number of the 
-                                    *  'page' parameter to return to the specific page user left before viewing 
-                                    *   a product detail page after using the back button  
-                                    */}
+                                    {/* Links to product's own info page based on their id */}
                                     {/* removed state={location.search} */}
                                     <Link className={"view_link"} to={`/productDetails/${product._id}`}>
                                         <button className="viewBtn" >View</button>

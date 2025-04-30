@@ -27,5 +27,6 @@ const productSchema = new Schema({
         required: true
     }
 });
+// Mongoose will looks for 'products' table
 const Product = mongoose.model('Product', productSchema);
 module.exports = Product;

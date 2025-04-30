@@ -1,9 +1,10 @@
-const express = require('express')
-const mongoose = require('mongoose')
+const express = require('express') // Helps in managing routes
+const mongoose = require('mongoose') // Connects and communicates with MongoDB 
 const cors = require('cors'); // Ability to access our server from different domains
 const app = express();
 
 // const { urlencoded } = require('body-parser');
+
 // For Form Posting to Server
 const bodyParser = require('body-parser') 
 app.use(cors());
@@ -33,9 +34,9 @@ mongoose.connect(dbURI)
     })
     .catch((err) => console.log(err))
 
-// Note: Reload server to see changes or else get error CANNOT GET/
-// Get Products from db 
-// What is retrieved is stored into the /products resource url
+// Note: Reload server to see changes or else get error: CANNOT GET/
+
+// Get product data from 'products' url resource
 app.get('/products', (req, res)=>{
     Product.find()
     .then((result) => {
@@ -45,7 +46,7 @@ app.get('/products', (req, res)=>{
         console.log(err)
     })
 })
-// Get Review from db
+// Get review data from 'reviews' url resource
 app.get('/reviews', (req, res) =>{
     Review.find()
     .then((result) => {
@@ -56,7 +57,9 @@ app.get('/reviews', (req, res) =>{
     })
 })
 
-// get emails
+// TODO: Add a way to post a review
+
+// Get email data from 'emails' url resource
 app.get('/emails', (req, res) =>{
     Email.find()
     .then((result) => {
@@ -66,22 +69,20 @@ app.get('/emails', (req, res) =>{
         console.log(err)
     })
 })
-
-// To post to emails db
+// Post (send) emails to 'emails' url resource to be stored ( localhost:5000/emails )
 app.post('/emails', async (req, res) => {
     try{
-        const email = new Email(req.body);
+        const email = new Email(req.body); // 
         await email.save()
         res.json(email)
     }catch(err){
         console.log(err)
     }
 })
-// Post Orders of customer
+// Post orders of customer to 'orders' url resource
 app.post('/orders', async (req, res) => {
     try {
         const order = new Order(req.body);
-        console.log(order)
         await order.save()
         res.json(order)
     } catch (error) {
