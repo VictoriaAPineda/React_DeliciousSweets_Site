@@ -173,11 +173,37 @@ function UserCart(){
                         isDeliveryAddressDisabled: false,
                     }
                 }
-            case 'Text_Input_Changed':
+            case 'Text_Name_Changed':
                 return{
                     ...state, 
                     [action.name]:action.value
                 };
+            case 'Email_Set':
+                return{
+                    ...state,
+                    [action.name]: action.value
+                };
+            case 'Phone_Set':
+                return{
+                    ...state,
+                   [action.name]: action.value
+                };
+            case 'Card_Number_Set':
+                return{
+                    ...state,
+                    [action.name]: action.value
+                };
+            case 'Card_Expired_Date_Set':
+                return{
+                    ...state,
+                    [action.name]: action.value
+                };
+            case 'Card_Pin_Set':
+                return{
+                    ...state,
+                    [action.name]: action.value
+                };
+
             case 'Date_Pickup_Selected': 
                 return{
                     ...state, 
@@ -198,6 +224,11 @@ function UserCart(){
                     ...state,
                     timeInputDelivery: action.payload
                 }
+            case 'Delivery_Address_Set':
+                return{
+                    ...state, 
+                    [action.name]:action.value
+                }
             case 'Form_Cleared':
                 return {initalState}
             default:
@@ -206,16 +237,58 @@ function UserCart(){
     }
     // -- Handles and Dispatches for the OrderFormReducer ---
     // TODO: Validation of form data
-    // length, type, 
+
     const handleOrderRadioBtn = (e) => {
         dispatch({
             type: 'Method_Selected', 
             payload: e.target.value
         })
     }
-    const handleTextInputChange = (e) => {
+
+    const handleNameInputChange = (e) => {
+        // Accepts only letters
+        const nameRegex = /^[a-zA-Z]*$/g;
+        const regexResult = nameRegex.test(e.target.value);
+        
+        if(regexResult){
+            dispatch({
+                type: 'Text_Name_Changed',
+                name: e.target.name,
+                value: e.target.value
+            })
+        }
+    }
+    const handleEmailSet = (e) =>{
         dispatch({
-            type: 'Text_Input_Changed',
+            type: 'Email_Set',
+            name: e.target.name,
+            value: e.target.value
+        })
+    }
+    const handlePhoneSet = (e) => {
+        dispatch({
+            type: 'Phone_Set', 
+            name: e.target.name,
+            value: e.target.value
+        })
+    }
+    const handleCardNumberSet = (e) =>{
+        dispatch({
+            type: 'Card_Number_Set',
+            name: e.target.name,
+            value: e.target.value
+        })
+    }
+    const handleCardExpiredDateSet = (e) => {
+        dispatch({
+            type: 'Card_Expired_Date_Set',
+            name: e.target.name,
+            value: e.target.value
+        })
+    }
+    const handleCardPinSet = (e) =>{
+        dispatch({
+            type: 'Card_Pin_Set',
             name: e.target.name,
             value: e.target.value
         })
@@ -242,6 +315,14 @@ function UserCart(){
         dispatch({
             type: 'Time_Delivery_Selected',
             payload: timeInput.target.value
+        })
+    }
+    const handleDeliveryAddressSet = (e) =>{
+        dispatch({
+            type: 'Delivery_Address_Set',
+            name: e.target.name,
+            value: e.target.value
+
         })
     }
     const handleErrorModalClose = () =>{
@@ -382,7 +463,7 @@ function UserCart(){
                                     type="text" 
                                     name="firstName" 
                                     value={state.firstName || ""}
-                                    onChange={handleTextInputChange}
+                                    onChange={handleNameInputChange}
                                     placeholder='First Name'
                                     required
                                     />
@@ -390,7 +471,7 @@ function UserCart(){
                                     type='text' 
                                     name="lastName"
                                     value={state.lastName || ""}
-                                    onChange={handleTextInputChange}
+                                    onChange={handleNameInputChange}
                                     placeholder='Last Name'
                                     required
                                     />
@@ -398,7 +479,7 @@ function UserCart(){
                                     type="email" 
                                     name="email"
                                     value={state.email || ""}
-                                    onChange={handleTextInputChange}
+                                    onChange={handleEmailSet}
                                     placeholder='Email'
                                     required
                                     />
@@ -406,7 +487,7 @@ function UserCart(){
                                     type="text" 
                                     name="phone"
                                     value={state.phone || ""}
-                                    onChange={handleTextInputChange}
+                                    onChange={handlePhoneSet}
                                     placeholder='Phone Number'
                                     required
                                     />
@@ -423,9 +504,9 @@ function UserCart(){
                                     <div className="card-input-container">
                                         <input 
                                             type="text" 
-                                            name='ccn'
+                                            name="ccn"
                                             value={state.ccn || ""}
-                                            onChange={handleTextInputChange}
+                                            onChange={handleCardNumberSet}
                                             placeholder='Card Number'
                                             required
                                             />
@@ -433,13 +514,13 @@ function UserCart(){
                                             <input type='text' placeholder='MM / YY'
                                             name='ccExpireDate'
                                             value={state.ccExpireDate || ""}
-                                            onChange={handleTextInputChange}
+                                            onChange={handleCardExpiredDateSet}
                                             required
                                             />
                                             <input type="text" maxLength={3} placeholder='CVC'
                                             name='ccVerify'
                                             value={state.ccVerify || ""}
-                                            onChange={handleTextInputChange}
+                                            onChange={handleCardPinSet}
                                             required
                                             />
                                         </div>
@@ -528,7 +609,7 @@ function UserCart(){
                                             type="text" 
                                             name='address' 
                                             value={state.address || ""}
-                                            onChange={handleTextInputChange}
+                                            onChange={handleDeliveryAddressSet}
                                             disabled={state.isDeliveryAddressDisabled}
                                         />
                                         <p className="deliveryNote">* Note: Will only make deliveries within a 15 mile radius</p>
