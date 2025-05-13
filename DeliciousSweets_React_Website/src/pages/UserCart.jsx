@@ -135,6 +135,12 @@ function UserCart(){
         setCart(updateCart)
     };
 
+    // email validation (onsubmit)
+    const emailValidation = (emailInput) => {
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
+        return emailRegex.test(emailInput)
+    }
+
      // Reducer function to handle all the form data
      function OrderFormReducer (state, action) {
         // console.log('Previous State:', state);
@@ -173,30 +179,37 @@ function UserCart(){
                         isDeliveryAddressDisabled: false,
                     }
                 }
+                
             case 'Text_Name_Changed':
                 return{
                     ...state, 
-                    [action.name]:action.value
+                    /* [action.name] to handle more than one input field, due to both
+                    ** having save regex conditions. Saves from writing a seperate case.
+                    ** Using name attribute to differtiate between them (2) and 
+                    ** update/set each one's own value based on name attribute.
+                    */
+                    [action.name]: action.value
                 };
             case 'Email_Set':
                 return{
                     ...state,
-                    [action.name]: action.value
+                    email: action.emailInputted
                 };
             case 'Phone_Set':
                 return{
                     ...state,
-                   [action.name]: action.value
+                    //[action.name]: action.value
+                    phone: action.phoneInputted
                 };
             case 'Card_Number_Set':
                 return{
                     ...state,
-                    [action.name]: action.value
+                    ccn: action.cardNumberInputted
                 };
             case 'Card_Expired_Date_Set':
                 return{
                     ...state,
-                    [action.name]: action.value
+                    ccExpireDate: action.expDateInputted
                 };
             case 'Card_Pin_Set':
                 return{
@@ -235,58 +248,79 @@ function UserCart(){
                 return state
             }
     }
+
     // -- Handles and Dispatches for the OrderFormReducer ---
-    // TODO: Validation of form data
 
     const handleOrderRadioBtn = (e) => {
         dispatch({
             type: 'Method_Selected', 
-            payload: e.target.value
+            name: e.target.value
         })
     }
-
     const handleNameInputChange = (e) => {
-        // Accepts only letters
+        // Allows only letter to be typed 
         const nameRegex = /^[a-zA-Z]*$/g;
         const regexResult = nameRegex.test(e.target.value);
-        
         if(regexResult){
             dispatch({
                 type: 'Text_Name_Changed',
-                name: e.target.name,
-                value: e.target.value
+                name: e.target.name, // name attribute's value
+                value: e.target.value // value attribute's value
             })
         }
     }
     const handleEmailSet = (e) =>{
+        // TODO: Debounce instead after user done typing, THEN run check, 
+        // rather then user having to submit to check
+        
+        /*
+        ** Dispatch holds a 'action' object that describes what a user did.  
+        ** Type: Identifies which action to run (from case list)
+        ** (optional field): data to be passed if modifying data. Property is 
+        **      usually named 'payload', but can be renamed. 
+        **  ex: Here user types in a email address within the 
+        **      input field. Pass the text entered
+        **      to be set as a new value/state of the email property
+        */
         dispatch({
             type: 'Email_Set',
-            name: e.target.name,
-            value: e.target.value
+            emailInputted: e.target.value
         })
     }
     const handlePhoneSet = (e) => {
-        dispatch({
-            type: 'Phone_Set', 
-            name: e.target.name,
-            value: e.target.value
-        })
+        // Allows only number to be typed 
+        const phoneRegex = /^[0-9]*$/g;
+        const regexResult = phoneRegex.test(e.target.value)
+        if(regexResult){
+            dispatch({
+                type: 'Phone_Set', 
+                phoneInputted: e.target.value
+            })
+        }
     }
     const handleCardNumberSet = (e) =>{
+        // Notes: Creditcard validation would be done here
+        //        Would be stored
         dispatch({
             type: 'Card_Number_Set',
-            name: e.target.name,
-            value: e.target.value
+            cardNumberInputted: e.target.value
         })
     }
     const handleCardExpiredDateSet = (e) => {
-        dispatch({
-            type: 'Card_Expired_Date_Set',
-            name: e.target.name,
-            value: e.target.value
-        })
+        // Notes: Would be stored
+        //TODO: Use Debounce instead
+        // const cardRegex = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})*$/g;
+        // const regexResult = cardRegex.test(e.target.value)
+        // if(regexResult){
+            dispatch({
+                type: 'Card_Expired_Date_Set',
+                expDateInputted: e.target.value
+            })
+        // }
     }
     const handleCardPinSet = (e) =>{
+        // Notes: Not stored 
+        // TODO: Dots on typing (hidden?)
         dispatch({
             type: 'Card_Pin_Set',
             name: e.target.name,
@@ -322,7 +356,6 @@ function UserCart(){
             type: 'Delivery_Address_Set',
             name: e.target.name,
             value: e.target.value
-
         })
     }
     const handleErrorModalClose = () =>{
@@ -344,10 +377,16 @@ function UserCart(){
             price: itemOrder.price
 
         }))
-        // [1] = Only submit if at least 1 item is in cart 
+        // [1] - Only submit if at least 1 item is in cart 
         if(custCart.length === 0){
             setIsCartEmpty(true)
-        }else{
+        }
+        // [2] - Check for valid email format
+        else if(!emailValidation(state.email)){
+            console.log('incorrect format')
+            //TODO: Form popup to ask for valid email format
+        }
+        else{
             // TODO: 
             // data/format validation of form
             // make sure the fields if pickup/delivery is selected, no emepty
@@ -489,6 +528,8 @@ function UserCart(){
                                     value={state.phone || ""}
                                     onChange={handlePhoneSet}
                                     placeholder='Phone Number'
+                                    minLength={10}
+                                    maxLength={10}
                                     required
                                     />
                             </div>
@@ -507,6 +548,8 @@ function UserCart(){
                                             name="ccn"
                                             value={state.ccn || ""}
                                             onChange={handleCardNumberSet}
+                                            minLength={15}
+                                            maxLength={19}
                                             placeholder='Card Number'
                                             required
                                             />
