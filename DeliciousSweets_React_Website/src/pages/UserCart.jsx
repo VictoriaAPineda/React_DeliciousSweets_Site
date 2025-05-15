@@ -1,4 +1,4 @@
-import { useContext, useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useReducer, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cardIcon from '/src/images/cardIcon.png';
 import timeIcon from '/src/images/clock.png';
@@ -41,6 +41,7 @@ function UserCart(){
         isDeliveryDateDisabled: true,
         isDeliveryTimeDisabled: true,
         isDeliveryAddressDisabled: true,
+        isEmailValid: false,
     }
     const [state, dispatch] = useReducer(OrderFormReducer, initalState)
 
@@ -135,118 +136,117 @@ function UserCart(){
         setCart(updateCart)
     };
 
-    // email validation (onsubmit)
-    const emailValidation = (emailInput) => {
-        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
-        return emailRegex.test(emailInput)
-    }
-
      // Reducer function to handle all the form data
-     function OrderFormReducer (state, action) {
-        // console.log('Previous State:', state);
-        // console.log('Action:', action);
-        switch (action.type) {
-            /* Handles radio btn group interaction
-            *   On switch, the unselected radio btn group fields:
-            *   1) Should be cleared of data 
-            *   2) Fields be disabled
-            */
-            case 'Method_Selected':
-                if(action.payload === 'pickup'){
-                    return{
-                        ...state, 
-                        selectedOptionBtn:  action.payload,
-                        isPickupDateDisabled: false,
-                        isDeliveryDateDisabled: true,
-                        dateInputDelivery: '',
-                        isDeliveryTimeDisabled: true,
-                        isPickupTimeDisabled: false,
-                        timeInputDelivery: '',
-                        isDeliveryAddressDisabled: true,
-                        address: '',
-                    }
-                }
-                if( action.payload === 'delivery'){
-                    return{
-                        ...state, 
-                        selectedOptionBtn:  action.payload,
-                        isPickupDateDisabled: true,
-                        isDeliveryDateDisabled: false,
-                        dateInputPickup: '',
-                        isPickupTimeDisabled: true,
-                        isDeliveryTimeDisabled: false,
-                        timeInputPickup: '', 
-                        isDeliveryAddressDisabled: false,
-                    }
-                }
-                
-            case 'Text_Name_Changed':
+    function OrderFormReducer (state, action) {
+    // console.log('Previous State:', state);
+    // console.log('Action:', action);
+    switch (action.type) {
+        /* Handles radio btn group interaction
+        *   On switch, the unselected radio btn group fields:
+        *   1) Should be cleared of data 
+        *   2) Fields be disabled
+        */
+        case 'Method_Selected':
+            if(action.payload === 'pickup'){
                 return{
                     ...state, 
-                    /* [action.name] to handle more than one input field, due to both
-                    ** having save regex conditions. Saves from writing a seperate case.
-                    ** Using name attribute to differtiate between them (2) and 
-                    ** update/set each one's own value based on name attribute.
-                    */
-                    [action.name]: action.value
-                };
-            case 'Email_Set':
-                return{
-                    ...state,
-                    email: action.emailInputted
-                };
-            case 'Phone_Set':
-                return{
-                    ...state,
-                    //[action.name]: action.value
-                    phone: action.phoneInputted
-                };
-            case 'Card_Number_Set':
-                return{
-                    ...state,
-                    ccn: action.cardNumberInputted
-                };
-            case 'Card_Expired_Date_Set':
-                return{
-                    ...state,
-                    ccExpireDate: action.expDateInputted
-                };
-            case 'Card_Pin_Set':
-                return{
-                    ...state,
-                    [action.name]: action.value
-                };
-
-            case 'Date_Pickup_Selected': 
-                return{
-                    ...state, 
-                    dateInputPickup: action.payload
-                };
-            case 'Date_Delivery_Selected':
-                return{
-                    ...state,
-                    dateInputDelivery: action.payload
+                    selectedOptionBtn:  action.payload,
+                    isPickupDateDisabled: false,
+                    isDeliveryDateDisabled: true,
+                    dateInputDelivery: '',
+                    isDeliveryTimeDisabled: true,
+                    isPickupTimeDisabled: false,
+                    timeInputDelivery: '',
+                    isDeliveryAddressDisabled: true,
+                    address: '',
                 }
-            case 'Time_Pickup_Selected':
-                return{
-                    ...state, 
-                    timeInputPickup: action.payload
-                }
-            case 'Time_Delivery_Selected':
-                return{
-                    ...state,
-                    timeInputDelivery: action.payload
-                }
-            case 'Delivery_Address_Set':
-                return{
-                    ...state, 
-                    [action.name]:action.value
-                }
-            case 'Form_Cleared':
-                return {initalState}
-            default:
-                return state
             }
+            if( action.payload === 'delivery'){
+                return{
+                    ...state, 
+                    selectedOptionBtn:  action.payload,
+                    isPickupDateDisabled: true,
+                    isDeliveryDateDisabled: false,
+                    dateInputPickup: '',
+                    isPickupTimeDisabled: true,
+                    isDeliveryTimeDisabled: false,
+                    timeInputPickup: '', 
+                    isDeliveryAddressDisabled: false,
+                }
+            }
+            
+        case 'Text_Name_Changed':
+            return{
+                ...state, 
+                /* [action.name] to handle more than one input field, due to both
+                ** having save regex conditions. Saves from writing a seperate case.
+                ** Using name attribute to differtiate between them (2) and 
+                ** update/set each one's own value based on name attribute.
+                */
+                [action.name]: action.value
+            };
+        case 'Email_Set':
+            return{
+                ...state,
+                email: action.emailInputted
+            };
+        case 'Validate_Email':
+            return{
+                ...state,
+                isEmailValid : action.payload
+            }
+        case 'Phone_Set':
+            return{
+                ...state,
+                //[action.name]: action.value
+                phone: action.phoneInputted
+            };
+        case 'Card_Number_Set':
+            return{
+                ...state,
+                ccn: action.cardNumberInputted
+            };
+        case 'Card_Expired_Date_Set':
+            return{
+                ...state,
+                ccExpireDate: action.expDateInputted
+            };
+        case 'Card_Pin_Set':
+            return{
+                ...state,
+                [action.name]: action.value
+            };
+
+        case 'Date_Pickup_Selected': 
+            return{
+                ...state, 
+                dateInputPickup: action.payload
+            };
+        case 'Date_Delivery_Selected':
+            return{
+                ...state,
+                dateInputDelivery: action.payload
+            }
+        case 'Time_Pickup_Selected':
+            return{
+                ...state, 
+                timeInputPickup: action.payload
+            }
+        case 'Time_Delivery_Selected':
+            return{
+                ...state,
+                timeInputDelivery: action.payload
+            }
+        case 'Delivery_Address_Set':
+            return{
+                ...state, 
+                [action.name]:action.value
+            }
+        case 'Form_Cleared':
+            return {initalState}
+        default:
+            return state
+        }
     }
 
     // -- Handles and Dispatches for the OrderFormReducer ---
@@ -269,10 +269,23 @@ function UserCart(){
             })
         }
     }
+    /* 
+    **  Will wait till user has finished typing email in input 
+    **  BEFORE checking/validatin their input, 
+    **  rather than user having to submit for a result
+    */
+    const timeoutRef = useRef(null)
+    useEffect(()=>{
+        // clearTimeout(timeoutRef.current);
+        timeoutRef.current =  setTimeout(()=>{
+            const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+            const regexResult = emailRegex.test(state.email);
+            dispatch({type: 'Validate_Email', payload: regexResult});
+        },500)
+        return () => clearTimeout(timeoutRef.current);
+    }, [state.email])
+
     const handleEmailSet = (e) =>{
-        // TODO: Debounce instead after user done typing, THEN run check, 
-        // rather then user having to submit to check
-        
         /*
         ** Dispatch holds a 'action' object that describes what a user did.  
         ** Type: Identifies which action to run (from case list)
@@ -380,11 +393,6 @@ function UserCart(){
         // [1] - Only submit if at least 1 item is in cart 
         if(custCart.length === 0){
             setIsCartEmpty(true)
-        }
-        // [2] - Check for valid email format
-        else if(!emailValidation(state.email)){
-            console.log('incorrect format')
-            //TODO: Form popup to ask for valid email format
         }
         else{
             // TODO: 
@@ -522,6 +530,8 @@ function UserCart(){
                                     placeholder='Email'
                                     required
                                     />
+                                {/* TODO: Style */}
+                                {!state.isEmailValid && <p>Please enter a valid email</p>}
                                 <input 
                                     type="text" 
                                     name="phone"
