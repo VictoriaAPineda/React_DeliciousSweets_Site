@@ -1347,6 +1347,15 @@ body{
     color:#4B3C37 ;
 
 }
+.form_error_notice{
+    font-size: 0.75rem;
+    text-align: center;
+    color: #dc3131;
+}
+
+
+
+
 /* Receipt Page */
 #receipt-container{
     display: flex;

@@ -65,6 +65,9 @@ const styles = StyleSheet.create({
 *   [3] - last 4 digits of card
 */  
 
+// [ ]ERROR: Displaying/Adding shipping when there should'n't be none!
+
+
 const MyDocument = () => {
     const userCartOrder = JSON.parse(localStorage.getItem('UserCart'));
     const userCartOrderTotal = JSON.parse(localStorage.getItem('CartTotal'));
