@@ -42,6 +42,7 @@ function UserCart(){
         isDeliveryTimeDisabled: true,
         isDeliveryAddressDisabled: true,
         isEmailValid: true,
+        isPhoneValid: true,
     }
     const [state, dispatch] = useReducer(OrderFormReducer, initalState)
 
@@ -200,6 +201,11 @@ function UserCart(){
                     //[action.name]: action.value
                     phone: action.phoneInputted
                 };
+            case 'Validate_Phone':
+                return{
+                    ...state,
+                    isPhoneValid: action.payload
+                }
             case 'Card_Number_Set':
                 return{
                     ...state,
@@ -274,6 +280,7 @@ function UserCart(){
     **  rather than user having to submit for a result
     */
     const timeoutRef = useRef(null)
+
     useEffect(()=>{
         // Don't start checking till the field has been populated
         if(state.email !== ""){
@@ -285,6 +292,18 @@ function UserCart(){
             return () => clearTimeout(timeoutRef.current);
         }
     }, [state.email])
+
+    useEffect(()=>{
+        if(state.phone !== ""){
+            timeoutRef.current = setTimeout(()=>{
+                const phoneRegex = /^[(]?[0-9]{3}[)]?[-\s]?[0-9]{3}[-\s]?[0-9]{4}$/g;
+                const regexResult =  phoneRegex.test(state.phone);
+                dispatch({type: 'Validate_Phone', payload: regexResult})
+            },500)
+            return () => clearTimeout(timeoutRef.current)
+        }
+    }, [state.phone])
+
 
     const handleEmailSet = (e) =>{
         /*
@@ -302,15 +321,10 @@ function UserCart(){
         })
     }
     const handlePhoneSet = (e) => {
-        // Allows only number to be typed 
-        const phoneRegex = /^[0-9]*$/g;
-        const regexResult = phoneRegex.test(e.target.value)
-        if(regexResult){
-            dispatch({
-                type: 'Phone_Set', 
-                phoneInputted: e.target.value
-            })
-        }
+        dispatch({
+            type: 'Phone_Set', 
+            phoneInputted: e.target.value
+        })
     }
     const handleCardNumberSet = (e) =>{
         // Notes: Creditcard validation would be done here
@@ -398,8 +412,6 @@ function UserCart(){
         else{
             try {
                 // Format/Setup for data to be posted to database
-           
-
                 const formData = {
                     firstName: state.firstName,
                     lastName: state.lastName,
@@ -535,15 +547,16 @@ function UserCart(){
                                 {/* TODO: Style */}
                                 {!state.isEmailValid && <p className='form_error_notice'>Please enter a valid email</p>}
                                 <input 
-                                    type="text" 
+                                    type="tel" 
                                     name="phone"
                                     value={state.phone || ""}
                                     onChange={handlePhoneSet}
                                     placeholder='Phone Number'
                                     minLength={10}
-                                    maxLength={10}
                                     required
                                     />
+                                 {/* TODO: Style */}
+                                {!state.isPhoneValid && <p className='form_error_notice'>Please enter a valid phone number</p>}    
                             </div>
 
                             <div className="payment-container">
