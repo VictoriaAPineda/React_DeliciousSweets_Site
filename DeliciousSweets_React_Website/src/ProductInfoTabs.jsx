@@ -1,14 +1,13 @@
-import React, { Suspense, useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import StarRatingDisplay from "./starRatingDisplay";
 import axios from "axios";
-
-// Note: Mock data set for cookies - > macaroons only filled with reviews (fill in mock data later)
 
 function Tabs({productDataId}){
     
     const [specs, setSpecs] = useState([]);
     const [reviews, setReviews] = useState([])
     const [activeTab, setActiveTab] = useState(0);// tab index 0 default
+    const [reviewData, setReviewData] = useState('');
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -31,7 +30,7 @@ function Tabs({productDataId}){
             setReviews(reviews)
         })
         .catch(err => console.log(err))
-    },[productDataId]) // issue
+    },[productDataId]) 
 
 
     const tabs = [
@@ -40,7 +39,7 @@ function Tabs({productDataId}){
     ];
     // Pagnation
     const [currentPage, setCurrentPage] = useState(1)
-    const itemsPerPage = 2; 
+    const itemsPerPage = 2; // How many reviews to show per page
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
     const numOfPages = Math.ceil(reviews.length/itemsPerPage);
@@ -67,8 +66,35 @@ function Tabs({productDataId}){
         setIsVisible(true);
     }
     function handleCloseReviewInput(){
+        setReviewData('');
         setIsVisible(false);
     }
+
+    /* TODO: 
+    [1] add star review selection, 
+    [2] username later when I can implement users */
+    const handleReviewSubmit = async (e) =>{
+        e.preventDefault();
+        if(reviewData !== ''){
+            try {
+                const productReview = {
+                    review: reviewData,
+                    rating: 5,
+                    username: 'Username Here',
+                    productID: productDataId,
+                }
+                console.log(productReview)
+                await axios.post('http://localhost:5000/reviews', productReview)
+                .then(res => res.data)
+                setReviewData('')
+                window.location.reload(true);
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        
+    }
+
     return (
         <div>
             <ul>
@@ -87,24 +113,23 @@ function Tabs({productDataId}){
                 {/* Specifications of product */}
                 { activeTab === 0 && <p> {tabs[activeTab].content}</p> }
 
-
                 {/* Reviews of product */}
                  { activeTab === 1 && reviews.length > 0 &&
                     <div>
                         {/* Add a review */}
-                        <div className="add-review-section">
+                        <form action="#" method="POST" onSubmit={handleReviewSubmit} className="add-review-section">
                             <button className="add-review-btn" onClick={()=> handleShowReviewInput()} >Add Your Review</button>
                             { isVisible &&  
                                 <div>
-                                    <textarea className="review-text-area" name="" id="" cols="30" rows="10"></textarea> 
+                                    <textarea className="review-text-area" placeholder="Type your review here..." value={reviewData
+                                    } name="review-content" onChange={(e)=> setReviewData(e.target.value)} id="" cols="30" rows="10"></textarea> 
                                     <div>
-                                        <button className="add-review-btn">Submit</button>
+                                        <button type="submit" className="add-review-btn">Submit</button>
                                         <button className="add-review-btn" onClick={()=>handleCloseReviewInput()} >Close</button>
                                     </div>
                                 </div>
                             }
-                            
-                        </div>
+                        </form>
                         {/* Reviews array */}
                         {reviewPosts.map( review =>(
                             <div className="review-container" key={review._id}>
@@ -125,8 +150,27 @@ function Tabs({productDataId}){
                         </div>
                     </div>  
                 } 
-                {/* If a products doesn't have reviews yet */}
-                {activeTab === 1 && reviews.length === 0 && <p> No Reviews yet! Be the first! :D</p>}
+
+                {/* View if a products doesn't have reviews yet */}
+                {activeTab === 1 && reviews.length === 0 && 
+                    <div>
+                        {/* Add a review */}
+                        <form action="#" method="POST" onSubmit={handleReviewSubmit} className="add-review-section">
+                            <button className="add-review-btn" onClick={()=> handleShowReviewInput()} >Add Your Review</button>
+                            { isVisible &&  
+                                <div>
+                                    <textarea className="review-text-area" placeholder="Type your review here..." value={reviewData
+                                    } name="review-content" onChange={(e)=> setReviewData(e.target.value)} id="" cols="30" rows="10"></textarea> 
+                                    <div>
+                                        <button type="submit" className="add-review-btn">Submit</button>
+                                        <button className="add-review-btn" onClick={()=>handleCloseReviewInput()} >Close</button>
+                                    </div>
+                                </div>
+                            }
+                        </form>
+                        <p> No Reviews yet! Be the first! :D</p>
+                    </div>
+                }
             </div>
         </div>
     );

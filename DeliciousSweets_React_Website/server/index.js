@@ -57,7 +57,16 @@ app.get('/reviews', (req, res) =>{
     })
 })
 
-// TODO: Add a way to post a review
+// Post a review
+app.post('/reviews', async (req, res) => {
+    try {
+        const review = new Review(req.body);
+        await review.save();
+        res.json(review);
+    } catch (error) {
+        console.log(error)
+    }
+})
 
 // Get email data from 'emails' url resource
 app.get('/emails', (req, res) =>{
