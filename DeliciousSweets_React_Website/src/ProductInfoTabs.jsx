@@ -10,6 +10,7 @@ function Tabs({productDataId}){
     const [reviews, setReviews] = useState([])
     const [activeTab, setActiveTab] = useState(0);// tab index 0 default
 
+    const [isVisible, setIsVisible] = useState(false);
 
     /* Retrieveing data from Products db*/
     useEffect(()=>{
@@ -61,6 +62,13 @@ function Tabs({productDataId}){
             setCurrentPage(currentPage - 1)
         }
     }
+
+    function handleShowReviewInput(){
+        setIsVisible(true);
+    }
+    function handleCloseReviewInput(){
+        setIsVisible(false);
+    }
     return (
         <div>
             <ul>
@@ -76,11 +84,28 @@ function Tabs({productDataId}){
             </ul>
 
             <div className="tabContent">
-                {/* Specs*/}
+                {/* Specifications of product */}
                 { activeTab === 0 && <p> {tabs[activeTab].content}</p> }
-                {/* Reviews*/}
+
+
+                {/* Reviews of product */}
                  { activeTab === 1 && reviews.length > 0 &&
                     <div>
+                        {/* Add a review */}
+                        <div className="add-review-section">
+                            <button className="add-review-btn" onClick={()=> handleShowReviewInput()} >Add Your Review</button>
+                            { isVisible &&  
+                                <div>
+                                    <textarea className="review-text-area" name="" id="" cols="30" rows="10"></textarea> 
+                                    <div>
+                                        <button className="add-review-btn">Submit</button>
+                                        <button className="add-review-btn" onClick={()=>handleCloseReviewInput()} >Close</button>
+                                    </div>
+                                </div>
+                            }
+                            
+                        </div>
+                        {/* Reviews array */}
                         {reviewPosts.map( review =>(
                             <div className="review-container" key={review._id}>
                                 <p className="username">{review.username}</p>
@@ -88,6 +113,7 @@ function Tabs({productDataId}){
                                 <p className="review">"{review.review}"</p>
                             </div>
                         ))}
+                        {/* navigation for reviews */}
                         <div className = "pagination_container">
                             <div className = "navigation">
                                 <button className="prevPageBtn"><i className="bi bi-caret-left-fill" onClick={prevPageBtn}></i></button>
@@ -97,9 +123,9 @@ function Tabs({productDataId}){
                                 <button className="nextPageBtn"><i className="bi bi-caret-right-fill" onClick={nextPageBtn}></i></button>
                             </div>
                         </div>
-                        
                     </div>  
                 } 
+                {/* If a products doesn't have reviews yet */}
                 {activeTab === 1 && reviews.length === 0 && <p> No Reviews yet! Be the first! :D</p>}
             </div>
         </div>
