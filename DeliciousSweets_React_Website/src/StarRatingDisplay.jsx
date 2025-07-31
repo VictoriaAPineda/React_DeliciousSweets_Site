@@ -1,3 +1,7 @@
+/* Component will display star rating based on review data 
+* * of a user
+*/
+
 export default function StarRatingDisplay({score}){
     const maxStars = 5;
   

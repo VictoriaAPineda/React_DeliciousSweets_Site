@@ -947,6 +947,13 @@ body{
 .review-container .username{
     font-size: 1.5rem;
 }
+.stars-row{
+    display: flex;
+    margin-bottom: 10px;
+}
+.stars-row div{
+    margin-right: 10px;
+}
 .review-container .review{
     font-style: italic;
 }

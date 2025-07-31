@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import StarRatingDisplay from "./starRatingDisplay";
 import axios from "axios";
+import StarSelection from "./StarSelection";
 
 function Tabs({productDataId}){
     
     const [specs, setSpecs] = useState([]);
     const [reviews, setReviews] = useState([])
     const [activeTab, setActiveTab] = useState(0);// tab index 0 default
-    const [reviewData, setReviewData] = useState('');
+    const [reviewInput, setReviewInput] = useState('');
+    const [userStarRating, setUserStarRating] = useState(0);
+    const [usernameInput, setUserNameInput] = useState(''); // temp for tracking reviews, update to user id later on
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -45,6 +48,12 @@ function Tabs({productDataId}){
     const numOfPages = Math.ceil(reviews.length/itemsPerPage);
     const reviewPosts = reviews.slice(firstIndex, lastIndex);
     
+
+    useEffect(()=>{
+        // Close review view when switching tabs
+        setIsVisible(false)
+    },[activeTab])
+
     useEffect(()=>{
         if(currentPage > numOfPages && numOfPages > 0){
             setCurrentPage(1)
@@ -66,27 +75,41 @@ function Tabs({productDataId}){
         setIsVisible(true);
     }
     function handleCloseReviewInput(){
-        setReviewData('');
+        setReviewInput('');
         setIsVisible(false);
+    }
+    function handleUserStarRating (value){
+        setUserStarRating(value)
+    }
+
+    // TODO: Deleting from reviews (local), but not from db, need to connect...
+    function handleDeleteReview (reviewToDelete){ 
+        const updatedReviewList = reviews.filter((review) => 
+            review.username !== reviewToDelete.username
+        )
+        setReviews(updatedReviewList)
+        // window.location.reload(true);
     }
 
     /* TODO: 
-    [1] add star review selection, 
-    [2] username later when I can implement users */
+    ** [1] del review btn, 
+    ** [2] username later when I can implement users 
+    ** [?] popup modal if nothing is entered but submitted
+    */
     const handleReviewSubmit = async (e) =>{
         e.preventDefault();
-        if(reviewData !== ''){
+        if(reviewInput !== ''){
             try {
                 const productReview = {
-                    review: reviewData,
-                    rating: 5,
-                    username: 'Username Here',
+                    review: reviewInput,
+                    rating: userStarRating,
+                    username: usernameInput,
                     productID: productDataId,
                 }
                 console.log(productReview)
                 await axios.post('http://localhost:5000/reviews', productReview)
                 .then(res => res.data)
-                setReviewData('')
+                setReviewInput('')
                 window.location.reload(true);
             } catch (error) {
                 console.log(error)
@@ -121,8 +144,15 @@ function Tabs({productDataId}){
                             <button className="add-review-btn" onClick={()=> handleShowReviewInput()} >Add Your Review</button>
                             { isVisible &&  
                                 <div>
-                                    <textarea className="review-text-area" placeholder="Type your review here..." value={reviewData
-                                    } name="review-content" onChange={(e)=> setReviewData(e.target.value)} id="" cols="30" rows="10"></textarea> 
+                                    {/* Retrieve the value of star rating from component */}
+                                    <StarSelection onRatingSelection = {handleUserStarRating}/>
+                                    <div>
+                                        <label htmlFor="">Enter Username:</label>
+                                        <input name= "username" value={usernameInput} onChange={(e)=> setUserNameInput(e.target.value)}/>
+                                    </div>
+                                    
+                                    <textarea className="review-text-area" placeholder="Type your review here..." value={reviewInput
+                                    } name="review-content" onChange={(e)=> setReviewInput(e.target.value)} id="" cols="30" rows="10"></textarea> 
                                     <div>
                                         <button type="submit" className="add-review-btn">Submit</button>
                                         <button className="add-review-btn" onClick={()=>handleCloseReviewInput()} >Close</button>
@@ -133,9 +163,12 @@ function Tabs({productDataId}){
                         {/* Reviews array */}
                         {reviewPosts.map( review =>(
                             <div className="review-container" key={review._id}>
-                                <p className="username">{review.username}</p>
-                                <StarRatingDisplay score = {review.rating}/>
-                                <p className="review">"{review.review}"</p>
+                                <div>
+                                    <p className="username">{review.username}</p>
+                                    <StarRatingDisplay score = {review.rating}/>
+                                    <p className="review">"{review.review}"</p>
+                                </div>
+                                <button className="del-review-btn" onClick={()=>handleDeleteReview(review)}>Delete Review</button>
                             </div>
                         ))}
                         {/* navigation for reviews */}
@@ -159,8 +192,9 @@ function Tabs({productDataId}){
                             <button className="add-review-btn" onClick={()=> handleShowReviewInput()} >Add Your Review</button>
                             { isVisible &&  
                                 <div>
-                                    <textarea className="review-text-area" placeholder="Type your review here..." value={reviewData
-                                    } name="review-content" onChange={(e)=> setReviewData(e.target.value)} id="" cols="30" rows="10"></textarea> 
+                                    <StarSelection onRatingSelection = {handleUserStarRating}/>
+                                    <textarea className="review-text-area" placeholder="Type your review here..." value={reviewInput
+                                    } name="review-content" onChange={(e)=> setReviewInput(e.target.value)} id="" cols="30" rows="10"></textarea> 
                                     <div>
                                         <button type="submit" className="add-review-btn">Submit</button>
                                         <button className="add-review-btn" onClick={()=>handleCloseReviewInput()} >Close</button>
