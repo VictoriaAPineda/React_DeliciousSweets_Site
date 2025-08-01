@@ -33,7 +33,7 @@ function Tabs({productDataId}){
             setReviews(reviews)
         })
         .catch(err => console.log(err))
-    },[productDataId]) 
+    },[productDataId, reviews]) 
 
 
     const tabs = [
@@ -76,24 +76,25 @@ function Tabs({productDataId}){
     }
     function handleCloseReviewInput(){
         setReviewInput('');
+        setUserNameInput('');
         setIsVisible(false);
+        setUserStarRating(0);
     }
     function handleUserStarRating (value){
         setUserStarRating(value)
     }
 
-    // TODO: Deleting from reviews (local), but not from db, need to connect...
-    function handleDeleteReview (reviewToDelete){ 
-        const updatedReviewList = reviews.filter((review) => 
-            review.username !== reviewToDelete.username
-        )
-        setReviews(updatedReviewList)
-        // window.location.reload(true);
+    // Deleting from reviews
+    const handleDeleteReview = async (reviewToDelete) => { 
+        try {
+            await axios.delete(`http://localhost:5000/reviews/${reviewToDelete.username}`)
+            setReviews(reviews.filter((review) => review.username !== reviewToDelete.username))
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     /* TODO: 
-    ** [1] del review btn, 
-    ** [2] username later when I can implement users 
     ** [?] popup modal if nothing is entered but submitted
     */
     const handleReviewSubmit = async (e) =>{
@@ -106,11 +107,11 @@ function Tabs({productDataId}){
                     username: usernameInput,
                     productID: productDataId,
                 }
-                console.log(productReview)
                 await axios.post('http://localhost:5000/reviews', productReview)
                 .then(res => res.data)
-                setReviewInput('')
-                window.location.reload(true);
+                setReviewInput('');
+                setUserNameInput('');
+                setUserStarRating(0); // not restiing??
             } catch (error) {
                 console.log(error)
             }
@@ -146,6 +147,7 @@ function Tabs({productDataId}){
                                 <div>
                                     {/* Retrieve the value of star rating from component */}
                                     <StarSelection onRatingSelection = {handleUserStarRating}/>
+                                    {/* enter username */}
                                     <div>
                                         <label htmlFor="">Enter Username:</label>
                                         <input name= "username" value={usernameInput} onChange={(e)=> setUserNameInput(e.target.value)}/>
@@ -193,6 +195,13 @@ function Tabs({productDataId}){
                             { isVisible &&  
                                 <div>
                                     <StarSelection onRatingSelection = {handleUserStarRating}/>
+
+                                    {/* enter username */}
+                                    <div>
+                                        <label htmlFor="">Enter Username:</label>
+                                        <input name= "username" value={usernameInput} onChange={(e)=> setUserNameInput(e.target.value)}/>
+                                    </div>
+
                                     <textarea className="review-text-area" placeholder="Type your review here..." value={reviewInput
                                     } name="review-content" onChange={(e)=> setReviewInput(e.target.value)} id="" cols="30" rows="10"></textarea> 
                                     <div>

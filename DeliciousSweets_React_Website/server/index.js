@@ -21,6 +21,7 @@ const Product = require('./models/product')
 const Review = require('./models/review');
 const Email = require('./models/email');
 const Order = require('./models/order');
+const { default: axios } = require('axios');
 
 // Connects to MongoDB
 const dbURI = 'mongodb+srv://Victoria:1234AdminMDB@delicioussweetscluster.v5stmxn.mongodb.net/DeliciousSweetsDB?retryWrites=true&w=majority&appName=DeliciousSweetsCluster'
@@ -67,6 +68,20 @@ app.post('/reviews', async (req, res) => {
         console.log(error)
     }
 })
+// Delete a review submission (by username)
+app.delete('/reviews/:username', async (req, res) => {
+    try {
+       const {username} = req.params;
+       const deletedReview = await Review.findOneAndDelete({username : username});
+
+        if(!deletedReview){
+            return res.status(404).json({message: 'Review not found'})
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 // Get email data from 'emails' url resource
 app.get('/emails', (req, res) =>{
