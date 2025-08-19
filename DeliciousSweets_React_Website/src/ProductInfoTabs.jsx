@@ -95,7 +95,8 @@ function Tabs({productDataId}){
     }
 
     /* TODO: 
-    ** [?] popup modal if nothing is entered but submitted
+    ** [ ] popup modal if nothing is entered but submitted
+    ** [ ] only unique usernames allowed 
     */
     const handleReviewSubmit = async (e) =>{
         e.preventDefault();
@@ -112,6 +113,7 @@ function Tabs({productDataId}){
                 setReviewInput('');
                 setUserNameInput('');
                 setUserStarRating(0); // not restiing??
+                setIsVisible(false)
             } catch (error) {
                 console.log(error)
             }

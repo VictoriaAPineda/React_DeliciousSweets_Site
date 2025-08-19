@@ -336,7 +336,7 @@ function UserCart(){
     }
     const handleCardExpiredDateSet = (e) => {
         // Notes: Would be stored
-        //TODO: Use Debounce instead
+        //TODO: Use Debounce instead (timer to delay result)
         // const cardRegex = /^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})*$/g;
         // const regexResult = cardRegex.test(e.target.value)
         // if(regexResult){
@@ -556,7 +556,7 @@ function UserCart(){
                                     required
                                     />
                                  {/* TODO: Style */}
-                                {!state.isPhoneValid && <p className='form_error_notice'>Please enter a valid phone number</p>}    
+                                {!state.isPhoneValid && <p className='form_error_notice'>Please enter a valid phone number ex: (123) 456-7891</p>}    
                             </div>
 
                             <div className="payment-container">
