@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import logo from "./logo/Delicious_Sweets.png"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useEffect, useRef, useState } from "react"
 import React from 'react'
 import DropdownMenu from "./DropdownMenu";
 import { Cart } from "./contextAPI/CartContext";
@@ -14,6 +14,9 @@ export default function Navbar() {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
     const [data, setData] = useState([]);
+    const [visible, setVisible] = useState(true);
+
+    let resultsRef = useRef();
 
     const toggleMenu = () =>{
         setIsOpen((open) => !open)
@@ -27,6 +30,20 @@ export default function Navbar() {
         const term = e.target.value;
         setSearchTerm(term)    
     }
+
+    useEffect(()=>{
+        let handler =(e)=>{
+            if(!resultsRef.current.contains(e.target)){
+                // If user presses their mouse, outside of results dropdown, it closes
+                setVisible(false);
+            }
+        }
+        document.addEventListener("mousedown", handler)
+        /* clean up*/
+        return() =>{
+            document.removeEventListener("mousedown", handler);
+        }
+    })
 
     useEffect(()=>{
         if(searchTerm.length > 0){
@@ -58,28 +75,22 @@ export default function Navbar() {
 
                 <nav className="nav-menu">
                     <Link to="/" ><img src={logo}></img> </Link>
-
-
                     {/* Search bar */}
                     <div className="search-container"> 
-                        <i className="bi bi-search search-icon"></i> 
-                        <input type="text" 
+                        <input 
+                            type="text" 
                             id="search"
                             placeholder="Searching..."
                             value={searchTerm}
-                            onChange={handleSearchTerm}/>
-                            <ul className="search-results-list">
-                                {/* [ ] Add Page Links */}
-                                {searchResults.map(product => (
-                                    <li key={product._id}>{product.name}</li>
-                                ))}
-                            </ul>
-                            { searchResults.length <1 && <p className="search-fail">No Matches Found</p> }
+                            onChange={handleSearchTerm}
+                            onClick={()=>setVisible(true)}
+                        />
+                        <ul className="search-results-list" ref={resultsRef}>
+                            { visible && searchResults.map(product => (
+                                <Link to={`/productDetails/${product._id}`} onClick={()=> setVisible(false)} className={'result_link'}><li key={product._id}>{product.name}</li></Link>
+                            )) }
+                        </ul>
                     </div>
-
-
-
-
 
                     {/* if the toggle value is true, add class is-open, otherwise it's hidden */}
                     <ul className= {`${isOpen ? "is-open" : ""}`}>

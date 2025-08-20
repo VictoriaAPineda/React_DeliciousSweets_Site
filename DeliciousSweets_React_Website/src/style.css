@@ -75,13 +75,8 @@ body{
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: relative;
     
-}
-.search-icon {
-    color: #fff;
-    font-size: 1rem;
-    white-space: nowrap;
-    margin-right: 5px;
 }
 #search{
     padding-left:5px;
@@ -91,19 +86,22 @@ body{
     background-color: #FFF7EB;
     display: flex;
     flex-direction: column;
-
+    position: absolute;
+    top: 25px;
+    text-align: center;
 }
-.search-fail{
-    background-color: #FFF7EB;
+.search-results-list .result_link{
+    text-decoration: none;
+    text-align: left;
+    width: 100%;
+    color: #43322D;
+    padding: 0.5em 0em;
 }
-/* [ ] have results over elements */
-.search-results-list li{
-    align-self:flex-start;
+.result_link:hover{
+    background-color: #fbedd7 ;
+    /* width: 100%;
+    height: 100%; */
 }
-
-
-
-
 
 .nav-menu{
     display: flex;
@@ -1521,6 +1519,13 @@ body{
 }
 /* Mobile versions */
 @media (max-width: 900px ){
+
+    .nav-menu .search-container .search-results-list{
+        display: block;
+    }
+    .search-results-list .result_link{
+        display: block;
+    }
     .large-font{
         font-size: 2rem;
     }
