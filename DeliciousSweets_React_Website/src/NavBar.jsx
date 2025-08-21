@@ -49,7 +49,7 @@ export default function Navbar() {
         if(searchTerm.length > 0){
             const lowerCaseTerm = searchTerm.toLowerCase();
             const filteredSearchResults =  data.filter(product => 
-                product.name.toLowerCase().includes(lowerCaseTerm)
+                product.name.toLowerCase().startsWith(lowerCaseTerm)
             )
             setSearchResults(filteredSearchResults);
         }else{
@@ -87,7 +87,7 @@ export default function Navbar() {
                         />
                         <ul className="search-results-list" ref={resultsRef}>
                             { visible && searchResults.map(product => (
-                                <Link to={`/productDetails/${product._id}`} onClick={()=> setVisible(false)} className={'result_link'}><li key={product._id}>{product.name}</li></Link>
+                                <Link to={`/productDetails/${product._id}`} onClick={()=> {setVisible(false) ; setSearchTerm(product.name)}} className={'result_link'}><li key={product._id}>{product.name}</li></Link>
                             )) }
                         </ul>
                     </div>
