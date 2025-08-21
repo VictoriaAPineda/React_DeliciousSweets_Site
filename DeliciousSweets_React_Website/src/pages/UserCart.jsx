@@ -43,6 +43,8 @@ function UserCart(){
         isDeliveryAddressDisabled: true,
         isEmailValid: true,
         isPhoneValid: true,
+        isExpireDateValid: true,
+        isCVCValid: true,
     }
     const [state, dispatch] = useReducer(OrderFormReducer, initalState)
 
@@ -216,12 +218,21 @@ function UserCart(){
                     ...state,
                     ccExpireDate: action.expDateInputted
                 };
+            case 'Validate_ExpireDate':
+                return{
+                    ...state,
+                    isExpireDateValid: action.payload
+                }
             case 'Card_Pin_Set':
                 return{
                     ...state,
                     [action.name]: action.value
                 };
-
+            case 'Validate_CVC':
+                return{
+                    ...state,
+                    isCVCValid: action.payload
+                }
             case 'Date_Pickup_Selected': 
                 return{
                     ...state, 
@@ -304,6 +315,28 @@ function UserCart(){
         }
     }, [state.phone])
 
+    useEffect(()=>{
+        if(state.ccExpireDate !== ""){
+            timeoutRef.current = setTimeout(()=>{
+                const dateFormatRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
+                const regexResult =  dateFormatRegex.test(state.ccExpireDate);
+                dispatch({type: 'Validate_ExpireDate', payload: regexResult})
+            },500)
+            return () => clearTimeout(timeoutRef.current)
+        }
+    }, [state.ccExpireDate])
+
+    
+    useEffect(()=>{
+        if(state.ccVerify !== ""){
+            timeoutRef.current = setTimeout(()=>{
+                const cvcRegex = /^\d{3}$/;
+                const regexResult =  cvcRegex.test(state.ccVerify);
+                dispatch({type: 'Validate_CVC', payload: regexResult})
+            },500)
+            return () => clearTimeout(timeoutRef.current)
+        }
+    }, [state.ccVerify])
 
     const handleEmailSet = (e) =>{
         /*
@@ -579,19 +612,31 @@ function UserCart(){
                                             required
                                             />
                                         <div>
-                                            <input type='text' placeholder='MM / YY'
-                                            name='ccExpireDate'
-                                            value={state.ccExpireDate || ""}
-                                            onChange={handleCardExpiredDateSet}
-                                            maxLength={5}
-                                            required
+                                        
+                                        <div>
+                                            <input 
+                                                type='text' placeholder='MM / YY'
+                                                name='ccExpireDate'
+                                                value={state.ccExpireDate || ""}
+                                                onChange={handleCardExpiredDateSet}
+                                                maxLength={5}
+                                                required
                                             />
-                                            <input type="text" maxLength={3} placeholder='CVC'
-                                            name='ccVerify'
-                                            value={state.ccVerify || ""}
-                                            onChange={handleCardPinSet}
-                                            required
+                                            {/* Date Error */}
+                                            {!state.isExpireDateValid && <p className='form_error_notice'>Invalid format ex: 01/02</p>} 
+                                        </div>
+                                        <div>
+                                            <input 
+                                                type="text" maxLength={3} placeholder='CVC'
+                                                name='ccVerify'
+                                                value={state.ccVerify || ""}
+                                                onChange={handleCardPinSet}
+                                                required
                                             />
+                                            {/* CVC error */}
+                                            {!state.isCVCValid && <p className='form_error_notice'>Invalid pin format ex: 123</p>} 
+                                        </div>
+                                        
                                         </div>
                                     </div>
                                 </div>

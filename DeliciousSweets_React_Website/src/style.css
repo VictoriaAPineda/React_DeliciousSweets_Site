@@ -91,7 +91,7 @@ body{
     text-align: left;
     width: 100%;
     color: #43322D;
-    padding: 0.5em 0em;
+    padding: 0.5em 0em; 
 }
 .result_link:hover{
     background-color: #fbedd7 ;
@@ -1279,14 +1279,27 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;  
+    width: 100%;
 }
 .card-input-container div{
     display: flex;
     justify-content: center;
     gap: 4px;
+    width: 100%;
+}
+.card-input-container div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.card-input-container div div p{
+    max-width: 60%;
+    padding: 0.5em;
+    margin: 0;
 }
 .card-input-container div input{
-    width: 39%;
+    width: 60%;
 }
 
 
@@ -1404,6 +1417,12 @@ body{
     font-size: 0.75rem;
     text-align: center;
     color: #dc3131;
+    background-color:#9C3535;
+    padding: 0.5em;
+    color: #fff;
+    width: 80%;
+    display: flex;
+    white-space: pre-wrap;
 }
 
 

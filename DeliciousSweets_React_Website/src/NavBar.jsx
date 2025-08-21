@@ -94,7 +94,7 @@ export default function Navbar() {
 
                     {/* if the toggle value is true, add class is-open, otherwise it's hidden */}
                     <ul className= {`${isOpen ? "is-open" : ""}`}>
-                        <li><Link to="/">Home</Link></li>
+                        {/* <li><Link to="/">Home</Link></li> */}
                         <li><Link to="/contact">Contact Us</Link></li>
                         <li><Link to="/about">About</Link></li>
                         <li>
