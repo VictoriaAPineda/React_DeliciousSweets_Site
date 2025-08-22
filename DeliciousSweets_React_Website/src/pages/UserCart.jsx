@@ -623,7 +623,7 @@ function UserCart(){
                                                 required
                                             />
                                             {/* Date Error */}
-                                            {!state.isExpireDateValid && <p className='form_error_notice'>Invalid format ex: 01/02</p>} 
+                                            {!state.isExpireDateValid && <p className='form_error_notice'>Invalid date ex: 01/02</p>} 
                                         </div>
                                         <div>
                                             <input 
@@ -634,7 +634,7 @@ function UserCart(){
                                                 required
                                             />
                                             {/* CVC error */}
-                                            {!state.isCVCValid && <p className='form_error_notice'>Invalid pin format ex: 123</p>} 
+                                            {!state.isCVCValid && <p className='form_error_notice'>Invalid format ex: 123</p>} 
                                         </div>
                                         
                                         </div>

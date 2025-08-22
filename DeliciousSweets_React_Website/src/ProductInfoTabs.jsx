@@ -137,14 +137,21 @@ function Tabs({productDataId}){
 
             <div className="tabContent">
                 {/* Specifications of product */}
-                { activeTab === 0 && <p> {tabs[activeTab].content}</p> }
+                { activeTab === 0 && 
+                    <div className="specs-card">
+                        <p> {tabs[activeTab].content}</p>
+                    </div> 
+                }
 
                 {/* Reviews of product */}
                  { activeTab === 1 && reviews.length > 0 &&
-                    <div>
+                    <div className="review-card">
                         {/* Add a review */}
                         <form action="#" method="POST" onSubmit={handleReviewSubmit} className="add-review-section">
+                            {/* TODO?: Add filter ex: newest to oldest */}
+                            {/* Add review btn*/}
                             <button className="add-review-btn" onClick={()=> handleShowReviewInput()} >Add Your Review</button>
+
                             { isVisible &&  
                                 <div>
                                     {/* Retrieve the value of star rating from component */}
